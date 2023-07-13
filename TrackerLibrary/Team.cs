@@ -10,7 +10,7 @@ public class Team
     /// <summary>
     /// name of the Team 
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
     /// <summary>
     /// city that the team is loacated 

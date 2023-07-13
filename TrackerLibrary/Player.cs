@@ -10,22 +10,22 @@ public class Player
     /// <summary>
     /// First name of the player
     /// </summary>
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     /// <summary>
     /// last name of the player
     /// </summary>
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
 
     /// <summary>
     /// social sercurity number of the player
     /// </summary>
-    public string SSN { get; set; }
+    public string? SSN { get; set; }
 
     /// <summary>
     /// phone number of the player
     /// </summary>
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     /// <summary>
     /// the team of the player 

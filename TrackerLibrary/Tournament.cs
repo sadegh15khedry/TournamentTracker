@@ -11,17 +11,17 @@ public class Tournament
     /// <summary>
     /// Name of the Tournament
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
     
     /// <summary>
     /// Simple and short descrption of the Tournament. 
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
     
     /// <summary>
     /// The location of The tournament  
     /// </summary>
-    public string Location { get; set; }
+    public string? Location { get; set; }
     
     /// <summary>
     /// List of Teams that participate in the tournament.  
