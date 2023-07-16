@@ -10,15 +10,15 @@ public class Team
     /// <summary>
     /// name of the Team 
     /// </summary>
-    public required string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     /// <summary>
     /// city that the team is loacated 
     /// </summary>
-    public string City { get; set; }
+    public string City { get; set; } = string.Empty;
 
     /// <summary>
     /// first name and last name of the owner
     /// </summary>
-    public string Owner { get; set; }
+    public string Owner { get; set; } = string.Empty;
 }

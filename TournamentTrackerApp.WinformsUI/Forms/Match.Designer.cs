@@ -28,63 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lastnameTextBox = new TextBox();
-            lastnameLabel = new Label();
-            createPlayerButton = new Button();
-            firstnameTextBox = new TextBox();
-            firstnameLabel = new Label();
+            teamAScoreTextBox = new TextBox();
+            teanALabel = new Label();
+            matchSubmitButton = new Button();
+            teamBScoreTextBox = new TextBox();
+            teamBLabel = new Label();
             titleLabel = new Label();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
+            tournamentLabel = new Label();
+            roundLabel = new Label();
+            matchNumberLabel = new Label();
+            tournamentValueLabel = new Label();
+            roundNumberValueLabel = new Label();
+            machNumberValueLabel = new Label();
             SuspendLayout();
             // 
-            // lastnameTextBox
+            // teamAScoreTextBox
             // 
-            lastnameTextBox.Location = new Point(1143, 441);
-            lastnameTextBox.Margin = new Padding(5);
-            lastnameTextBox.Name = "lastnameTextBox";
-            lastnameTextBox.Size = new Size(172, 50);
-            lastnameTextBox.TabIndex = 48;
+            teamAScoreTextBox.Location = new Point(1143, 441);
+            teamAScoreTextBox.Margin = new Padding(5);
+            teamAScoreTextBox.Name = "teamAScoreTextBox";
+            teamAScoreTextBox.Size = new Size(172, 50);
+            teamAScoreTextBox.TabIndex = 48;
             // 
-            // lastnameLabel
+            // teanALabel
             // 
-            lastnameLabel.AutoSize = true;
-            lastnameLabel.Location = new Point(1143, 347);
-            lastnameLabel.Name = "lastnameLabel";
-            lastnameLabel.Size = new Size(125, 45);
-            lastnameLabel.TabIndex = 47;
-            lastnameLabel.Text = "Team A";
+            teanALabel.AutoSize = true;
+            teanALabel.Location = new Point(1143, 347);
+            teanALabel.Name = "teanALabel";
+            teanALabel.Size = new Size(125, 45);
+            teanALabel.TabIndex = 47;
+            teanALabel.Text = "Team A";
             // 
-            // createPlayerButton
+            // matchSubmitButton
             // 
-            createPlayerButton.ForeColor = Color.Black;
-            createPlayerButton.Location = new Point(1279, 589);
-            createPlayerButton.Name = "createPlayerButton";
-            createPlayerButton.Size = new Size(235, 92);
-            createPlayerButton.TabIndex = 46;
-            createPlayerButton.Text = "Submit";
-            createPlayerButton.UseVisualStyleBackColor = true;
+            matchSubmitButton.ForeColor = Color.Black;
+            matchSubmitButton.Location = new Point(1279, 589);
+            matchSubmitButton.Name = "matchSubmitButton";
+            matchSubmitButton.Size = new Size(235, 92);
+            matchSubmitButton.TabIndex = 46;
+            matchSubmitButton.Text = "Submit";
+            matchSubmitButton.UseVisualStyleBackColor = true;
             // 
-            // firstnameTextBox
+            // teamBScoreTextBox
             // 
-            firstnameTextBox.Location = new Point(1435, 441);
-            firstnameTextBox.Margin = new Padding(5);
-            firstnameTextBox.Name = "firstnameTextBox";
-            firstnameTextBox.Size = new Size(172, 50);
-            firstnameTextBox.TabIndex = 43;
+            teamBScoreTextBox.Location = new Point(1435, 441);
+            teamBScoreTextBox.Margin = new Padding(5);
+            teamBScoreTextBox.Name = "teamBScoreTextBox";
+            teamBScoreTextBox.Size = new Size(172, 50);
+            teamBScoreTextBox.TabIndex = 43;
             // 
-            // firstnameLabel
+            // teamBLabel
             // 
-            firstnameLabel.AutoSize = true;
-            firstnameLabel.Location = new Point(1435, 347);
-            firstnameLabel.Name = "firstnameLabel";
-            firstnameLabel.Size = new Size(122, 45);
-            firstnameLabel.TabIndex = 40;
-            firstnameLabel.Text = "Team B";
+            teamBLabel.AutoSize = true;
+            teamBLabel.Location = new Point(1435, 347);
+            teamBLabel.Name = "teamBLabel";
+            teamBLabel.Size = new Size(122, 45);
+            teamBLabel.TabIndex = 40;
+            teamBLabel.Text = "Team B";
             // 
             // titleLabel
             // 
@@ -98,60 +98,60 @@
             titleLabel.TabIndex = 39;
             titleLabel.Text = "Match";
             // 
-            // label1
+            // tournamentLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(200, 293);
-            label1.Name = "label1";
-            label1.Size = new Size(206, 45);
-            label1.TabIndex = 49;
-            label1.Text = "Tournament :";
+            tournamentLabel.AutoSize = true;
+            tournamentLabel.Location = new Point(200, 293);
+            tournamentLabel.Name = "tournamentLabel";
+            tournamentLabel.Size = new Size(206, 45);
+            tournamentLabel.TabIndex = 49;
+            tournamentLabel.Text = "Tournament :";
             // 
-            // label2
+            // roundLabel
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(202, 441);
-            label2.Name = "label2";
-            label2.Size = new Size(128, 45);
-            label2.TabIndex = 50;
-            label2.Text = "Round :";
-            label2.Click += label2_Click;
+            roundLabel.AutoSize = true;
+            roundLabel.Location = new Point(202, 441);
+            roundLabel.Name = "roundLabel";
+            roundLabel.Size = new Size(128, 45);
+            roundLabel.TabIndex = 50;
+            roundLabel.Text = "Round :";
+            roundLabel.Click += label2_Click;
             // 
-            // label3
+            // matchNumberLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(208, 666);
-            label3.Name = "label3";
-            label3.Size = new Size(418, 45);
-            label3.TabIndex = 51;
-            label3.Text = "Number OF Mach In Series :";
+            matchNumberLabel.AutoSize = true;
+            matchNumberLabel.Location = new Point(208, 666);
+            matchNumberLabel.Name = "matchNumberLabel";
+            matchNumberLabel.Size = new Size(418, 45);
+            matchNumberLabel.TabIndex = 51;
+            matchNumberLabel.Text = "Number OF Mach In Series :";
             // 
-            // label4
+            // tournamentValueLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(437, 293);
-            label4.Name = "label4";
-            label4.Size = new Size(323, 45);
-            label4.TabIndex = 52;
-            label4.Text = "@nameOfTounament";
+            tournamentValueLabel.AutoSize = true;
+            tournamentValueLabel.Location = new Point(437, 293);
+            tournamentValueLabel.Name = "tournamentValueLabel";
+            tournamentValueLabel.Size = new Size(323, 45);
+            tournamentValueLabel.TabIndex = 52;
+            tournamentValueLabel.Text = "@nameOfTounament";
             // 
-            // label5
+            // roundNumberValueLabel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(365, 444);
-            label5.Name = "label5";
-            label5.Size = new Size(253, 45);
-            label5.TabIndex = 53;
-            label5.Text = "@roundNumber";
+            roundNumberValueLabel.AutoSize = true;
+            roundNumberValueLabel.Location = new Point(365, 444);
+            roundNumberValueLabel.Name = "roundNumberValueLabel";
+            roundNumberValueLabel.Size = new Size(253, 45);
+            roundNumberValueLabel.TabIndex = 53;
+            roundNumberValueLabel.Text = "@roundNumber";
             // 
-            // label6
+            // machNumberValueLabel
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(648, 666);
-            label6.Name = "label6";
-            label6.Size = new Size(285, 45);
-            label6.TabIndex = 54;
-            label6.Text = "@numberOfMatch";
+            machNumberValueLabel.AutoSize = true;
+            machNumberValueLabel.Location = new Point(648, 666);
+            machNumberValueLabel.Name = "machNumberValueLabel";
+            machNumberValueLabel.Size = new Size(285, 45);
+            machNumberValueLabel.TabIndex = 54;
+            machNumberValueLabel.Text = "@numberOfMatch";
             // 
             // Match
             // 
@@ -159,17 +159,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1859, 1211);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(lastnameTextBox);
-            Controls.Add(lastnameLabel);
-            Controls.Add(createPlayerButton);
-            Controls.Add(firstnameTextBox);
-            Controls.Add(firstnameLabel);
+            Controls.Add(machNumberValueLabel);
+            Controls.Add(roundNumberValueLabel);
+            Controls.Add(tournamentValueLabel);
+            Controls.Add(matchNumberLabel);
+            Controls.Add(roundLabel);
+            Controls.Add(tournamentLabel);
+            Controls.Add(teamAScoreTextBox);
+            Controls.Add(teanALabel);
+            Controls.Add(matchSubmitButton);
+            Controls.Add(teamBScoreTextBox);
+            Controls.Add(teamBLabel);
             Controls.Add(titleLabel);
             Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
@@ -182,17 +182,17 @@
 
         #endregion
 
-        private TextBox lastnameTextBox;
-        private Label lastnameLabel;
-        private Button createPlayerButton;
-        private TextBox firstnameTextBox;
-        private Label firstnameLabel;
+        private TextBox teamAScoreTextBox;
+        private Label teanALabel;
+        private Button matchSubmitButton;
+        private TextBox teamBScoreTextBox;
+        private Label teamBLabel;
         private Label titleLabel;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
+        private Label tournamentLabel;
+        private Label roundLabel;
+        private Label matchNumberLabel;
+        private Label tournamentValueLabel;
+        private Label roundNumberValueLabel;
+        private Label machNumberValueLabel;
     }
 }
