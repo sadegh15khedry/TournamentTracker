@@ -5,5 +5,7 @@
     [PlaceInRound] INT NULL, 
     [isSeriesFinished] BINARY(50) NULL, 
     [FirstTeamId] INT NOT NULL, 
-    [SecondTeamId] INT NOT NULL
+    [SecondTeamId] INT NOT NULL, 
+    CONSTRAINT [FK_Series_ToTeamA] FOREIGN KEY ([FirstTeamId]) REFERENCES [Team]([Id]),
+    CONSTRAINT [FK_Series_ToTeamB] FOREIGN KEY ([SecondTeamId]) REFERENCES [Team]([Id])
 )

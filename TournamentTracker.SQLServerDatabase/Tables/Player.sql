@@ -6,5 +6,5 @@
     [LastName] NVARCHAR(100) NOT NULL, 
     [TeamId] INT NULL, 
     [Phone] NVARCHAR(50) NULL, 
-    [Email] NVARCHAR(2000) NULL
-)
+    [Email] NVARCHAR(2000) NULL, 
+    CONSTRAINT [FK_Player_ToTeam] FOREIGN KEY ([TeamId]) REFERENCES [Team]([Id]))
