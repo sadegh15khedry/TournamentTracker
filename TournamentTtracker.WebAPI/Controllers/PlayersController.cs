@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TournamentTracker.WebAPI.Controllers;
 
-[Route("/Controller/Action")]
+[Route("api/[Controller]/Action")]
+[ApiController]
 public class PlayersController : Controller
 {
     private readonly IPlayerData _db;
@@ -28,12 +29,6 @@ public class PlayersController : Controller
         return View();
     }
 
-    /*[HttpPost]
-    // GET: PlayerController/Create
-    public ActionResult Create()
-    {
-        return View();
-    }*/
 
     // POST: PlayerController/Create
     [HttpPost]
@@ -50,12 +45,6 @@ public class PlayersController : Controller
         }
     }
 
-    /*[HttpPut]
-    // GET: PlayerController/Edit/5
-    public ActionResult Edit(int id)
-    {
-        return View();
-    }*/
 
     // POST: PlayerController/Edit/5
     [HttpPut]
@@ -72,11 +61,6 @@ public class PlayersController : Controller
         }
     }
 
-    /*// GET: PlayerController/Delete/5
-    public ActionResult Delete(int id)
-    {
-        return View();
-    }*/
 
     // POST: PlayerController/Delete/5
     [HttpDelete]

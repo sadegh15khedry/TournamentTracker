@@ -26,4 +26,6 @@ public class Match
     /// </summary>
     public int SecondTeamScore { get; set; }
 
+    public int SeriesId { get; set; }
+
 }

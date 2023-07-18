@@ -1,4 +1,5 @@
-using DataAccessLibrary;
+global using DataAccessLibrary;
+global using DataAccessLibrary.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +10,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IPlayerData, PlayerData>();
+builder.Services.AddSingleton<IMatchData, MatchData>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
