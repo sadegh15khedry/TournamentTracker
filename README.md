@@ -1,2 +1,2 @@
-# TournamentTracker
-Tim corey tournament Tracer app.
+# TournamentTracker App
+A desktop App to manage soprt Tournaments.
