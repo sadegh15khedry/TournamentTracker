@@ -9,32 +9,33 @@ public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _config;
 
-    public string ConnectionStirng { get; set; } = "Default";
 
     public SqlDataAccess(IConfiguration config)
     {
         _config = config;
     }
 
-    public async Task<List<T>> LoadData<T, U>(string storedProcedures, U parameters)
+    public async Task<IEnumerable<T>> LoadData<T, U>(string storedProcedures,
+        U parameters, string connectionId = "Default")
     {
-        string connectionString = _config.GetConnectionString(ConnectionStirng);
 
-        using (IDbConnection connection = new SqlConnection(connectionString))
+        using (IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId)))
         {
-            var data = await connection.QueryAsync<T>(storedProcedures, parameters);
-            return data.ToList();
+            return await connection.QueryAsync<T>(storedProcedures,
+                parameters, commandType: CommandType.StoredProcedure);
         }
 
     }
 
-    public async Task SaveData<T>(string storedProcedures, T parameters)
+    public async Task SaveData<T>(string storedProcedures, T parameters,
+        string connectionId = "Default")
     {
-        string connectionString = _config.GetConnectionString(ConnectionStirng);
 
-        using (IDbConnection connection = new SqlConnection(connectionString))
+
+        using (IDbConnection connection = new SqlConnection(
+            _config.GetConnectionString(connectionId)))
         {
-            await connection.ExecuteAsync(storedProcedures, parameters);
+            await connection.ExecuteAsync(storedProcedures, parameters, commandType: CommandType.StoredProcedure);
         }
     }
 

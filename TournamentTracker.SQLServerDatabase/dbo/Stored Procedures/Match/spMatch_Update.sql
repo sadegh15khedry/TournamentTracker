@@ -9,4 +9,5 @@ Begin
 	Update dbo.[Match] 
 	Set Outcome = @Outcome, FirstTeamScore = @FirstTeamScore,
 	SecondTeamScore = @SecondTeamScore, SeriesId = @SeriesId
+	where Id = @Id
 End

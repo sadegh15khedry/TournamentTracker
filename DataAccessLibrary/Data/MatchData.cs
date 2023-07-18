@@ -18,7 +18,7 @@ public class MatchData : IMatchData
 
     public async Task<Match> GetById(int id)
     {
-        var results = await _db.LoadData<Match, dynamic>("", new { Id = id });
+        var results = await _db.LoadData<Match, dynamic>("dbo.spMatch_GetByID", new { Id = id });
         return results.FirstOrDefault();
     }
 
@@ -34,7 +34,7 @@ public class MatchData : IMatchData
     }
     public async Task Update(Match match)
     {
-        await _db.SaveData("dbo.spMatch_Update", new { match });
+        await _db.SaveData("dbo.spMatch_Update", match);
     }
     public async Task Delete(int id)
     {

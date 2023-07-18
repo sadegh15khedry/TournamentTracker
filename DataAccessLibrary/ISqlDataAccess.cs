@@ -1,12 +1,8 @@
-﻿namespace DataAccessLibrary;
-
-public interface ISqlDataAccess
+﻿namespace DataAccessLibrary
 {
-    string ConnectionStirng { get; set; }
-
-    Task<List<T>> LoadData<T, U>(string sql, U parameters);
-
-    Task SaveData<T>(string sql, T parameters);
-
-
+    public interface ISqlDataAccess
+    {
+        Task<IEnumerable<T>> LoadData<T, U>(string storedProcedures, U parameters, string connectionId = "Default");
+        Task SaveData<T>(string storedProcedures, T parameters, string connectionId = "Default");
+    }
 }
