@@ -4,6 +4,10 @@ namespace DataAccessLibrary.Data;
 
 public class MatchData : IMatchData
 {
+    /// <summary>
+    /// !imporatant
+    ///
+    /// </summary>
     public ISqlDataAccess _db { get; }
 
     public MatchData(ISqlDataAccess db)

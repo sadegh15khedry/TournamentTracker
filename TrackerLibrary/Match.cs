@@ -28,4 +28,5 @@ public class Match
 
     public int SeriesId { get; set; }
 
+    public int MyProperty { get; set; }
 }

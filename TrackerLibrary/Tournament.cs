@@ -29,13 +29,15 @@ public class Tournament
     public List<Team> Teams { get; set; } = new List<Team>();
 
     /// <summary>
-    /// the team that won the tournametn.
+    /// the team that won the tournament.
     /// </summary>
     public Team WinnerTeam { get; set; } = new Team();
 
     /// <summary>
-    /// List of Matches in The tournamet 
+    /// List of Matches in The tournament 
     /// </summary>
     public List<Match> Matches { get; set; }
+
+    public bool IsFinished { get; set; } = false;
 
 }

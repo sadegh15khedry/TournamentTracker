@@ -60,6 +60,11 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures" />
     <Folder Include="dbo\Stored Procedures\Match" />
+    <Folder Include="dbo\Stored Procedures\Player" />
+    <Folder Include="dbo\Stored Procedures\Tounament" />
+    <Folder Include="dbo\Stored Procedures\Team" />
+    <Folder Include="dbo\Stored Procedures\TournamentTeam" />
+    <Folder Include="dbo\Stored Procedures\Series" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Match.sql" />
@@ -74,6 +79,34 @@
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetById.sql" />
     <Build Include="dbo\Stored Procedures\Match\spMatch_Insert.sql" />
     <Build Include="dbo\Stored Procedures\Match\spMatch_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Player\SpPlayer_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeam_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeam_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeamDelete.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeam_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeam_Update.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\spTournamentTeam_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\spTournamentTeam_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\spTournamentTeam_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\SpTournamentTeam_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\soTournamentTeam_GetByTournamentId.sql" />
+    <Build Include="dbo\Stored Procedures\TournamentTeam\spTournamentTeam_GetByTeamId.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_Update.sql" />
+    <Build Include="dbo\Stored Procedures\Series\spSeries_SetToFinished.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToFinished.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="TournamentTracker.SQLServerDatabase.refactorlog" />
