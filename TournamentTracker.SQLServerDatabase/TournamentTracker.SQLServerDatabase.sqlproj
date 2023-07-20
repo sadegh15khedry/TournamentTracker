@@ -109,6 +109,6 @@
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToFinished.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="TournamentTracker.SQLServerDatabase.refactorlog" />
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

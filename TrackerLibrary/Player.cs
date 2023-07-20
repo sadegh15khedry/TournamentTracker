@@ -27,6 +27,8 @@ public class Player
     /// </summary>
     public string? Phone { get; set; }
 
+    public string Email { get; set; }
+
     /// <summary>
     /// the team of the player 
     /// </summary>

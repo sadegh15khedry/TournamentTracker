@@ -9,5 +9,5 @@
     [TournamentId] INT NOT NULL, 
     CONSTRAINT [FK_Series_ToTeamA] FOREIGN KEY ([FirstTeamId]) REFERENCES [Team]([Id]),
     CONSTRAINT [FK_Series_ToTeamB] FOREIGN KEY ([SecondTeamId]) REFERENCES [Team]([Id]), 
-    CONSTRAINT [FK_Series_ToTable] FOREIGN KEY ([TournamentId]) REFERENCES [Tournament]([Id])
+    CONSTRAINT [FK_Series_ToTournament] FOREIGN KEY ([TournamentId]) REFERENCES [Tournament]([Id])
 )

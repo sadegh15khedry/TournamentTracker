@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackerLibrary;
 
-namespace TournamentTracker.WebAPI.Controllers;
+namespace TournamentTracker.WebAPI;
 
-[Route("api/[Controller]/")]
 [ApiController]
-public class TournamentController : Controller
-{
-    private readonly IMatchData _db;
+[Route("[Controller]/[Action]")]
 
-    public TournamentController(IMatchData db)
+public class PlayersController : Controller
+{
+    private readonly IPlayerData _db;
+
+    public PlayersController(IPlayerData db)
     {
         _db = db;
     }
@@ -34,18 +36,11 @@ public class TournamentController : Controller
 
     // POST: TournamentController/Create
     [HttpPost]
-    public ActionResult Create()
+    public ActionResult Create(Player player)
     {
         try
         {
-            Match match = new Match()
-            {
-                Outcome = 1,
-                FirstTeamScore = 103,
-                SecondTeamScore = 100,
-                SeriesId = 2
-            };
-            _db.Insert(match);
+            _db.Insert(player);
             return StatusCode((int)HttpStatusCode.Created, "Match added");
         }
         catch
@@ -57,19 +52,11 @@ public class TournamentController : Controller
 
     [HttpPut]
     // POST: TournamentController/Edit/5
-    public ActionResult Edit()
+    public ActionResult Edit(Player player)
     {
         try
         {
-            Match match = new Match()
-            {
-                Id = 19,
-                Outcome = 2,
-                FirstTeamScore = 203,
-                SecondTeamScore = 210,
-                SeriesId = 2
-            };
-            _db.Update(match);
+            _db.Update(player);
             return StatusCode((int)HttpStatusCode.OK, "Match Updated");
         }
         catch

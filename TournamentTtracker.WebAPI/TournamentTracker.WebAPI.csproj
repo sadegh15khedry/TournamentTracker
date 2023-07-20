@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
-    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj" />
+    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.DataModels.csproj" />
   </ItemGroup>
 
 </Project>
