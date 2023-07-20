@@ -1,2 +1,2 @@
 # TournamentTracker App
-A desktop App to manage soprt Tournaments.
+A desktop App to manage sport Tournaments.
