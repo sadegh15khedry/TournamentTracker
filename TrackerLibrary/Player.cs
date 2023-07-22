@@ -32,7 +32,10 @@ public class Player
     /// <summary>
     /// the team of the player 
     /// </summary>
-    public Team Team { get; set; }
+    public int? TeamId { get; set; }
 
-
+    /// <summary>
+    /// the Current Team of player
+    /// </summary>
+    public Team? Team { get; set; }
 }

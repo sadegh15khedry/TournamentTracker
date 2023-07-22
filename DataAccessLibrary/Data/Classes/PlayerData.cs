@@ -16,6 +16,22 @@ public class PlayerData : IPlayerData
         _db = db;
     }
 
+    public async Task<Team> GetPlayerTeam(int teamId)
+    {
+        var results = await _db.LoadData<Team, dynamic>("spPlayer_GetPlayerTeam", new { TeamId = teamId });
+        return results.FirstOrDefault();
+    }
+
+    public async Task SignedWithTeam(int playerId, int teamId)
+    {
+        await _db.SaveData("dbo.spPlayer_SignedWithTeam", new
+        {
+            playerId,
+            teamId
+        });
+
+    }
+
     public async Task<IEnumerable<Player>> GetAll()
     {
         return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetAll", new { });
@@ -38,10 +54,21 @@ public class PlayerData : IPlayerData
             player.Email
         });
     }
+
     public async Task Update(Player player)
     {
-        await _db.SaveData("dbo.spPlayer_Update", player);
+        await _db.SaveData("dbo.spPlayer_Update", new
+        {
+            player.Id,
+            player.SSN,
+            player.FirstName,
+            player.LastName,
+            player.Phone,
+            player.Email
+        });
+
     }
+
     public async Task Delete(int id)
     {
         await _db.SaveData("dbo.spPlayer_Delete", new { id });

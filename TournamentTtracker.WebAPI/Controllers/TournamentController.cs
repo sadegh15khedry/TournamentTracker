@@ -57,7 +57,7 @@ public class TournamentController : Controller
 
     [HttpPut]
     // POST: TournamentController/Edit/5
-    public ActionResult Edit()
+    public ActionResult Update()
     {
         try
         {

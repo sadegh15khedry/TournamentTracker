@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackerLibrary;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace TournamentTracker.WebAPI;
 
 [ApiController]
-[Route("[Controller]/[Action]")]
-
+[Route("api/[Controller]")]
 public class PlayersController : Controller
 {
     private readonly IPlayerData _db;
@@ -18,66 +18,84 @@ public class PlayersController : Controller
     }
 
     [HttpGet]
-    // GET: TournamentController
+    // GET: api/Players
     public async Task<ActionResult> GetAll()
     {
-        return Ok(_db.GetAll().Result);
+        var players = _db.GetAll().Result;
+        foreach (var player in players)
+        {
+            if (player.TeamId.HasValue)
+            {
+                player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result;
+            }
+        }
+        return Ok(players);
     }
 
-    [Route("/[Controller]/{id}")]
     [HttpGet]
-    // GET: TournamentController/5
+    [Route("/[Controller]/{id}")]
+
+    // GET: api/Players/5
     public ActionResult GetById(int id)
     {
-        return Ok(_db.GetById(id).Result);
+        var player = _db.GetById(id).Result;
+        if (player is null)
+        {
+            return StatusCode((int)HttpStatusCode.NotFound, "player Not Found");
+        }
+        player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result;
+        return Ok(player);
     }
 
 
 
-    // POST: TournamentController/Create
+    // POST: api/Players/Create
     [HttpPost]
-    public ActionResult Create(Player player)
+    public ActionResult Create([FromBody] Player player)
     {
         try
         {
             _db.Insert(player);
-            return StatusCode((int)HttpStatusCode.Created, "Match added");
+            return StatusCode((int)HttpStatusCode.Created, "added");
         }
         catch
         {
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
         }
+    }
+
+    [HttpPost]
+    [Route("/[Controller]/[Action]")]
+    // POST: api/TournamentController/Edit/5
+    public ActionResult SignedWithTeam(int playerId, int teamId)
+    {
+        _db.SignedWithTeam(playerId, teamId);
+        return StatusCode((int)HttpStatusCode.OK, "Updated");
     }
 
 
     [HttpPut]
-    // POST: TournamentController/Edit/5
-    public ActionResult Edit(Player player)
+    // POST: api/TournamentController/Edit/5
+    public ActionResult Update(Player player)
     {
-        try
-        {
-            _db.Update(player);
-            return StatusCode((int)HttpStatusCode.OK, "Match Updated");
-        }
-        catch
-        {
-            return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
-        }
+        _db.Update(player);
+        return StatusCode((int)HttpStatusCode.OK, "Updated");
     }
 
 
-    // POST: TournamentController/Delete/5
+    // POST: api/Delete/5
     [HttpDelete]
     public ActionResult Delete(int id)
     {
         try
         {
             _db.Delete(id);
-            return StatusCode((int)HttpStatusCode.OK, "Match Deleted");
+            return StatusCode((int)HttpStatusCode.OK, "Deleted");
         }
         catch
         {
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
         }
     }
+
 }
