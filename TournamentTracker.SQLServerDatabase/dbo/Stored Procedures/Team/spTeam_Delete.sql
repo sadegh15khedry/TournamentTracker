@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spTeamDelete]
+﻿CREATE PROCEDURE [dbo].[spTeam_Delete]
 	@Id int
 AS
 Begin

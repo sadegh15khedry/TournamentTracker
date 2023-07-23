@@ -17,6 +17,24 @@ public class PlayersController : Controller
         _db = db;
     }
 
+    [HttpPost]
+    [Route("/[Controller]/[Action]")]
+    // POST: api/TournamentController/SignedWithTeam
+    public ActionResult SignedWithTeam(int playerId, int teamId)
+    {
+        _db.SignedWithTeam(playerId, teamId);
+        return StatusCode((int)HttpStatusCode.OK, "Signed");
+    }
+
+    [HttpPost]
+    [Route("/[Controller]/[Action]")]
+    // POST: api/TournamentController/CanceledContract
+    public ActionResult CanceledContract(int playerId)
+    {
+        _db.CanceledContract(playerId);
+        return StatusCode((int)HttpStatusCode.OK, "Contract Cancelled");
+    }
+
     [HttpGet]
     // GET: api/Players
     public async Task<ActionResult> GetAll()
@@ -47,8 +65,6 @@ public class PlayersController : Controller
         return Ok(player);
     }
 
-
-
     // POST: api/Players/Create
     [HttpPost]
     public ActionResult Create([FromBody] Player player)
@@ -64,16 +80,6 @@ public class PlayersController : Controller
         }
     }
 
-    [HttpPost]
-    [Route("/[Controller]/[Action]")]
-    // POST: api/TournamentController/Edit/5
-    public ActionResult SignedWithTeam(int playerId, int teamId)
-    {
-        _db.SignedWithTeam(playerId, teamId);
-        return StatusCode((int)HttpStatusCode.OK, "Updated");
-    }
-
-
     [HttpPut]
     // POST: api/TournamentController/Edit/5
     public ActionResult Update(Player player)
@@ -81,7 +87,6 @@ public class PlayersController : Controller
         _db.Update(player);
         return StatusCode((int)HttpStatusCode.OK, "Updated");
     }
-
 
     // POST: api/Delete/5
     [HttpDelete]

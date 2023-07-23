@@ -91,7 +91,7 @@
     <Build Include="dbo\Stored Procedures\Player\spPlayer_Update.sql" />
     <Build Include="dbo\Stored Procedures\Team\spTeam_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Team\spTeam_GetById.sql" />
-    <Build Include="dbo\Stored Procedures\Team\spTeamDelete.sql" />
+    <Build Include="dbo\Stored Procedures\Team\spTeam_Delete.sql" />
     <Build Include="dbo\Stored Procedures\Team\spTeam_Insert.sql" />
     <Build Include="dbo\Stored Procedures\Team\spTeam_Update.sql" />
     <Build Include="dbo\Stored Procedures\TournamentTeam\spTournamentTeam_GetAll.sql" />
@@ -109,6 +109,7 @@
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToFinished.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_GetPlayerTeam.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_SignedWithTeam.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_CanceledContract.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

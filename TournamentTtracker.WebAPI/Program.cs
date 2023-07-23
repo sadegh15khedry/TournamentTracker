@@ -1,5 +1,6 @@
 global using DataAccessLibrary;
 global using DataAccessLibrary.Data;
+using DataAccessLibrary.Data.Classes;
 using DataAccessLibrary.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IMatchData, MatchData>();
 builder.Services.AddSingleton<IPlayerData, PlayerData>();
+builder.Services.AddSingleton<ITeamData, TeamData>();
 
 
 builder.Services.AddControllers();

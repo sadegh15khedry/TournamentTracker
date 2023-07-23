@@ -6,6 +6,7 @@ namespace DataAccessLibrary.Data.Interfaces
     {
         ISqlDataAccess _db { get; }
 
+        public Task CanceledContract(int playerId);
         public Task SignedWithTeam(int playerId, int teamId);
         Task<Team> GetPlayerTeam(int teamId);
         Task Delete(int id);
