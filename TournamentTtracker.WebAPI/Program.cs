@@ -10,6 +10,8 @@ builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IMatchData, MatchData>();
 builder.Services.AddSingleton<IPlayerData, PlayerData>();
 builder.Services.AddSingleton<ITeamData, TeamData>();
+builder.Services.AddSingleton<ITournamentData, TournamentData>();
+builder.Services.AddSingleton<ISeriesData, SeriesData>();
 
 
 builder.Services.AddControllers();

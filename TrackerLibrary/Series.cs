@@ -8,11 +8,6 @@ public class Series
     public int Id { get; set; }
 
     /// <summary>
-    ///list of matches in the series 
-    /// </summary>
-    public List<Match> Matches { get; set; } = new List<Match>();
-
-    /// <summary>
     /// Determines the round of the series in the tournament
     /// 0 for finals
     /// 1 for semi finals 
@@ -34,22 +29,50 @@ public class Series
     public bool IsSeriesEnded { get; set; } = false;
 
     /// <summary>
+    /// Id of the FirstTeam participating in the Series
+    /// </summary>
+    public int FirstTeamId { get; set; }
+
+    /// <summary>
+    /// Id of the SecondTeam participating in the Series
+    /// </summary>
+    public int SecondTeamId { get; set; }
+
+    /// <summary>
+    /// Id of the Series Tournament 
+    /// </summary>
+    public int TournamentId { get; set; }
+
+
+
+    /// <summary>
     /// First Team that participated in the series
     /// </summary>
-    public Team FirstTeam { get; set; } = new Team();
+    public Team? FirstTeam { get; set; } = new Team();
 
     /// <summary>
     /// Second Team that participated in the series
     /// </summary>
-    public Team SecondTeam { get; set; } = new Team();
+    public Team? SecondTeam { get; set; } = new Team();
+
+
+    /// <summary>
+    ///Tournament of the Series 
+    /// </summary>
+    public Tournament? Tournament { get; set; }
+
+    /// <summary>
+    ///list of matches in the series 
+    /// </summary>
+    public List<Match> Matches { get; set; } = new List<Match>();
 
     /// <summary>
     /// wins count of First Team in the series
     /// </summary>
-    public int FirstTeamWins { get; set; }
+    public int? FirstTeamWins { get; set; }
 
     /// <summary>
     /// wins count of Second Team in the series
     /// </summary>
-    public int SecondTeamWins { get; set; }
+    public int? SecondTeamWins { get; set; }
 }

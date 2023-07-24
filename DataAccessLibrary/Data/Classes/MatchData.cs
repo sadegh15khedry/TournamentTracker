@@ -38,7 +38,14 @@ public class MatchData : IMatchData
     }
     public async Task Update(Match match)
     {
-        await _db.SaveData("dbo.spMatch_Update", match);
+        await _db.SaveData("dbo.spMatch_Update", new
+        {
+            match.Id,
+            match.Outcome,
+            match.FirstTeamScore,
+            match.SecondTeamScore,
+            match.SeriesId
+        });
     }
     public async Task Delete(int id)
     {

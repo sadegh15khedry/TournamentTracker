@@ -28,5 +28,9 @@ public class Match
 
     public int SeriesId { get; set; }
 
-    public int MyProperty { get; set; }
+    public Team? FirstTeam { get; set; }
+    public Team? SecondTeam { get; set; }
+    public Series? Series { get; set; }
+    public Tournament? Tournament { get; set; }
+
 }

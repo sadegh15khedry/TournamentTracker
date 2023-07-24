@@ -110,6 +110,8 @@
     <Build Include="dbo\Stored Procedures\Player\spPlayer_GetPlayerTeam.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_SignedWithTeam.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_CanceledContract.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeams.sql" />
+    <Build Include="dbo\Stored Procedures\Match\spMatch_GetTeams.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackerLibrary;
 
@@ -8,13 +9,20 @@ namespace TournamentTracker.WebAPI.Controllers;
 [ApiController]
 public class TournamentController : Controller
 {
-    private readonly IMatchData _db;
+    private readonly ITournamentData _db;
 
-    public TournamentController(IMatchData db)
+    public TournamentController(ITournamentData db)
     {
         _db = db;
     }
 
+    [Route("api/[Controller]/[Action]")]
+    [HttpPost]
+    public ActionResult spTournament_SetToFinished(int id)
+    {
+        _db.SetToFinished(id);
+        return StatusCode((int)HttpStatusCode.OK, "Finished");
+    }
     [HttpGet]
     // GET: TournamentController
     public async Task<ActionResult> GetAll()
@@ -34,48 +42,19 @@ public class TournamentController : Controller
 
     // POST: TournamentController/Create
     [HttpPost]
-    public ActionResult Create()
+    public ActionResult Create(Tournament tournament)
     {
-        try
-        {
-            Match match = new Match()
-            {
-                Outcome = 1,
-                FirstTeamScore = 103,
-                SecondTeamScore = 100,
-                SeriesId = 2
-            };
-            _db.Insert(match);
-            return StatusCode((int)HttpStatusCode.Created, "Match added");
-        }
-        catch
-        {
-            return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
-        }
+        _db.Insert(tournament);
+        return StatusCode((int)HttpStatusCode.Created, "Added");
     }
 
 
     [HttpPut]
     // POST: TournamentController/Edit/5
-    public ActionResult Update()
+    public ActionResult Update(Tournament tournament)
     {
-        try
-        {
-            Match match = new Match()
-            {
-                Id = 19,
-                Outcome = 2,
-                FirstTeamScore = 203,
-                SecondTeamScore = 210,
-                SeriesId = 2
-            };
-            _db.Update(match);
-            return StatusCode((int)HttpStatusCode.OK, "Match Updated");
-        }
-        catch
-        {
-            return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
-        }
+        _db.Update(tournament);
+        return StatusCode((int)HttpStatusCode.OK, "Updated");
     }
 
 
@@ -86,7 +65,7 @@ public class TournamentController : Controller
         try
         {
             _db.Delete(id);
-            return StatusCode((int)HttpStatusCode.OK, "Match Deleted");
+            return StatusCode((int)HttpStatusCode.OK, "Deleted");
         }
         catch
         {

@@ -3,6 +3,6 @@
 AS
 Begin
 	SELECT Id, Name, Location,Description 
-	From dbo.[Tournanment]
+	From dbo.[Tournament]
 	where Id=@Id
 End

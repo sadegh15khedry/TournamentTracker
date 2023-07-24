@@ -9,6 +9,7 @@ Begin
 	Update dbo.[Tournament]
 	Set Name = @Name,
 	Description = @Description,
-	Location = @Location
+	Location = @Location,
+	IsFinished = @IsFinished
 	Where Id = @Id
 End
