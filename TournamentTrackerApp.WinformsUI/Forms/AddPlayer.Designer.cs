@@ -49,6 +49,7 @@
             createPlayerButton.TabIndex = 36;
             createPlayerButton.Text = "Create";
             createPlayerButton.UseVisualStyleBackColor = true;
+            createPlayerButton.Click += createPlayerButton_Click;
             // 
             // phoneTextBox
             // 
@@ -148,7 +149,7 @@
             Controls.Add(titleLabel);
             Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "AddPlayer";
             Text = "AddPlayer";
             ResumeLayout(false);

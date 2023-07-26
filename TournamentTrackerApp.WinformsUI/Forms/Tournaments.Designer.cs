@@ -66,6 +66,7 @@
             goToTournamentButton.TabIndex = 13;
             goToTournamentButton.Text = "Go";
             goToTournamentButton.UseVisualStyleBackColor = true;
+            goToTournamentButton.Click += goToTournamentButton_Click;
             // 
             // goToAddTournamentButton
             // 
@@ -75,6 +76,7 @@
             goToAddTournamentButton.Size = new Size(288, 45);
             goToAddTournamentButton.TabIndex = 14;
             goToAddTournamentButton.Text = "Add A Tournament";
+            goToAddTournamentButton.Click += goToAddTournamentButton_Click;
             // 
             // Tournaments
             // 

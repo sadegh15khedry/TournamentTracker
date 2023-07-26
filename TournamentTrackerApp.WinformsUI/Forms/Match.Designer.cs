@@ -68,6 +68,7 @@
             matchSubmitButton.TabIndex = 46;
             matchSubmitButton.Text = "Submit";
             matchSubmitButton.UseVisualStyleBackColor = true;
+            matchSubmitButton.Click += matchSubmitButton_Click;
             // 
             // teamBScoreTextBox
             // 
@@ -173,7 +174,7 @@
             Controls.Add(titleLabel);
             Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "Match";
             Text = "Match";
             ResumeLayout(false);

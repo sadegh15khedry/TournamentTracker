@@ -35,7 +35,7 @@
             ssnLabel = new Label();
             phoneLabel = new Label();
             passwordLabel = new Label();
-            tologinButton = new Label();
+            toLoginButton = new Label();
             forgotPasswordLabel = new Label();
             firstnameTextBox = new TextBox();
             lastnameTextBox = new TextBox();
@@ -112,15 +112,16 @@
             passwordLabel.TabIndex = 6;
             passwordLabel.Text = "Password : ";
             // 
-            // tologinButton
+            // toLoginButton
             // 
-            tologinButton.AutoSize = true;
-            tologinButton.Location = new Point(1291, 888);
-            tologinButton.Margin = new Padding(5, 0, 5, 0);
-            tologinButton.Name = "tologinButton";
-            tologinButton.Size = new Size(88, 45);
-            tologinButton.TabIndex = 9;
-            tologinButton.Text = "Here";
+            toLoginButton.AutoSize = true;
+            toLoginButton.Location = new Point(1291, 888);
+            toLoginButton.Margin = new Padding(5, 0, 5, 0);
+            toLoginButton.Name = "toLoginButton";
+            toLoginButton.Size = new Size(88, 45);
+            toLoginButton.TabIndex = 9;
+            toLoginButton.Text = "Here";
+            toLoginButton.Click += toLoginButton_Click;
             // 
             // forgotPasswordLabel
             // 
@@ -191,6 +192,7 @@
             signupButton.TabIndex = 10;
             signupButton.Text = "Signup";
             signupButton.UseVisualStyleBackColor = true;
+            signupButton.Click += signupButton_Click;
             // 
             // Signup
             // 
@@ -205,7 +207,7 @@
             Controls.Add(lastnameTextBox);
             Controls.Add(firstnameTextBox);
             Controls.Add(signupButton);
-            Controls.Add(tologinButton);
+            Controls.Add(toLoginButton);
             Controls.Add(forgotPasswordLabel);
             Controls.Add(passwordLabel);
             Controls.Add(phoneLabel);
@@ -232,7 +234,7 @@
         private Label ssnLabel;
         private Label phoneLabel;
         private Label passwordLabel;
-        private Label tologinButton;
+        private Label toLoginButton;
         private Label forgotPasswordLabel;
         private TextBox firstnameTextBox;
         private TextBox lastnameTextBox;

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using TournamentTrackerApp.WinformsUI.Forms;
 
 namespace TournamentTrackerApp.WinformsUI
 {
@@ -30,8 +22,21 @@ namespace TournamentTrackerApp.WinformsUI
         {
         }
 
-        private void goToAddTournamentButton_Click(object sender, EventArgs e)
+        private void goToAddTeamButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            new AddTeam().ShowDialog();
+        }
+
+        private void removeSelectedFromListButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startTournamentButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new TournamentChart().ShowDialog();
         }
     }
 }

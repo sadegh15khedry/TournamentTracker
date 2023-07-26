@@ -50,6 +50,7 @@ partial class Login
         loginButton.TabIndex = 1;
         loginButton.Text = "Login";
         loginButton.UseVisualStyleBackColor = true;
+        loginButton.Click += loginButton_Click;
         // 
         // emailTextBox
         // 
@@ -117,6 +118,7 @@ partial class Login
         toSignupButton.Size = new Size(119, 45);
         toSignupButton.TabIndex = 8;
         toSignupButton.Text = "Signup";
+        toSignupButton.Click += toSignupButton_Click;
         // 
         // titleLabel
         // 

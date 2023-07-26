@@ -47,6 +47,7 @@
             doneButton.TabIndex = 28;
             doneButton.Text = "Done";
             doneButton.UseVisualStyleBackColor = true;
+            doneButton.Click += doneButton_Click;
             // 
             // removeSelectedFromListButton
             // 
@@ -76,6 +77,7 @@
             goToAddPlayerButton.Size = new Size(236, 45);
             goToAddPlayerButton.TabIndex = 25;
             goToAddPlayerButton.Text = "Create A Player";
+            goToAddPlayerButton.Click += goToAddPlayerButton_Click;
             // 
             // addPlayerButton
             // 
@@ -125,7 +127,7 @@
             Controls.Add(titleLabel);
             Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "TeamPlayers";
             Text = "TeamPlayers";
             ResumeLayout(false);

@@ -45,7 +45,7 @@
             goToAddTeamButton.Size = new Size(226, 45);
             goToAddTeamButton.TabIndex = 18;
             goToAddTeamButton.Text = "Create A Team";
-            goToAddTeamButton.Click += goToAddTournamentButton_Click;
+            goToAddTeamButton.Click += goToAddTeamButton_Click;
             // 
             // addTeamButton
             // 
@@ -102,6 +102,7 @@
             removeSelectedFromListButton.TabIndex = 20;
             removeSelectedFromListButton.Text = "Remove";
             removeSelectedFromListButton.UseVisualStyleBackColor = true;
+            removeSelectedFromListButton.Click += removeSelectedFromListButton_Click;
             // 
             // startTournametButton
             // 
@@ -113,6 +114,7 @@
             startTournametButton.TabIndex = 21;
             startTournametButton.Text = "Start Tournament";
             startTournametButton.UseVisualStyleBackColor = true;
+            startTournametButton.Click += startTournamentButton_Click;
             // 
             // TournamentTeamSelection
             // 
@@ -129,7 +131,7 @@
             Controls.Add(titleLabel);
             Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "TournamentTeamSelection";
             Text = "TournamentTeamSelection";
             ResumeLayout(false);

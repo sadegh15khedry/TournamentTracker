@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace TournamentTrackerApp.WinformsUI.Forms;
 
-namespace TournamentTrackerApp.WinformsUI.Forms
+public partial class Match : Form
 {
-    public partial class Match : Form
+    public Match()
     {
-        public Match()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+    private void label2_Click(object sender, EventArgs e)
+    {
 
-        }
+    }
+
+    private void matchSubmitButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        new Match().ShowDialog();
     }
 }

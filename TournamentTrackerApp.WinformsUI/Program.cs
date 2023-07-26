@@ -15,18 +15,18 @@ static class Program
     {
         var host = CreateHostBuilder().Build();
 
-        ITeamData teamData = host.Services.GetService<ITeamData>();
+        //ITeamData teamData = host.Services.GetService<ITeamData>();
 
 
 
         ApplicationConfiguration.Initialize();
 
-        Form form = new Form();
+        /*Form form = new Form();
         Label label = new Label();
         label.Text = teamData.GetTeams().Result.First().Name.ToString();
         form.Controls.Add(label);
+        form.ShowDialog();*/
 
-        form.ShowDialog();
         Application.Run(new Login());
 
 
