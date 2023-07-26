@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.DataModels.csproj" />
+    <ProjectReference Include="..\TrackerLibrary\DataModels.csproj" />
   </ItemGroup>
 
 </Project>

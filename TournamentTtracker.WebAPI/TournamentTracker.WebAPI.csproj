@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
-    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.DataModels.csproj" />
+    <ProjectReference Include="..\DataAccessLibrary\DataBase.DataAccessLibrary.Dapper.csproj" />
+    <ProjectReference Include="..\TrackerLibrary\DataModels.csproj" />
   </ItemGroup>
 
 </Project>
