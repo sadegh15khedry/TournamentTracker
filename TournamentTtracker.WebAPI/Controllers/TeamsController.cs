@@ -40,9 +40,9 @@ public class TeamsController : ControllerBase
         return StatusCode((int)HttpStatusCode.Created, "Inserted");
     }
 
-    // PUT api/Team/5
-    [HttpPut("{id}")]
-    public ActionResult Put(int id, Team team)
+    // PUT api/Team
+    [HttpPut]
+    public ActionResult Put(Team team)
     {
         _db.Update(team);
         return StatusCode((int)HttpStatusCode.OK, "Updated");

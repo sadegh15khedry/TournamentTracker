@@ -16,6 +16,6 @@ public partial class Signup : Form
     private void signupButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new Tournaments().ShowDialog();
+        //new Tournaments().ShowDialog();
     }
 }

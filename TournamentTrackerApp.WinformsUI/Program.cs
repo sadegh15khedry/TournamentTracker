@@ -10,12 +10,17 @@ static class Program
     /// <summary>
     ///  The main entry point for the application.
     /// </summary>
+    /// 
+
+
     [STAThread]
     static void Main()
     {
         var host = CreateHostBuilder().Build();
+        ServiceProvider = host.Services;
 
-        //ITeamData teamData = host.Services.GetService<ITeamData>();
+        ITeamData teamData = host.Services.GetService<ITeamData>();
+        ITournamentData tournamentData = host.Services.GetService<ITournamentData>();
 
 
 
@@ -27,8 +32,8 @@ static class Program
         form.Controls.Add(label);
         form.ShowDialog();*/
 
-        Application.Run(new Login());
-
+        //Application.Run(new Login());
+        Application.Run(ServiceProvider.GetRequiredService<Login>());
 
 
 
@@ -47,6 +52,14 @@ static class Program
                         c.BaseAddress = new Uri("https://localhost:7079/api");
                     }
                     );
+                services.AddRefitClient<ITournamentData>().ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri("https://localhost:7079/api");
+                }
+                    );
+                services.AddTransient<Login>();
+                services.AddTransient<Tournaments>();
+
             });
     }
 

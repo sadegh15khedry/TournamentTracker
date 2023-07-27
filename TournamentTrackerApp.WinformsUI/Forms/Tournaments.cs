@@ -1,22 +1,36 @@
-﻿namespace TournamentTrackerApp.WinformsUI
+﻿using UI.DataAccess.Refit.InterFaces;
+
+namespace TournamentTrackerApp.WinformsUI;
+
+public partial class Tournaments : Form
 {
-    public partial class Tournaments : Form
+
+    private readonly ITournamentData _data;
+    public Tournaments(ITournamentData data)
     {
-        public Tournaments()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        _data = data;
+    }
 
-        private void goToAddTournamentButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new AddTournament().ShowDialog();
-        }
 
-        private void goToTournamentButton_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            new TournamentTeamSelection().ShowDialog();
-        }
+    private void goToAddTournamentButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        new AddTournament().ShowDialog();
+    }
+
+    private void goToTournamentButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        new TournamentTeamSelection().ShowDialog();
+    }
+
+    private void Tournaments_Load(object sender, EventArgs e)
+    {
+
+        //_data = sender.g
+
+        var tournaments = _data.GetAll().Result;
+        tournamentsComboBox.Items.Add(tournaments.ToString());
     }
 }

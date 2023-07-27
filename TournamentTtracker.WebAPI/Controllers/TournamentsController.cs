@@ -7,11 +7,11 @@ namespace TournamentTracker.WebAPI.Controllers;
 
 [Route("api/[Controller]/")]
 [ApiController]
-public class TournamentController : Controller
+public class TournamentsController : Controller
 {
     private readonly ITournamentData _db;
 
-    public TournamentController(ITournamentData db)
+    public TournamentsController(ITournamentData db)
     {
         _db = db;
     }
