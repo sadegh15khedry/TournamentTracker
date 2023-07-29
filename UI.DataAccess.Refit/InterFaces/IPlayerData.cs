@@ -17,7 +17,6 @@ public interface IPlayerData
     Task<ActionResult> GetAll();
 
     [Get("/Players/{id}")]
-
     Task<ActionResult> GetById(int id);
 
     [Post("/Players")]

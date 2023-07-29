@@ -19,7 +19,6 @@ public interface IMatchData
     [Put("/Matches")]
     Task<ActionResult> Update(Match match);
 
-    // POST: api/Delete/5
     [Delete("/Matches")]
     Task<ActionResult> Delete(int id);
 
