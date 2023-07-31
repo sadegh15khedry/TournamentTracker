@@ -4,7 +4,7 @@ using System.Net;
 using TrackerLibrary;
 
 namespace TournamentTracker.WebAPI.Controllers;
-
+[Produces("application/json")]
 [Route("api/[Controller]/")]
 [ApiController]
 public class TournamentsController : Controller
@@ -16,6 +16,24 @@ public class TournamentsController : Controller
         _db = db;
     }
 
+    /// <summary>
+    /// Sets a Tournament's isFinished property to True
+    /// </summary>
+    /// <param name="id">
+    /// id of the Tournament
+    /// </param>
+    /// <remarks>
+    ///     sample request : /api/Tournaments/spTournament_SetToFinished/id
+    /// </remarks>
+    /// 
+    /// <returns>
+    ///     <Respose code="200">
+    ///         Tournament has been set to finished
+    ///     </Respose>
+    ///     <Respose code="404">
+    ///         Tournament Not Found
+    ///     </Respose>
+    /// </returns>
     [Route("api/[Controller]/[Action]")]
     [HttpPost]
     public ActionResult spTournament_SetToFinished(int id)
@@ -23,6 +41,7 @@ public class TournamentsController : Controller
         _db.SetToFinished(id);
         return StatusCode((int)HttpStatusCode.OK, "Finished");
     }
+
     [HttpGet]
     // GET: TournamentController
     public async Task<ActionResult> GetAll()

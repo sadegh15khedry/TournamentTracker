@@ -14,7 +14,7 @@ public interface ISeriesData
     Task<ActionResult> GetAll();
 
     [Get("/Series/{id}")]
-    public ActionResult GetById(int id);
+    Task<ActionResult> GetById(int id);
 
 
     [Post("/Series")]

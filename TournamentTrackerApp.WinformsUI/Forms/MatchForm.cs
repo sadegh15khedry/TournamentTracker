@@ -1,8 +1,8 @@
 ﻿namespace TournamentTrackerApp.WinformsUI.Forms;
 
-public partial class Match : Form
+public partial class MatchForm : Form
 {
-    public Match()
+    public MatchForm()
     {
         InitializeComponent();
     }
@@ -15,6 +15,6 @@ public partial class Match : Form
     private void matchSubmitButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new Match().ShowDialog();
+        new MatchForm().ShowDialog();
     }
 }

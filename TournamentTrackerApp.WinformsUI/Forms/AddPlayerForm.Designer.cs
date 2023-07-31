@@ -1,6 +1,6 @@
 ﻿namespace TournamentTrackerApp.WinformsUI.Forms
 {
-    partial class AddPlayer
+    partial class AddPlayerForm
     {
         /// <summary>
         /// Required designer variable.

@@ -3,17 +3,12 @@ namespace TournamentTrackerApp.WinformsUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
+using TournamentTrackerApp.WinformsUI.Factory;
 using TournamentTrackerApp.WinformsUI.Forms;
 using UI.DataAccess.Refit.InterFaces;
 
 static class Program
 {
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
-    /// 
-
-
     [STAThread]
     static void Main()
     {
@@ -22,7 +17,8 @@ static class Program
 
         /*        ITeamData teamData = host.Services.GetService<ITeamData>();
                 ITournamentData tournamentData = host.Services.GetService<ITournamentData>();*/
-
+        FormFactory._teamData = host.Services.GetService<ITeamData>();
+        FormFactory._tournamentData = host.Services.GetService<ITournamentData>();
 
 
         ApplicationConfiguration.Initialize();
@@ -34,7 +30,9 @@ static class Program
                 form.ShowDialog();*/
 
         //Application.Run(new Login());
-        Application.Run(ServiceProvider.GetRequiredService<Login>());
+        Application.Run(Factory.FormFactory.CreateLogin());
+
+        Application.Run(ServiceProvider.GetRequiredService<LoginForm>());
 
 
 
@@ -74,17 +72,18 @@ static class Program
                 }
                     );
 
-                services.AddTransient<AddPlayer>();
-                services.AddTransient<AddTeam>();
-                services.AddTransient<AddTournament>();
-                services.AddTransient<Login>();
-                services.AddTransient<Match>();
-                services.AddTransient<Signup>();
-                services.AddTransient<TeamPlayers>();
-                services.AddTransient<TournamentChart>();
-                services.AddTransient<Tournaments>();
-                services.AddTransient<TournamentTeamSelection>();
-                services.AddTransient<Tournaments>();
+
+                services.AddTransient<AddPlayerForm>();
+                services.AddTransient<AddTeamForm>();
+                services.AddTransient<AddTournamentForm>();
+                services.AddTransient<LoginForm>();
+                services.AddTransient<MatchForm>();
+                services.AddTransient<SignupForm>();
+                services.AddTransient<TeamPlayersForm>();
+                services.AddTransient<TournamentChartForm>();
+                services.AddTransient<TournamentsForm>();
+                services.AddTransient<TournamentTeamSelectionForm>();
+                services.AddTransient<TournamentsForm>();
             });
     }
 

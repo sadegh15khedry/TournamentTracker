@@ -1,9 +1,9 @@
 ﻿namespace TournamentTrackerApp.WinformsUI;
 
-public partial class Signup : Form
+public partial class SignupForm : Form
 {
-    private Login _login;
-    public Signup(Login login)
+    private LoginForm _login;
+    public SignupForm(LoginForm login)
     {
         InitializeComponent();
         //_login = login;

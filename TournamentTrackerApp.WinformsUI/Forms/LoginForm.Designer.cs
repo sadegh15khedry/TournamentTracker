@@ -1,6 +1,6 @@
 ﻿namespace TournamentTrackerApp.WinformsUI;
 
-partial class Login
+partial class LoginForm
 {
     /// <summary>
     ///  Required designer variable.
@@ -28,7 +28,7 @@ partial class Login
     /// </summary>
     private void InitializeComponent()
     {
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
         loginButton = new Button();
         emailTextBox = new TextBox();
         emailLabel = new Label();

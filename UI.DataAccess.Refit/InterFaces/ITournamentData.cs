@@ -8,10 +8,10 @@ public interface ITournamentData
 {
 
     [Get("/Tournaments")]
-    Task<ActionResult> GetAll();
+    Task<List<Tournament>> GetAll();
 
     [Get("/Tournaments/{id}")]
-    Task<ActionResult> GetById(int id);
+    Task<Tournament> GetById(int id);
 
     [Post("/Tournaments")]
     Task<ActionResult> Create(Tournament tournament);

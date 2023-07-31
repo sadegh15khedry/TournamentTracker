@@ -2,9 +2,9 @@
 
 namespace TournamentTrackerApp.WinformsUI
 {
-    public partial class TournamentTeamSelection : Form
+    public partial class TournamentTeamSelectionForm : Form
     {
-        public TournamentTeamSelection()
+        public TournamentTeamSelectionForm()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace TournamentTrackerApp.WinformsUI
         private void goToAddTeamButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new AddTeam().ShowDialog();
+            new AddTeamForm().ShowDialog();
         }
 
         private void removeSelectedFromListButton_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace TournamentTrackerApp.WinformsUI
         private void startTournamentButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new TournamentChart().ShowDialog();
+            new TournamentChartForm().ShowDialog();
         }
     }
 }

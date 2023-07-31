@@ -1,24 +1,27 @@
-using UI.DataAccess.Refit.InterFaces;
+using TournamentTrackerApp.WinformsUI.Factory;
 
 namespace TournamentTrackerApp.WinformsUI;
 
-public partial class Login : Form
+public partial class LoginForm : Form
 {
 
-    public Login(ITeamData teamData, Tournaments tournaments)
+    public LoginForm()
     {
         InitializeComponent();
     }
 
+
+
+
     private void loginButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        //new Tournaments().ShowDialog();
+        FormFactory.CreateTournaments().Show();
     }
 
     private void toSignupButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new Signup(this).ShowDialog();
+        new SignupForm(this).ShowDialog();
     }
 }

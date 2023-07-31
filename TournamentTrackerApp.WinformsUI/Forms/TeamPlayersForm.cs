@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TournamentTrackerApp.WinformsUI.Forms;
 
-public partial class TeamPlayers : Form
+public partial class TeamPlayersForm : Form
 {
-    public TeamPlayers()
+    public TeamPlayersForm()
     {
         InitializeComponent();
     }
@@ -20,12 +20,12 @@ public partial class TeamPlayers : Form
     private void goToAddPlayerButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new AddPlayer().ShowDialog();
+        new AddPlayerForm().ShowDialog();
     }
 
     private void doneButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new TournamentTeamSelection().ShowDialog();
+        new TournamentTeamSelectionForm().ShowDialog();
     }
 }
