@@ -1,26 +1,26 @@
-﻿namespace TournamentTrackerApp.WinformsUI;
+﻿using TournamentTrackerApp.WinformsUI.Factory;
+
+namespace TournamentTrackerApp.WinformsUI;
 
 public partial class SignupForm : Form
 {
     private LoginForm _login;
-    public SignupForm(LoginForm login)
+    public SignupForm()
     {
         InitializeComponent();
-        //_login = login;
     }
 
     private void toLoginButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        //Application.Run(ServiceProvider.GetRequiredService<Login>());
-        //_login.Show();
-        //new Login().ShowDialog();
+        FormFactory.CreateLoginForm().Show();
 
     }
 
     private void signupButton_Click(object sender, EventArgs e)
     {
         this.Hide();
+        FormFactory.CreateTournamentsForm().Show();
         //new Tournaments().ShowDialog();
     }
 }

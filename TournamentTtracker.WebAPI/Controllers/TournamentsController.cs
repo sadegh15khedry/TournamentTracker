@@ -34,7 +34,7 @@ public class TournamentsController : Controller
     ///         Tournament Not Found
     ///     </Respose>
     /// </returns>
-    [Route("api/[Controller]/[Action]")]
+    [Route("/api/[Controller]/[Action]")]
     [HttpPost]
     public ActionResult spTournament_SetToFinished(int id)
     {
@@ -49,7 +49,16 @@ public class TournamentsController : Controller
         return Ok(_db.GetAll().Result);
     }
 
-    [Route("/[Controller]/{id}")]
+    [Route("/api/[Controller]/[Action]")]
+    [HttpGet]
+    public async Task<ActionResult> GetTournamentTeams(int tournamentId)
+    {
+        return Ok(_db.GetTournamentTeams(tournamentId).Result);
+
+    }
+
+
+    [Route("/api/[Controller]/{id}")]
     [HttpGet]
     // GET: TournamentController/5
     public ActionResult GetById(int id)

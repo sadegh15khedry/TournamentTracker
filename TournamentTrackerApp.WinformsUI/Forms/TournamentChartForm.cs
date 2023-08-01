@@ -1,12 +1,11 @@
-﻿namespace TournamentTrackerApp.WinformsUI.Forms
+﻿namespace TournamentTrackerApp.WinformsUI.Forms;
+
+public partial class TournamentChartForm : Form
 {
-    public partial class TournamentChartForm : Form
+    public TournamentChartForm()
     {
-        public TournamentChartForm()
-        {
-            InitializeComponent();
-        }
-
-
+        InitializeComponent();
     }
+
+
 }

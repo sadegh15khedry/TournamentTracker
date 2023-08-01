@@ -28,7 +28,7 @@ public class SeriesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/[Controller]/{id}")]
+    [Route("/api/[Controller]/{id}")]
     // GET: api/Series/5
     public ActionResult GetById(int id)
     {

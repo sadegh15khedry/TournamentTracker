@@ -11,17 +11,15 @@ public partial class LoginForm : Form
     }
 
 
-
-
     private void loginButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        FormFactory.CreateTournaments().Show();
+        FormFactory.CreateTournamentsForm().Show();
     }
 
     private void toSignupButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new SignupForm(this).ShowDialog();
+        FormFactory.CreateSignupForm().Show();
     }
 }

@@ -60,6 +60,7 @@ public partial class TournamentsForm
         tournamentsComboBox.Size = new Size(653, 53);
         tournamentsComboBox.TabIndex = 12;
         tournamentsComboBox.Text = "Choose a Tournament";
+        tournamentsComboBox.SelectedIndexChanged += tournamentsComboBox_SelectedIndexChanged;
         // 
         // goToTournamentButton
         // 
@@ -83,7 +84,7 @@ public partial class TournamentsForm
         goToAddTournamentButton.Text = "Add A Tournament";
         goToAddTournamentButton.Click += goToAddTournamentButton_Click;
         // 
-        // Tournaments
+        // TournamentsForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -96,7 +97,7 @@ public partial class TournamentsForm
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "Tournaments";
+        Name = "TournamentsForm";
         Text = "Tournaments";
         Load += Tournaments_Load;
         ResumeLayout(false);

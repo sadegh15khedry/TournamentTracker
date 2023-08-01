@@ -28,7 +28,7 @@ public class MatchesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/[Controller]/{id}")]
+    [Route("/api/[Controller]/{id}")]
     // GET: api/Matches/5
     public ActionResult GetById(int id)
     {

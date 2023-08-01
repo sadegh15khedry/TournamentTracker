@@ -26,7 +26,8 @@ public class TeamsController : ControllerBase
     }
 
     // GET api/Teams/5
-    [HttpGet("{id}")]
+    [HttpGet]
+    [Route("/api/[controller]/{id}")]
     public ActionResult<Team> GetById(int id)
     {
         return StatusCode((int)HttpStatusCode.OK, _db.GetById(id).Result);

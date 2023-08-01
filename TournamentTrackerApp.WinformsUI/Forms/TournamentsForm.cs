@@ -1,4 +1,5 @@
-﻿using TrackerLibrary;
+﻿using TournamentTrackerApp.WinformsUI.Factory;
+using TrackerLibrary;
 using UI.DataAccess.Refit.InterFaces;
 
 namespace TournamentTrackerApp.WinformsUI;
@@ -6,14 +7,15 @@ namespace TournamentTrackerApp.WinformsUI;
 public partial class TournamentsForm : Form
 {
 
-    private readonly ITournamentData _data;
-    public List<Tournament> TournamentList { get; set; }
+    private readonly ITournamentData _tournamentData;
+    public List<Tournament> TournamentsList { get; set; }
+    public int SelectedTournamentId { get; set; } = -1;
 
     public TournamentsForm(ITournamentData data)
     {
         InitializeComponent();
-        _data = data;
-        TournamentList = _data.GetAll().Result;
+        _tournamentData = data;
+        TournamentsList = _tournamentData.GetAll().Result;
         //MessageBox.Show(_data.GetAll().Result.First().Name);
     }
 
@@ -21,18 +23,27 @@ public partial class TournamentsForm : Form
     private void goToAddTournamentButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new AddTournamentForm().ShowDialog();
+        FormFactory.CreateAddTournamentForm().Show();
     }
 
     private void goToTournamentButton_Click(object sender, EventArgs e)
     {
-        this.Hide();
-        new TournamentTeamSelectionForm().ShowDialog();
+        if (SelectedTournamentId != -1)
+        {
+            this.Hide();
+            FormFactory.CreateTournamentTeamSelectForm(SelectedTournamentId).Show();
+        }
     }
 
     private void Tournaments_Load(object sender, EventArgs e)
     {
-        foreach (Tournament tournament in TournamentList)
+        foreach (Tournament tournament in TournamentsList)
             tournamentsComboBox.Items.Add(tournament.Name.ToString());
+    }
+
+    private void tournamentsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int selectedIndex = tournamentsComboBox.SelectedIndex;
+        SelectedTournamentId = TournamentsList.ElementAtOrDefault(selectedIndex)!.Id;
     }
 }

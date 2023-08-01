@@ -15,24 +15,15 @@ static class Program
         var host = CreateHostBuilder().Build();
         ServiceProvider = host.Services;
 
-        /*        ITeamData teamData = host.Services.GetService<ITeamData>();
-                ITournamentData tournamentData = host.Services.GetService<ITournamentData>();*/
         FormFactory._teamData = host.Services.GetService<ITeamData>();
         FormFactory._tournamentData = host.Services.GetService<ITournamentData>();
+        FormFactory._seriesData = host.Services.GetService<ISeriesData>();
+        FormFactory._playerData = host.Services.GetService<IPlayerData>();
+        FormFactory._matchData = host.Services.GetService<IMatchData>();
 
 
         ApplicationConfiguration.Initialize();
-        /*
-                Form form = new Form();
-                Label label = new Label();
-                label.Text = teamData.GetAll().Result.First().Name.ToString();
-                form.Controls.Add(label);
-                form.ShowDialog();*/
-
-        //Application.Run(new Login());
-        Application.Run(Factory.FormFactory.CreateLogin());
-
-        Application.Run(ServiceProvider.GetRequiredService<LoginForm>());
+        Application.Run(FormFactory.CreateLoginForm());
 
 
 

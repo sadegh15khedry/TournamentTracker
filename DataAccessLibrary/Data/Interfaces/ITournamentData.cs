@@ -8,6 +8,7 @@ namespace DataAccessLibrary.Data.Interfaces
 
         Task Delete(int id);
         Task<IEnumerable<Tournament>> GetAll();
+        Task<IEnumerable<Team>> GetTournamentTeams(int tournamentId);
         Task<Tournament> GetById(int id);
         Task Insert(Tournament tournament);
         Task SetToFinished(int id);

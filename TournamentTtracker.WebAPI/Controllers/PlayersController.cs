@@ -51,7 +51,7 @@ public class PlayersController : Controller
     }
 
     [HttpGet]
-    [Route("/[Controller]/{id}")]
+    [Route("/api/[Controller]/{id}")]
 
     // GET: api/Players/5
     public ActionResult GetById(int id)
