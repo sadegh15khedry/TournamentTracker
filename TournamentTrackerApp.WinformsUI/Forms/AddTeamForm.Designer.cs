@@ -29,11 +29,11 @@ partial class AddTeamForm
     private void InitializeComponent()
     {
         createTournamentButton = new Button();
-        descriptionTextBox = new TextBox();
-        locationTextBox = new TextBox();
+        ownerTextBox = new TextBox();
+        cityTextBox = new TextBox();
         nameTextBox = new TextBox();
-        descriptionLabel = new Label();
-        locationLabel = new Label();
+        ownerLabel = new Label();
+        cityLabel = new Label();
         nameLabel = new Label();
         titleLabel = new Label();
         SuspendLayout();
@@ -49,21 +49,21 @@ partial class AddTeamForm
         createTournamentButton.UseVisualStyleBackColor = true;
         createTournamentButton.Click += createTeamButton_Click;
         // 
-        // descriptionTextBox
+        // ownerTextBox
         // 
-        descriptionTextBox.Location = new Point(741, 522);
-        descriptionTextBox.Margin = new Padding(5);
-        descriptionTextBox.Name = "descriptionTextBox";
-        descriptionTextBox.Size = new Size(656, 50);
-        descriptionTextBox.TabIndex = 27;
+        ownerTextBox.Location = new Point(741, 522);
+        ownerTextBox.Margin = new Padding(5);
+        ownerTextBox.Name = "ownerTextBox";
+        ownerTextBox.Size = new Size(656, 50);
+        ownerTextBox.TabIndex = 27;
         // 
-        // locationTextBox
+        // cityTextBox
         // 
-        locationTextBox.Location = new Point(741, 433);
-        locationTextBox.Margin = new Padding(5);
-        locationTextBox.Name = "locationTextBox";
-        locationTextBox.Size = new Size(656, 50);
-        locationTextBox.TabIndex = 26;
+        cityTextBox.Location = new Point(741, 433);
+        cityTextBox.Margin = new Padding(5);
+        cityTextBox.Name = "cityTextBox";
+        cityTextBox.Size = new Size(656, 50);
+        cityTextBox.TabIndex = 26;
         // 
         // nameTextBox
         // 
@@ -73,23 +73,23 @@ partial class AddTeamForm
         nameTextBox.Size = new Size(656, 50);
         nameTextBox.TabIndex = 25;
         // 
-        // descriptionLabel
+        // ownerLabel
         // 
-        descriptionLabel.AutoSize = true;
-        descriptionLabel.Location = new Point(439, 527);
-        descriptionLabel.Name = "descriptionLabel";
-        descriptionLabel.Size = new Size(198, 45);
-        descriptionLabel.TabIndex = 24;
-        descriptionLabel.Text = "Description :";
+        ownerLabel.AutoSize = true;
+        ownerLabel.Location = new Point(439, 527);
+        ownerLabel.Name = "ownerLabel";
+        ownerLabel.Size = new Size(138, 45);
+        ownerLabel.TabIndex = 24;
+        ownerLabel.Text = "Owner  :";
         // 
-        // locationLabel
+        // cityLabel
         // 
-        locationLabel.AutoSize = true;
-        locationLabel.Location = new Point(480, 438);
-        locationLabel.Name = "locationLabel";
-        locationLabel.Size = new Size(157, 45);
-        locationLabel.TabIndex = 23;
-        locationLabel.Text = "Location :";
+        cityLabel.AutoSize = true;
+        cityLabel.Location = new Point(523, 438);
+        cityLabel.Name = "cityLabel";
+        cityLabel.Size = new Size(90, 45);
+        cityLabel.TabIndex = 23;
+        cityLabel.Text = "City :";
         // 
         // nameLabel
         // 
@@ -112,24 +112,24 @@ partial class AddTeamForm
         titleLabel.TabIndex = 21;
         titleLabel.Text = "Create A Team";
         // 
-        // AddTeam
+        // AddTeamForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1846, 1001);
         Controls.Add(createTournamentButton);
-        Controls.Add(descriptionTextBox);
-        Controls.Add(locationTextBox);
+        Controls.Add(ownerTextBox);
+        Controls.Add(cityTextBox);
         Controls.Add(nameTextBox);
-        Controls.Add(descriptionLabel);
-        Controls.Add(locationLabel);
+        Controls.Add(ownerLabel);
+        Controls.Add(cityLabel);
         Controls.Add(nameLabel);
         Controls.Add(titleLabel);
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "AddTeam";
+        Name = "AddTeamForm";
         Text = "AddTeam";
         ResumeLayout(false);
         PerformLayout();
@@ -138,11 +138,11 @@ partial class AddTeamForm
     #endregion
 
     private Button createTournamentButton;
-    private TextBox descriptionTextBox;
-    private TextBox locationTextBox;
+    private TextBox ownerTextBox;
+    private TextBox cityTextBox;
     private TextBox nameTextBox;
-    private Label descriptionLabel;
-    private Label locationLabel;
+    private Label ownerLabel;
+    private Label cityLabel;
     private Label nameLabel;
     private Label titleLabel;
 }

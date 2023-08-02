@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using DataModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TrackerLibrary;
@@ -68,16 +69,16 @@ public class TeamsController : ControllerBase
         }
     }
 
-    [Route("api/[Controller]/[Action]")]
     [HttpPost]
-    public ActionResult JoinedTournament(int teamId, int tournamentId)
+    [Route("/api/[Controller]/[Action]")]
+    public ActionResult JoinedTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        _db.JoinedTournament(teamId, tournamentId);
+        _db.JoinedTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
         return StatusCode((int)HttpStatusCode.Created, "Joined");
     }
 
-    [Route("api/[Controller]/[Action]")]
     [HttpPost]
+    [Route("/api/[Controller]/[Action]")]
     public ActionResult LeftTournament(int teamId, int tournamentId)
     {
         _db.LeftTournament(teamId, tournamentId);

@@ -16,45 +16,12 @@ public class TournamentsController : Controller
         _db = db;
     }
 
-    /// <summary>
-    /// Sets a Tournament's isFinished property to True
-    /// </summary>
-    /// <param name="id">
-    /// id of the Tournament
-    /// </param>
-    /// <remarks>
-    ///     sample request : /api/Tournaments/spTournament_SetToFinished/id
-    /// </remarks>
-    /// 
-    /// <returns>
-    ///     <Respose code="200">
-    ///         Tournament has been set to finished
-    ///     </Respose>
-    ///     <Respose code="404">
-    ///         Tournament Not Found
-    ///     </Respose>
-    /// </returns>
-    [Route("/api/[Controller]/[Action]")]
-    [HttpPost]
-    public ActionResult spTournament_SetToFinished(int id)
-    {
-        _db.SetToFinished(id);
-        return StatusCode((int)HttpStatusCode.OK, "Finished");
-    }
 
     [HttpGet]
     // GET: TournamentController
     public async Task<ActionResult> GetAll()
     {
         return Ok(_db.GetAll().Result);
-    }
-
-    [Route("/api/[Controller]/[Action]")]
-    [HttpGet]
-    public async Task<ActionResult> GetTournamentTeams(int tournamentId)
-    {
-        return Ok(_db.GetTournamentTeams(tournamentId).Result);
-
     }
 
 
@@ -65,7 +32,6 @@ public class TournamentsController : Controller
     {
         return Ok(_db.GetById(id).Result);
     }
-
 
 
     // POST: TournamentController/Create
@@ -100,4 +66,49 @@ public class TournamentsController : Controller
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
         }
     }
+
+
+    /// <summary>
+    /// Sets a Tournament's isFinished property to True
+    /// </summary>
+    /// <param name="id">
+    /// id of the Tournament
+    /// </param>
+    /// <remarks>
+    ///     sample request : /api/Tournaments/spTournament_SetToFinished/id
+    /// </remarks>
+    /// 
+    /// <returns>
+    ///     <Respose code="200">
+    ///         Tournament has been set to finished
+    ///     </Respose>
+    ///     <Respose code="404">
+    ///         Tournament Not Found
+    ///     </Respose>
+    /// </returns>
+    [Route("/api/[Controller]/[Action]/{id}")]
+    [HttpPost]
+    public ActionResult spTournament_SetToFinished(int id)
+    {
+        _db.SetToFinished(id);
+        return StatusCode((int)HttpStatusCode.OK, "Finished");
+    }
+
+
+    [Route("/api/[Controller]/[Action]/{tournamentId}")]
+    [HttpGet]
+    public async Task<ActionResult> GetTournamentTeams(int tournamentId)
+    {
+        return Ok(_db.GetTournamentTeams(tournamentId).Result);
+
+    }
+
+
+    [Route("/api/[Controller]/[Action]/{tournamentId}")]
+    [HttpGet]
+    public async Task<ActionResult> GetTeamsNotInTournament(int tournamentId)
+    {
+        return Ok(_db.GetTeamsNotInTournament(tournamentId).Result);
+    }
+
 }

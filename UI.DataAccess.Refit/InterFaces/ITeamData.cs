@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataModels;
+using Microsoft.AspNetCore.Mvc;
 using Refit;
 using TrackerLibrary;
 
@@ -24,7 +25,7 @@ public interface ITeamData
 
 
     [Post("/Teams/JoinedTournament")]
-    Task<ActionResult> JoinedTournament(int teamId, int tournamentId);
+    Task<string> JoinedTournament([Body] TournamentTeam tournamentTeam);
 
     [Post("/Teams/LeftTournament")]
     Task<ActionResult> LeftTournament(int teamId, int tournamentId);

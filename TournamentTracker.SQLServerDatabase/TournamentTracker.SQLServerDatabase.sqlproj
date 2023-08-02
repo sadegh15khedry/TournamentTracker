@@ -112,6 +112,7 @@
     <Build Include="dbo\Stored Procedures\Player\spPlayer_CanceledContract.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeams.sql" />
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetTeams.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeamsNotInTournament.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -57,7 +57,7 @@ partial class TournamentTeamSelectionForm
         addTeamButton.TabIndex = 17;
         addTeamButton.Text = "Add";
         addTeamButton.UseVisualStyleBackColor = true;
-        addTeamButton.Click += goToTournamentButton_Click;
+        addTeamButton.Click += addTeamToTournamentButton_Click;
         // 
         // teamsComboBox
         // 

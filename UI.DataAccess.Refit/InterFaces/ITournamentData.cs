@@ -10,8 +10,10 @@ public interface ITournamentData
     [Get("/Tournaments")]
     Task<List<Tournament>> GetAll();
 
-    [Get("/Tournaments/GetTournamentTeams")]
+    [Get("/Tournaments/GetTournamentTeams/{tournamentId}")]
     Task<List<Team>> GetTournamentTeams(int tournamentId);
+    [Get("/Tournaments/GetTeamsNotInTournament/{tournamentId}")]
+    Task<List<Team>> GetTeamsNotInTournament(int tournamentId);
 
     [Get("/Tournaments/{id}")]
     Task<Tournament> GetById(int id);

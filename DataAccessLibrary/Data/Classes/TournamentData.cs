@@ -12,6 +12,12 @@ public class TournamentData : ITournamentData
         _db = db;
     }
 
+    public async Task<IEnumerable<Team>> GetTeamsNotInTournament(int tournamentId)
+    {
+        return await _db.LoadData<Team, dynamic>("spTournament_GetTeamsNotInTournament",
+            new { TournamentId = tournamentId });
+    }
+
     public async Task<IEnumerable<Team>> GetTournamentTeams(int tournamentId)
     {
         return await _db.LoadData<Team, dynamic>("dbo.spTournament_GetTeams",

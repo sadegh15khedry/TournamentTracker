@@ -1,4 +1,5 @@
-﻿using TournamentTrackerApp.WinformsUI.Forms;
+﻿using DataModels;
+using TournamentTrackerApp.WinformsUI.Factory;
 using TrackerLibrary;
 using UI.DataAccess.Refit.InterFaces;
 
@@ -12,6 +13,7 @@ public partial class TournamentTeamSelectionForm : Form
     public List<Team> TeamsInTournament { get; set; } = new();
     public List<Team> TeamsNotInTournament { get; set; } = new();
 
+
     public TournamentTeamSelectionForm(int tournamentId, ITournamentData tournamentData
         , ITeamData teamData)
     {
@@ -21,18 +23,9 @@ public partial class TournamentTeamSelectionForm : Form
         SelectedTournament = _tournamentData.GetById(tournamentId).Result;
         titleLabel.Text = SelectedTournament.Name + " Tournament";
         TeamsInTournament = _tournamentData.GetTournamentTeams(SelectedTournament.Id).Result;
-        //MessageBox.Show(TeamsInTournament.Count.ToString());
-        List<Team> allTeams = _teamData.GetAll().Result;
-        foreach (var team in allTeams)
-        {
-            if (TeamsInTournament))
-            {
-                TeamsNotInTournament.Add(team);
-            }
-        }
-
-        MessageBox.Show(TeamsInTournament.Count.ToString() + "  "
-            + TeamsNotInTournament.Count.ToString());
+        TeamsNotInTournament = _tournamentData
+            .GetTeamsNotInTournament(SelectedTournament.Id).Result;
+        TournamentTeamsSetup();
     }
 
     private void titleLabel_Click(object sender, EventArgs e)
@@ -40,8 +33,27 @@ public partial class TournamentTeamSelectionForm : Form
 
     }
 
-    private void goToTournamentButton_Click(object sender, EventArgs e)
+    private void addTeamToTournamentButton_Click(object sender, EventArgs e)
     {
+
+        Team team = TeamsNotInTournament.ElementAtOrDefault(teamsComboBox.SelectedIndex);
+
+        MessageBox.Show(team.Id.ToString() + "  " + team.Name
+            + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
+        var tournamentTeam = new TournamentTeam()
+        {
+            TeamId = team.Id,
+            TournamentId = SelectedTournament.Id
+        };
+
+        MessageBox.Show(_teamData.JoinedTournament(tournamentTeam).Result);
+
+
+
+        TournamentTeamsSetup();
+        //Thread.Sleep(100);
+        //this.Hide();
+        //FormFactory.CreateTournamentTeamSelectForm(SelectedTournament.Id).Show();
     }
 
     private void tournamentsComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +63,7 @@ public partial class TournamentTeamSelectionForm : Form
     private void goToAddTeamButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new AddTeamForm().ShowDialog();
+        FormFactory.CreateAddTeamForm().Show();
     }
 
     private void removeSelectedFromListButton_Click(object sender, EventArgs e)
@@ -62,6 +74,23 @@ public partial class TournamentTeamSelectionForm : Form
     private void startTournamentButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new TournamentChartForm().ShowDialog();
+
+    }
+
+
+
+    private void TournamentTeamsSetup()
+    {
+        selectedTeamsListBox.Items.Clear();
+        teamsComboBox.Items.Clear();
+
+        foreach (Team team in TeamsInTournament)
+        {
+            selectedTeamsListBox.Items.Add(team.Name);
+        }
+        foreach (Team team in TeamsNotInTournament)
+        {
+            teamsComboBox.Items.Add(team.Name);
+        }
     }
 }
