@@ -36,10 +36,10 @@ public class TeamsController : ControllerBase
 
     // POST api/Teams
     [HttpPost]
-    public ActionResult Insert(Team team)
+    public ActionResult<Team> Insert(Team team)
     {
-        _db.Insert(team);
-        return StatusCode((int)HttpStatusCode.Created, "Inserted");
+
+        return Ok(_db.Insert(team).Result);
     }
 
     // PUT api/Team
@@ -79,9 +79,9 @@ public class TeamsController : ControllerBase
 
     [HttpPost]
     [Route("/api/[Controller]/[Action]")]
-    public ActionResult LeftTournament(int teamId, int tournamentId)
+    public ActionResult LeftTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        _db.LeftTournament(teamId, tournamentId);
+        _db.LeftTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
         return StatusCode((int)HttpStatusCode.Created, "Left");
     }
 }

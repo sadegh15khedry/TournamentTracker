@@ -10,11 +10,11 @@ public interface ITeamData
     [Get("/Teams")]
     Task<List<Team>> GetAll();
 
-    [Get("/Team/{id}")]
+    [Get("/Teams/{id}")]
     Task<Team> GetById(int id);
 
     [Post("/Teams")]
-    Task<ActionResult> Insert(Team team);
+    Task<Team> Insert(Team team);
 
     [Put("/Teams")]
     Task<ActionResult> Put(Team team);
@@ -28,6 +28,6 @@ public interface ITeamData
     Task<string> JoinedTournament([Body] TournamentTeam tournamentTeam);
 
     [Post("/Teams/LeftTournament")]
-    Task<ActionResult> LeftTournament(int teamId, int tournamentId);
+    Task<string> LeftTournament([Body] TournamentTeam tournamentTeam);
 
 }

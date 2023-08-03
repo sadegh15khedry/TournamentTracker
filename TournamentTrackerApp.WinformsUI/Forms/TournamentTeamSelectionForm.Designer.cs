@@ -68,7 +68,6 @@ partial class TournamentTeamSelectionForm
         teamsComboBox.Size = new Size(653, 53);
         teamsComboBox.TabIndex = 16;
         teamsComboBox.Text = "Choose a Team";
-        teamsComboBox.SelectedIndexChanged += tournamentsComboBox_SelectedIndexChanged;
         // 
         // titleLabel
         // 
@@ -81,7 +80,7 @@ partial class TournamentTeamSelectionForm
         titleLabel.Size = new Size(875, 106);
         titleLabel.TabIndex = 15;
         titleLabel.Text = "@nameOfTournament";
-        titleLabel.Click += titleLabel_Click;
+
         // 
         // selectedTeamsListBox
         // 

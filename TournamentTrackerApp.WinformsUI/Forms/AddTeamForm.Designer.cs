@@ -76,7 +76,7 @@ partial class AddTeamForm
         // ownerLabel
         // 
         ownerLabel.AutoSize = true;
-        ownerLabel.Location = new Point(439, 527);
+        ownerLabel.Location = new Point(475, 525);
         ownerLabel.Name = "ownerLabel";
         ownerLabel.Size = new Size(138, 45);
         ownerLabel.TabIndex = 24;

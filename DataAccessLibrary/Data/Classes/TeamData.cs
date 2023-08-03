@@ -35,15 +35,16 @@ public class TeamData : ITeamData
         return results.FirstOrDefault();
     }
 
-    public async Task Insert(Team team)
+    public async Task<Team> Insert(Team team)
     {
-        await _db.SaveData("dbo.spTeam_Insert", new
+        var result = await _db.LoadData<Team, dynamic>("dbo.spTeam_Insert", new
         {
 
             team.Name,
             team.City,
             team.Owner
         });
+        return result.FirstOrDefault();
     }
 
     public async Task Update(Team team)

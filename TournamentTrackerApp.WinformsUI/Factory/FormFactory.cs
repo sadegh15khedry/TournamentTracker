@@ -11,6 +11,8 @@ public static class FormFactory
     public static IPlayerData? _playerData { get; set; }
     public static IMatchData? _matchData { get; set; }
     public static int SelectedTournamentId { get; set; }
+    public static int SelectedTeamId { get; set; }
+
     public static LoginForm CreateLoginForm()
     {
         return new LoginForm();
@@ -35,5 +37,10 @@ public static class FormFactory
     {
         SelectedTournamentId = tournamentId;
         return new TournamentTeamSelectionForm(tournamentId, _tournamentData, _teamData);
+    }
+    public static TeamPlayersForm CreateTeamPlayerForm(int teamId)
+    {
+        SelectedTeamId = teamId;
+        return new TeamPlayersForm(_playerData, _teamData, teamId);
     }
 }

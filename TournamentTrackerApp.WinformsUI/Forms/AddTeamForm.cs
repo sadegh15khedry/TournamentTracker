@@ -23,8 +23,9 @@ public partial class AddTeamForm : Form
             City = cityTextBox.Text,
             Owner = ownerTextBox.Text
         };
-        _teamData.Insert(team);
+        var insertedTeam = _teamData.Insert(team).Result;
+        MessageBox.Show(insertedTeam.Id.ToString());
         Thread.Sleep(100);
-        FormFactory.CreateTournamentTeamSelectForm(FormFactory.SelectedTournamentId).Show();
+        FormFactory.CreateTeamPlayerForm(insertedTeam.Id).Show();
     }
 }

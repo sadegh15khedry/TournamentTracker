@@ -28,10 +28,7 @@ public partial class TournamentTeamSelectionForm : Form
         TournamentTeamsSetup();
     }
 
-    private void titleLabel_Click(object sender, EventArgs e)
-    {
 
-    }
 
     private void addTeamToTournamentButton_Click(object sender, EventArgs e)
     {
@@ -48,17 +45,12 @@ public partial class TournamentTeamSelectionForm : Form
 
         MessageBox.Show(_teamData.JoinedTournament(tournamentTeam).Result);
 
+        PageRefresh();
 
 
-        TournamentTeamsSetup();
-        //Thread.Sleep(100);
-        //this.Hide();
-        //FormFactory.CreateTournamentTeamSelectForm(SelectedTournament.Id).Show();
     }
 
-    private void tournamentsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-    {
-    }
+
 
     private void goToAddTeamButton_Click(object sender, EventArgs e)
     {
@@ -68,6 +60,17 @@ public partial class TournamentTeamSelectionForm : Form
 
     private void removeSelectedFromListButton_Click(object sender, EventArgs e)
     {
+        Team team = TeamsInTournament.ElementAtOrDefault(selectedTeamsListBox.SelectedIndex);
+
+        MessageBox.Show(team.Id.ToString() + "  " + team.Name
+            + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
+        var tournamentTeam = new TournamentTeam()
+        {
+            TeamId = team.Id,
+            TournamentId = SelectedTournament.Id
+        };
+        _teamData.LeftTournament(tournamentTeam);
+        PageRefresh();
 
     }
 
@@ -77,7 +80,13 @@ public partial class TournamentTeamSelectionForm : Form
 
     }
 
-
+    private void PageRefresh()
+    {
+        TournamentTeamsSetup();
+        Thread.Sleep(100);
+        this.Hide();
+        FormFactory.CreateTournamentTeamSelectForm(SelectedTournament.Id).Show();
+    }
 
     private void TournamentTeamsSetup()
     {

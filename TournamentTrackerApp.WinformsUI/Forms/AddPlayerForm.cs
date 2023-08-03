@@ -1,4 +1,6 @@
-﻿namespace TournamentTrackerApp.WinformsUI.Forms;
+﻿using TournamentTrackerApp.WinformsUI.Factory;
+
+namespace TournamentTrackerApp.WinformsUI.Forms;
 
 public partial class AddPlayerForm : Form
 {
@@ -10,6 +12,6 @@ public partial class AddPlayerForm : Form
     private void createPlayerButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        new TeamPlayersForm().ShowDialog();
+        FormFactory.CreateTeamPlayerForm(FormFactory.SelectedTeamId).Show();
     }
 }
