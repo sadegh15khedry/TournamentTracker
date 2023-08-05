@@ -24,8 +24,8 @@ public partial class AddTeamForm : Form
             Owner = ownerTextBox.Text
         };
         var insertedTeam = _teamData.Insert(team).Result;
-        MessageBox.Show(insertedTeam.Id.ToString());
         Thread.Sleep(100);
+        MessageBox.Show(insertedTeam.Id.ToString());
         FormFactory.CreateTeamPlayerForm(insertedTeam.Id).Show();
     }
 }

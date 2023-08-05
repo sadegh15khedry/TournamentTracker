@@ -74,4 +74,14 @@ public class PlayerData : IPlayerData
         await _db.SaveData("dbo.spPlayer_Delete", new { id });
     }
 
+    public async Task<IEnumerable<Player>> GetFreeAgentPlayers()
+    {
+        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetFreeAgentPlayers", new { });
+    }
+    public async Task<IEnumerable<Player>> GetTeamPlayers(int teamId)
+    {
+        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetTeamPlayers", new { TeamId = teamId });
+    }
+
+
 }

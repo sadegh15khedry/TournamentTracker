@@ -107,12 +107,13 @@
     <Build Include="dbo\Stored Procedures\Series\spSeries_Update.sql" />
     <Build Include="dbo\Stored Procedures\Series\spSeries_SetToFinished.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToFinished.sql" />
-    <Build Include="dbo\Stored Procedures\Player\spPlayer_GetPlayerTeam.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_GetTeamPlayers.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_SignedWithTeam.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_CanceledContract.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeams.sql" />
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetTeams.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeamsNotInTournament.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_GetFreeAgentPlayers.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

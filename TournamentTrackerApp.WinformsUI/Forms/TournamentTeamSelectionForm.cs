@@ -62,8 +62,8 @@ public partial class TournamentTeamSelectionForm : Form
     {
         Team team = TeamsInTournament.ElementAtOrDefault(selectedTeamsListBox.SelectedIndex);
 
-        MessageBox.Show(team.Id.ToString() + "  " + team.Name
-            + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
+        //MessageBox.Show(team.Id.ToString() + "  " + team.Name
+        //  + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
         var tournamentTeam = new TournamentTeam()
         {
             TeamId = team.Id,

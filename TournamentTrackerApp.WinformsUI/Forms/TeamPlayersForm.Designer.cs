@@ -32,7 +32,7 @@ partial class TeamPlayersForm
         removeSelectedFromListButton = new Button();
         selectedPlayersListBox = new ListBox();
         goToAddPlayerButton = new Label();
-        addPlayerButton = new Button();
+        addPlayerToTeamButton = new Button();
         playersComboBox = new ComboBox();
         titleLabel = new Label();
         SuspendLayout();
@@ -59,6 +59,7 @@ partial class TeamPlayersForm
         removeSelectedFromListButton.TabIndex = 27;
         removeSelectedFromListButton.Text = "Remove";
         removeSelectedFromListButton.UseVisualStyleBackColor = true;
+        removeSelectedFromListButton.Click += removeSelectedFromListButton_Click;
         // 
         // selectedPlayersListBox
         // 
@@ -79,16 +80,17 @@ partial class TeamPlayersForm
         goToAddPlayerButton.Text = "Create A Player";
         goToAddPlayerButton.Click += goToAddPlayerButton_Click;
         // 
-        // addPlayerButton
+        // addPlayerToTeamButton
         // 
-        addPlayerButton.ForeColor = Color.Black;
-        addPlayerButton.Location = new Point(371, 434);
-        addPlayerButton.Margin = new Padding(5);
-        addPlayerButton.Name = "addPlayerButton";
-        addPlayerButton.Size = new Size(202, 61);
-        addPlayerButton.TabIndex = 24;
-        addPlayerButton.Text = "Add";
-        addPlayerButton.UseVisualStyleBackColor = true;
+        addPlayerToTeamButton.ForeColor = Color.Black;
+        addPlayerToTeamButton.Location = new Point(371, 434);
+        addPlayerToTeamButton.Margin = new Padding(5);
+        addPlayerToTeamButton.Name = "addPlayerToTeamButton";
+        addPlayerToTeamButton.Size = new Size(202, 61);
+        addPlayerToTeamButton.TabIndex = 24;
+        addPlayerToTeamButton.Text = "Add";
+        addPlayerToTeamButton.UseVisualStyleBackColor = true;
+        addPlayerToTeamButton.Click += addPlayerToTeamButton_Click;
         // 
         // playersComboBox
         // 
@@ -112,7 +114,7 @@ partial class TeamPlayersForm
         titleLabel.TabIndex = 22;
         titleLabel.Text = "@nameOfTeam\r\n";
         // 
-        // TeamPlayers
+        // TeamPlayersForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -122,13 +124,13 @@ partial class TeamPlayersForm
         Controls.Add(removeSelectedFromListButton);
         Controls.Add(selectedPlayersListBox);
         Controls.Add(goToAddPlayerButton);
-        Controls.Add(addPlayerButton);
+        Controls.Add(addPlayerToTeamButton);
         Controls.Add(playersComboBox);
         Controls.Add(titleLabel);
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "TeamPlayers";
+        Name = "TeamPlayersForm";
         Text = "TeamPlayers";
         ResumeLayout(false);
         PerformLayout();
@@ -140,7 +142,7 @@ partial class TeamPlayersForm
     private Button removeSelectedFromListButton;
     private ListBox selectedPlayersListBox;
     private Label goToAddPlayerButton;
-    private Button addPlayerButton;
+    private Button addPlayerToTeamButton;
     private ComboBox playersComboBox;
     private Label titleLabel;
 }
