@@ -43,4 +43,14 @@ public static class FormFactory
         SelectedTeamId = teamId;
         return new TeamPlayersForm(_playerData, _teamData, teamId);
     }
+
+    public static HomeForm CreateHomeForm()
+    {
+        return new HomeForm(_tournamentData, _teamData, _playerData);
+    }
+
+    public static AddPlayerForm CreateAddPlayerForm()
+    {
+        return new AddPlayerForm(_playerData);
+    }
 }

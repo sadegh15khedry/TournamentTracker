@@ -7,26 +7,24 @@ namespace UI.DataAccess.Refit.InterFaces;
 public interface ISeriesData
 {
 
-
-
     [Get("/Series")]
     // GET: api/Series
-    Task<ActionResult> GetAll();
+    Task<List<Series>> GetAll();
 
     [Get("/Series/{id}")]
-    Task<ActionResult> GetById(int id);
+    Task<Series> GetById(int id);
 
 
     [Post("/Series")]
-    Task<ActionResult> Create([FromBody] Series series);
+    Task<Series> Create([FromBody] Series series);
 
 
     [Put("/Series")]
-    Task<ActionResult> Update(Series series);
+    Task<Series> Update(Series series);
 
 
     [Delete("/Series/{id}")]
-    Task<ActionResult> Delete(int id);
+    Task<string> Delete(int id);
 
 
 }

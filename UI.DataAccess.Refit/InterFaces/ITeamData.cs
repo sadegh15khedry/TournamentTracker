@@ -1,5 +1,4 @@
 ﻿using DataModels;
-using Microsoft.AspNetCore.Mvc;
 using Refit;
 using TrackerLibrary;
 
@@ -17,10 +16,10 @@ public interface ITeamData
     Task<Team> Insert(Team team);
 
     [Put("/Teams")]
-    Task<ActionResult> Put(Team team);
+    Task<Team> Put(Team team);
 
     [Delete("/Teams/{id}")]
-    Task<ActionResult> Delete(int id);
+    Task<string> Delete(int id);
 
 
 

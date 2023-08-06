@@ -12,6 +12,7 @@ public interface ITournamentData
 
     [Get("/Tournaments/GetTournamentTeams/{tournamentId}")]
     Task<List<Team>> GetTournamentTeams(int tournamentId);
+
     [Get("/Tournaments/GetTeamsNotInTournament/{tournamentId}")]
     Task<List<Team>> GetTeamsNotInTournament(int tournamentId);
 
@@ -19,13 +20,13 @@ public interface ITournamentData
     Task<Tournament> GetById(int id);
 
     [Post("/Tournaments")]
-    Task<ActionResult> Create(Tournament tournament);
+    Task<Tournament> Create(Tournament tournament);
 
     [Put("/Tournaments")]
-    Task<ActionResult> Update(Tournament tournament);
+    Task<Tournament> Update(Tournament tournament);
 
     [Delete("/Tournaments")]
-    Task<ActionResult> Delete(int id);
+    Task<string> Delete(int id);
 
     [Post("/Tournaments/SetToFinished/{id}")]
     Task<ActionResult> SetToFinished(int id);

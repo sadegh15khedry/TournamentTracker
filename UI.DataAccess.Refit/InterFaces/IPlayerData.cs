@@ -13,20 +13,20 @@ public interface IPlayerData
     [Post("/Players/CanceledContract")]
     Task<string> CanceledContract(int playerId);
 
-    [HttpGet("/Players")]
-    Task<ActionResult> GetAll();
+    [Get("/Players")]
+    Task<List<Player>> GetAll();
 
     [Get("/Players/{id}")]
-    Task<ActionResult> GetById(int id);
+    Task<Player> GetById(int id);
 
     [Post("/Players")]
-    Task<ActionResult> Create([FromBody] Player player);
+    Task<Player> Create([FromBody] Player player);
 
     [Put("/Players")]
-    Task<ActionResult> Update(Player player);
+    Task<Player> Update(Player player);
 
     [Delete("/Players")]
-    Task<ActionResult> Delete(int id);
+    Task<string> Delete(int id);
 
     [Get("/Players/GetFreeAgentPlayers")]
     Task<List<Player>> GetFreeAgentPlayers();

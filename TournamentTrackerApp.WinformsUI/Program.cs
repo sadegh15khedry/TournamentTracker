@@ -23,7 +23,7 @@ static class Program
 
 
         ApplicationConfiguration.Initialize();
-        Application.Run(FormFactory.CreateTeamPlayerForm(1));
+        Application.Run(FormFactory.CreateHomeForm());
 
 
 

@@ -7,20 +7,20 @@ namespace UI.DataAccess.Refit.InterFaces;
 public interface IMatchData
 {
     [Get("/Matches")]
-    Task<ActionResult> GetAll();
+    Task<List<Match>> GetAll();
 
 
     [Get("/Matches/{id}")]
-    Task<ActionResult> GetById(int id);
+    Task<Match> GetById(int id);
 
     [Post("/Matches")]
-    Task<ActionResult> Create([FromBody] Match match);
+    Task<Match> Create([FromBody] Match match);
 
     [Put("/Matches")]
-    Task<ActionResult> Update(Match match);
+    Task<Match> Update(Match match);
 
     [Delete("/Matches")]
-    Task<ActionResult> Delete(int id);
+    Task<string> Delete(int id);
 
 
 }

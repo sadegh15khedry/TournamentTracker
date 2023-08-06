@@ -29,7 +29,8 @@ public class PlayerData : IPlayerData
     }
     public async Task<Team> GetPlayerTeam(int teamId)
     {
-        var results = await _db.LoadData<Team, dynamic>("spPlayer_GetPlayerTeam", new { TeamId = teamId });
+        var results = await _db.LoadData<Team, dynamic>
+            ("spPlayer_GetPlayerTeam", new { TeamId = teamId });
         return results.FirstOrDefault();
     }
     public async Task<IEnumerable<Player>> GetAll()

@@ -114,6 +114,7 @@
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetTeams.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_GetTeamsNotInTournament.sql" />
     <Build Include="dbo\Stored Procedures\Player\spPlayer_GetFreeAgentPlayers.sql" />
+    <Build Include="dbo\Stored Procedures\Player\spPlayer_GetPlayerTeam.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

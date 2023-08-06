@@ -78,7 +78,7 @@ partial class TeamPlayersForm
         goToAddPlayerButton.Size = new Size(236, 45);
         goToAddPlayerButton.TabIndex = 25;
         goToAddPlayerButton.Text = "Create A Player";
-        goToAddPlayerButton.Click += goToAddPlayerButton_Click;
+        
         // 
         // addPlayerToTeamButton
         // 

@@ -24,11 +24,11 @@ public partial class TeamPlayersForm : Form
         PageRefresh();
     }
 
-    private void goToAddPlayerButton_Click(object sender, EventArgs e)
-    {
-        this.Hide();
-        new AddPlayerForm().ShowDialog();
-    }
+    /*    private void goToAddPlayerButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            F.ShowDialog();
+        }*/
 
     private void doneButton_Click(object sender, EventArgs e)
     {
