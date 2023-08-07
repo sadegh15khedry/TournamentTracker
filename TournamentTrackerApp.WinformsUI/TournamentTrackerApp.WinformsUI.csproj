@@ -18,7 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\Home.cs">
+    <Compile Update="Forms\PlayerDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

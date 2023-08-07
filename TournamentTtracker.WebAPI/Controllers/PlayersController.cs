@@ -40,11 +40,17 @@ public class PlayersController : Controller
     public ActionResult GetById(int id)
     {
         var player = _db.GetById(id).Result;
+
         if (player is null)
         {
             return StatusCode((int)HttpStatusCode.NotFound, "player Not Found");
         }
-        player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result;
+        if (player.TeamId is null)
+        {
+            return Ok(player);
+        }
+
+        player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result; ;
         return Ok(player);
     }
 

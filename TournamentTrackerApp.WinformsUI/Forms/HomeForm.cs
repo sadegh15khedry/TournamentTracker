@@ -25,9 +25,9 @@ public partial class HomeForm : Form
 
     private void PageListsSetup()
     {
-        playersListView.Items.Clear();
-        teamsListView.Items.Clear();
-        tournamentsListView.Items.Clear();
+        playersListBox.Items.Clear();
+        teamsListBox.Items.Clear();
+        tournamentsListBox.Items.Clear();
 
         Players = _playerData.GetAll().Result;
         Teams = _teamData.GetAll().Result;
@@ -35,15 +35,15 @@ public partial class HomeForm : Form
 
         foreach (var player in Players)
         {
-            playersListView.Items.Add(player.FirstName + " " + player.LastName + "\n");
+            playersListBox.Items.Add(player.FirstName + " " + player.LastName + "\n");
         }
         foreach (var team in Teams)
         {
-            teamsListView.Items.Add(team.Name);
+            teamsListBox.Items.Add(team.Name);
         }
         foreach (var tournament in Tournaments)
         {
-            tournamentsListView.Items.Add(tournament.Name);
+            tournamentsListBox.Items.Add(tournament.Name);
         }
     }
 
@@ -51,4 +51,37 @@ public partial class HomeForm : Form
     {
         FormFactory.CreateAddPlayerForm().Show();
     }
+
+    private void addTeamButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateAddTeamForm().Show();
+    }
+
+    private void addTournamentButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateAddTournamentForm().Show();
+    }
+
+    private void goToPlayerButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        int selectedPlayerIndex = playersListBox.SelectedIndex;
+        var player = Players.ElementAtOrDefault(selectedPlayerIndex);
+        FormFactory.CreatePlayerDetailForm(player.Id).Show();
+
+    }
+
+    private void goToTeamButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void goToTournamentButton_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
 }

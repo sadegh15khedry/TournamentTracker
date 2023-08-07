@@ -38,12 +38,14 @@ partial class AddPlayerForm
         titleLabel = new Label();
         lastnameTextBox = new TextBox();
         lastnameLabel = new Label();
+        emailTextBox = new TextBox();
+        emailLabel = new Label();
         SuspendLayout();
         // 
         // createPlayerButton
         // 
         createPlayerButton.ForeColor = Color.Black;
-        createPlayerButton.Location = new Point(912, 807);
+        createPlayerButton.Location = new Point(913, 856);
         createPlayerButton.Name = "createPlayerButton";
         createPlayerButton.Size = new Size(235, 92);
         createPlayerButton.TabIndex = 36;
@@ -131,12 +133,31 @@ partial class AddPlayerForm
         lastnameLabel.TabIndex = 37;
         lastnameLabel.Text = "Last Name :";
         // 
-        // AddPlayer
+        // emailTextBox
+        // 
+        emailTextBox.Location = new Point(740, 739);
+        emailTextBox.Margin = new Padding(5);
+        emailTextBox.Name = "emailTextBox";
+        emailTextBox.Size = new Size(656, 50);
+        emailTextBox.TabIndex = 40;
+        // 
+        // emailLabel
+        // 
+        emailLabel.AutoSize = true;
+        emailLabel.Location = new Point(552, 739);
+        emailLabel.Name = "emailLabel";
+        emailLabel.Size = new Size(112, 45);
+        emailLabel.TabIndex = 39;
+        emailLabel.Text = "Email :";
+        // 
+        // AddPlayerForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1911, 1093);
+        Controls.Add(emailTextBox);
+        Controls.Add(emailLabel);
         Controls.Add(lastnameTextBox);
         Controls.Add(lastnameLabel);
         Controls.Add(createPlayerButton);
@@ -150,7 +171,7 @@ partial class AddPlayerForm
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "AddPlayer";
+        Name = "AddPlayerForm";
         Text = "AddPlayer";
         ResumeLayout(false);
         PerformLayout();
@@ -168,4 +189,6 @@ partial class AddPlayerForm
     private Label titleLabel;
     private TextBox lastnameTextBox;
     private Label lastnameLabel;
+    private TextBox emailTextBox;
+    private Label emailLabel;
 }

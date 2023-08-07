@@ -26,6 +26,6 @@ public partial class AddTournamentForm : Form
         _tournamentData.Create(newTournament);
         this.Hide();
         Thread.Sleep(100);
-        FormFactory.CreateTournamentsForm().Show();
+        FormFactory.CreateHomeForm().Show();
     }
 }

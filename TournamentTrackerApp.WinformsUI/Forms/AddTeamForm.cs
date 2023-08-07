@@ -25,7 +25,7 @@ public partial class AddTeamForm : Form
         };
         var insertedTeam = _teamData.Insert(team).Result;
         Thread.Sleep(100);
-        MessageBox.Show(insertedTeam.Id.ToString());
-        FormFactory.CreateTeamPlayerForm(insertedTeam.Id).Show();
+        //MessageBox.Show(insertedTeam.Id.ToString());
+        FormFactory.CreateHomeForm().Show();
     }
 }

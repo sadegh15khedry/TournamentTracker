@@ -17,13 +17,15 @@ public partial class AddPlayerForm : Form
     private void createPlayerButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        _playerData.Create(new Player()
+        var response = _playerData.Create(new Player()
         {
             FirstName = firstnameTextBox.Text,
             LastName = lastnameTextBox.Text,
             SSN = ssnTextBox.Text,
-            Phone = phoneTextBox.Text
+            Phone = phoneTextBox.Text,
+            Email = emailTextBox.Text
         });
+        //MessageBox.Show(response.Result.ToString());
         Thread.Sleep(100);
         FormFactory.CreateHomeForm().Show();
     }

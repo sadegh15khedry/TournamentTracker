@@ -53,4 +53,11 @@ public static class FormFactory
     {
         return new AddPlayerForm(_playerData);
     }
+
+    public static PlayerDetailsForm CreatePlayerDetailForm(int playerId)
+    {
+        return new PlayerDetailsForm(_playerData, playerId);
+
+
+    }
 }
