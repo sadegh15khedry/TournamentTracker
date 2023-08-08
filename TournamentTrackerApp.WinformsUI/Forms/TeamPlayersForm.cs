@@ -33,7 +33,7 @@ public partial class TeamPlayersForm : Form
     private void doneButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-        FormFactory.CreateTournamentTeamSelectForm(FormFactory.SelectedTournamentId).Show();
+        FormFactory.CreateTeamDetailsForm(SelectedTeam.Id).Show();
     }
     public void PageRefresh()
     {
@@ -73,5 +73,11 @@ public partial class TeamPlayersForm : Form
         Thread.Sleep(100);
         FormFactory.CreateTeamPlayerForm(SelectedTeam.Id).Show();
         PageRefresh();
+    }
+
+    private void backButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateTeamDetailsForm(SelectedTeam.Id).Show();
     }
 }

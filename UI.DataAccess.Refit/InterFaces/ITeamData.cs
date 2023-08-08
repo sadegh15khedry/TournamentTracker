@@ -16,7 +16,7 @@ public interface ITeamData
     Task<Team> Insert(Team team);
 
     [Put("/Teams")]
-    Task<Team> Put(Team team);
+    Task<Team> Update(Team team);
 
     [Delete("/Teams/{id}")]
     Task<string> Delete(int id);

@@ -64,4 +64,20 @@ public static class FormFactory
     {
         return new EditPlayerForm(_playerData, playerId);
     }
+
+    public static TournamentDetailsForm CreateTournamentDetails(int tournamentId)
+    {
+        return new TournamentDetailsForm(_tournamentData, tournamentId);
+
+    }
+
+    public static TeamDetailsForm CreateTeamDetailsForm(int teamId)
+    {
+        return new TeamDetailsForm(_teamData, teamId);
+    }
+
+    public static EditTeamForm CreateEditTeamForm(int teamId)
+    {
+        return new EditTeamForm(_teamData, teamId);
+    }
 }

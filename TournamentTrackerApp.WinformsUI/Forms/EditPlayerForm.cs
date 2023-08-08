@@ -36,7 +36,7 @@ public partial class EditPlayerForm : Form
         SelectedPlayer.Email = emailTextBox.Text;
 
         _playerData.Update(SelectedPlayer);
-        //MessageBox.Show(response.Result.ToString());
+
         Thread.Sleep(100);
         FormFactory.CreateHomeForm().Show();
     }

@@ -75,12 +75,18 @@ public partial class HomeForm : Form
 
     private void goToTeamButton_Click(object sender, EventArgs e)
     {
-
+        this.Hide();
+        int selectedTeamIndex = teamsListBox.SelectedIndex;
+        var team = Teams.ElementAtOrDefault(selectedTeamIndex);
+        FormFactory.CreateTeamDetailsForm(team.Id).Show();
     }
 
     private void goToTournamentButton_Click(object sender, EventArgs e)
     {
-
+        this.Hide();
+        int selectedTournamentIndex = tournamentsListBox.SelectedIndex;
+        var tournament = Tournaments.ElementAtOrDefault(selectedTournamentIndex);
+        FormFactory.CreateTournamentDetails(tournament.Id).Show();
     }
 
 

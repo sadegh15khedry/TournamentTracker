@@ -35,6 +35,7 @@ partial class TeamPlayersForm
         addPlayerToTeamButton = new Button();
         playersComboBox = new ComboBox();
         titleLabel = new Label();
+        backButton = new Label();
         SuspendLayout();
         // 
         // doneButton
@@ -78,7 +79,6 @@ partial class TeamPlayersForm
         goToAddPlayerButton.Size = new Size(236, 45);
         goToAddPlayerButton.TabIndex = 25;
         goToAddPlayerButton.Text = "Create A Player";
-        
         // 
         // addPlayerToTeamButton
         // 
@@ -114,12 +114,24 @@ partial class TeamPlayersForm
         titleLabel.TabIndex = 22;
         titleLabel.Text = "@nameOfTeam\r\n";
         // 
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(37, 61);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 29;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
         // TeamPlayersForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1899, 1019);
+        Controls.Add(backButton);
         Controls.Add(doneButton);
         Controls.Add(removeSelectedFromListButton);
         Controls.Add(selectedPlayersListBox);
@@ -145,4 +157,5 @@ partial class TeamPlayersForm
     private Button addPlayerToTeamButton;
     private ComboBox playersComboBox;
     private Label titleLabel;
+    private Label backButton;
 }

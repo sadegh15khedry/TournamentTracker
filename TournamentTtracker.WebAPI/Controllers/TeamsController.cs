@@ -44,7 +44,7 @@ public class TeamsController : ControllerBase
 
     // PUT api/Team
     [HttpPut]
-    public ActionResult Put(Team team)
+    public ActionResult Update(Team team)
     {
         _db.Update(team);
         return StatusCode((int)HttpStatusCode.OK, "Updated");
