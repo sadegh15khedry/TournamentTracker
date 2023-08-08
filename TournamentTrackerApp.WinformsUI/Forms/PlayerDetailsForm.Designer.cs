@@ -53,12 +53,12 @@ partial class PlayerDetailsForm
         titleLabel.AutoSize = true;
         titleLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point);
         titleLabel.ForeColor = Color.White;
-        titleLabel.Location = new Point(673, 39);
+        titleLabel.Location = new Point(727, 39);
         titleLabel.Margin = new Padding(5, 0, 5, 0);
         titleLabel.Name = "titleLabel";
-        titleLabel.Size = new Size(655, 106);
+        titleLabel.Size = new Size(482, 106);
         titleLabel.TabIndex = 9;
-        titleLabel.Text = "Player Page title";
+        titleLabel.Text = "Player Page";
         // 
         // idLabel
         // 

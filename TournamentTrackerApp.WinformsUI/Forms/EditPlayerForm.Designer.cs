@@ -1,0 +1,208 @@
+﻿namespace TournamentTrackerApp.WinformsUI.Forms;
+
+partial class EditPlayerForm
+{
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && (components != null))
+        {
+            components.Dispose();
+        }
+        base.Dispose(disposing);
+    }
+
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        editPlayerButton = new Button();
+        phoneTextBox = new TextBox();
+        ssnTextBox = new TextBox();
+        firstnameTextBox = new TextBox();
+        phoneLabel = new Label();
+        ssnLabel = new Label();
+        firstnameLabel = new Label();
+        titleLabel = new Label();
+        lastnameTextBox = new TextBox();
+        lastnameLabel = new Label();
+        emailTextBox = new TextBox();
+        emailLabel = new Label();
+        backButton = new Label();
+        SuspendLayout();
+        // 
+        // editPlayerButton
+        // 
+        editPlayerButton.ForeColor = Color.Black;
+        editPlayerButton.Location = new Point(913, 856);
+        editPlayerButton.Name = "editPlayerButton";
+        editPlayerButton.Size = new Size(235, 92);
+        editPlayerButton.TabIndex = 36;
+        editPlayerButton.Text = "Submit";
+        editPlayerButton.UseVisualStyleBackColor = true;
+        editPlayerButton.Click += EditPlayerButton_Click;
+        // 
+        // phoneTextBox
+        // 
+        phoneTextBox.Location = new Point(740, 652);
+        phoneTextBox.Margin = new Padding(5);
+        phoneTextBox.Name = "phoneTextBox";
+        phoneTextBox.Size = new Size(656, 50);
+        phoneTextBox.TabIndex = 35;
+        // 
+        // ssnTextBox
+        // 
+        ssnTextBox.Location = new Point(740, 563);
+        ssnTextBox.Margin = new Padding(5);
+        ssnTextBox.Name = "ssnTextBox";
+        ssnTextBox.Size = new Size(656, 50);
+        ssnTextBox.TabIndex = 34;
+        // 
+        // firstnameTextBox
+        // 
+        firstnameTextBox.Location = new Point(740, 390);
+        firstnameTextBox.Margin = new Padding(5);
+        firstnameTextBox.Name = "firstnameTextBox";
+        firstnameTextBox.Size = new Size(656, 50);
+        firstnameTextBox.TabIndex = 33;
+        // 
+        // phoneLabel
+        // 
+        phoneLabel.AutoSize = true;
+        phoneLabel.Location = new Point(552, 652);
+        phoneLabel.Name = "phoneLabel";
+        phoneLabel.Size = new Size(127, 45);
+        phoneLabel.TabIndex = 32;
+        phoneLabel.Text = "phone :";
+        // 
+        // ssnLabel
+        // 
+        ssnLabel.AutoSize = true;
+        ssnLabel.Location = new Point(323, 563);
+        ssnLabel.Name = "ssnLabel";
+        ssnLabel.Size = new Size(366, 45);
+        ssnLabel.TabIndex = 31;
+        ssnLabel.Text = "Social Security Number :";
+        // 
+        // firstnameLabel
+        // 
+        firstnameLabel.AutoSize = true;
+        firstnameLabel.Location = new Point(503, 390);
+        firstnameLabel.Name = "firstnameLabel";
+        firstnameLabel.Size = new Size(190, 45);
+        firstnameLabel.TabIndex = 30;
+        firstnameLabel.Text = "First Name :";
+        // 
+        // titleLabel
+        // 
+        titleLabel.AutoSize = true;
+        titleLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point);
+        titleLabel.ForeColor = Color.White;
+        titleLabel.Location = new Point(740, 94);
+        titleLabel.Margin = new Padding(5, 0, 5, 0);
+        titleLabel.Name = "titleLabel";
+        titleLabel.Size = new Size(446, 106);
+        titleLabel.TabIndex = 29;
+        titleLabel.Text = "Edit Player";
+        // 
+        // lastnameTextBox
+        // 
+        lastnameTextBox.Location = new Point(740, 480);
+        lastnameTextBox.Margin = new Padding(5);
+        lastnameTextBox.Name = "lastnameTextBox";
+        lastnameTextBox.Size = new Size(656, 50);
+        lastnameTextBox.TabIndex = 38;
+        // 
+        // lastnameLabel
+        // 
+        lastnameLabel.AutoSize = true;
+        lastnameLabel.Location = new Point(503, 471);
+        lastnameLabel.Name = "lastnameLabel";
+        lastnameLabel.Size = new Size(186, 45);
+        lastnameLabel.TabIndex = 37;
+        lastnameLabel.Text = "Last Name :";
+        // 
+        // emailTextBox
+        // 
+        emailTextBox.Location = new Point(740, 739);
+        emailTextBox.Margin = new Padding(5);
+        emailTextBox.Name = "emailTextBox";
+        emailTextBox.Size = new Size(656, 50);
+        emailTextBox.TabIndex = 40;
+        // 
+        // emailLabel
+        // 
+        emailLabel.AutoSize = true;
+        emailLabel.Location = new Point(552, 739);
+        emailLabel.Name = "emailLabel";
+        emailLabel.Size = new Size(112, 45);
+        emailLabel.TabIndex = 39;
+        emailLabel.Text = "Email :";
+        // 
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(62, 94);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 41;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
+        // EditPlayerForm
+        // 
+        AutoScaleDimensions = new SizeF(18F, 45F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = Color.Black;
+        ClientSize = new Size(1911, 1093);
+        Controls.Add(backButton);
+        Controls.Add(emailTextBox);
+        Controls.Add(emailLabel);
+        Controls.Add(lastnameTextBox);
+        Controls.Add(lastnameLabel);
+        Controls.Add(editPlayerButton);
+        Controls.Add(phoneTextBox);
+        Controls.Add(ssnTextBox);
+        Controls.Add(firstnameTextBox);
+        Controls.Add(phoneLabel);
+        Controls.Add(ssnLabel);
+        Controls.Add(firstnameLabel);
+        Controls.Add(titleLabel);
+        Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+        ForeColor = Color.White;
+        Margin = new Padding(5);
+        Name = "EditPlayerForm";
+        Text = "AddPlayer";
+        ResumeLayout(false);
+        PerformLayout();
+    }
+
+    #endregion
+
+    private Button editPlayerButton;
+    private TextBox phoneTextBox;
+    private TextBox ssnTextBox;
+    private TextBox firstnameTextBox;
+    private Label phoneLabel;
+    private Label ssnLabel;
+    private Label firstnameLabel;
+    private Label titleLabel;
+    private TextBox lastnameTextBox;
+    private Label lastnameLabel;
+    private TextBox emailTextBox;
+    private Label emailLabel;
+    private Label backButton;
+}

@@ -60,4 +60,8 @@ public static class FormFactory
 
 
     }
+    public static EditPlayerForm CreateEditPlayerForm(int playerId)
+    {
+        return new EditPlayerForm(_playerData, playerId);
+    }
 }

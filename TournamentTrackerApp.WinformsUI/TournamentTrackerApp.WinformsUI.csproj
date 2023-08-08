@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\EditPlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\PlayerDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>

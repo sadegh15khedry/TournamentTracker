@@ -40,7 +40,8 @@ public partial class PlayerDetailsForm : Form
 
     private void editPlayerButton_Click(object sender, EventArgs e)
     {
-        FormFactory.CreateHomeForm().Show();
+        this.Hide();
+        FormFactory.CreateEditPlayerForm(SelectedPlayer.Id).Show();
     }
 
     private void backButton_Click(object sender, EventArgs e)
