@@ -29,4 +29,10 @@ public partial class AddPlayerForm : Form
         Thread.Sleep(100);
         FormFactory.CreateHomeForm().Show();
     }
+
+    private void backButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateHomeForm().Show();
+    }
 }

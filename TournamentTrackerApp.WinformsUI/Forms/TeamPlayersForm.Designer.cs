@@ -31,7 +31,6 @@ partial class TeamPlayersForm
         doneButton = new Button();
         removeSelectedFromListButton = new Button();
         selectedPlayersListBox = new ListBox();
-        goToAddPlayerButton = new Label();
         addPlayerToTeamButton = new Button();
         playersComboBox = new ComboBox();
         titleLabel = new Label();
@@ -70,15 +69,6 @@ partial class TeamPlayersForm
         selectedPlayersListBox.Name = "selectedPlayersListBox";
         selectedPlayersListBox.Size = new Size(746, 454);
         selectedPlayersListBox.TabIndex = 26;
-        // 
-        // goToAddPlayerButton
-        // 
-        goToAddPlayerButton.AutoSize = true;
-        goToAddPlayerButton.Location = new Point(360, 535);
-        goToAddPlayerButton.Name = "goToAddPlayerButton";
-        goToAddPlayerButton.Size = new Size(236, 45);
-        goToAddPlayerButton.TabIndex = 25;
-        goToAddPlayerButton.Text = "Create A Player";
         // 
         // addPlayerToTeamButton
         // 
@@ -135,7 +125,6 @@ partial class TeamPlayersForm
         Controls.Add(doneButton);
         Controls.Add(removeSelectedFromListButton);
         Controls.Add(selectedPlayersListBox);
-        Controls.Add(goToAddPlayerButton);
         Controls.Add(addPlayerToTeamButton);
         Controls.Add(playersComboBox);
         Controls.Add(titleLabel);
@@ -153,7 +142,6 @@ partial class TeamPlayersForm
     private Button doneButton;
     private Button removeSelectedFromListButton;
     private ListBox selectedPlayersListBox;
-    private Label goToAddPlayerButton;
     private Button addPlayerToTeamButton;
     private ComboBox playersComboBox;
     private Label titleLabel;

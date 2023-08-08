@@ -80,4 +80,9 @@ public static class FormFactory
     {
         return new EditTeamForm(_teamData, teamId);
     }
+
+    public static EditTournamentForm CreateEditTournamentForm(int tournamentId)
+    {
+        return new EditTournamentForm(_tournamentData, tournamentId);
+    }
 }

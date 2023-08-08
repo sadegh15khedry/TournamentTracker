@@ -1,6 +1,6 @@
 ﻿namespace TournamentTrackerApp.WinformsUI;
 
-partial class AddTournamentForm
+partial class EditTournamentForm
 {
     /// <summary>
     /// Required designer variable.
@@ -29,14 +29,14 @@ partial class AddTournamentForm
     private void InitializeComponent()
     {
         titleLabel = new Label();
-        descriptionTextBox = new TextBox();
-        locationTextBox = new TextBox();
-        nameTextBox = new TextBox();
         descriptionLabel = new Label();
         locationLabel = new Label();
         nameLabel = new Label();
-        createTournamentButton = new Button();
+        submitButton = new Button();
         backButton = new Label();
+        nameTextBox = new TextBox();
+        locationTextBox = new TextBox();
+        descriptionTextBox = new TextBox();
         SuspendLayout();
         // 
         // titleLabel
@@ -44,37 +44,12 @@ partial class AddTournamentForm
         titleLabel.AutoSize = true;
         titleLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point);
         titleLabel.ForeColor = Color.White;
-        titleLabel.Location = new Point(455, 75);
+        titleLabel.Location = new Point(576, 75);
         titleLabel.Margin = new Padding(5, 0, 5, 0);
         titleLabel.Name = "titleLabel";
-        titleLabel.Size = new Size(842, 106);
+        titleLabel.Size = new Size(669, 106);
         titleLabel.TabIndex = 10;
-        titleLabel.Text = "Create A Tournament";
-        // 
-        // descriptionTextBox
-        // 
-        descriptionTextBox.Location = new Point(651, 480);
-        descriptionTextBox.Margin = new Padding(5);
-        descriptionTextBox.Name = "descriptionTextBox";
-        descriptionTextBox.Size = new Size(656, 50);
-        descriptionTextBox.TabIndex = 19;
-        // 
-        // locationTextBox
-        // 
-        locationTextBox.Location = new Point(651, 391);
-        locationTextBox.Margin = new Padding(5);
-        locationTextBox.Name = "locationTextBox";
-        locationTextBox.Size = new Size(656, 50);
-        locationTextBox.TabIndex = 18;
-        // 
-        // nameTextBox
-        // 
-        nameTextBox.Location = new Point(651, 308);
-        nameTextBox.Margin = new Padding(5);
-        nameTextBox.Name = "nameTextBox";
-        nameTextBox.Size = new Size(656, 50);
-        nameTextBox.TabIndex = 17;
-        nameTextBox.Tag = "";
+        titleLabel.Text = "Edit Tournament";
         // 
         // descriptionLabel
         // 
@@ -103,16 +78,16 @@ partial class AddTournamentForm
         nameLabel.TabIndex = 14;
         nameLabel.Text = "Name :";
         // 
-        // createTournamentButton
+        // submitButton
         // 
-        createTournamentButton.ForeColor = Color.Black;
-        createTournamentButton.Location = new Point(823, 635);
-        createTournamentButton.Name = "createTournamentButton";
-        createTournamentButton.Size = new Size(235, 92);
-        createTournamentButton.TabIndex = 20;
-        createTournamentButton.Text = "Create";
-        createTournamentButton.UseVisualStyleBackColor = true;
-        createTournamentButton.Click += createTournamentButton_Click;
+        submitButton.ForeColor = Color.Black;
+        submitButton.Location = new Point(823, 635);
+        submitButton.Name = "submitButton";
+        submitButton.Size = new Size(235, 92);
+        submitButton.TabIndex = 20;
+        submitButton.Text = "Submit";
+        submitButton.UseVisualStyleBackColor = true;
+        submitButton.Click += editTournamentButton_Click;
         // 
         // backButton
         // 
@@ -125,6 +100,31 @@ partial class AddTournamentForm
         backButton.Text = "←";
         backButton.Click += backButton_Click;
         // 
+        // nameTextBox
+        // 
+        nameTextBox.Location = new Point(651, 308);
+        nameTextBox.Margin = new Padding(5);
+        nameTextBox.Name = "nameTextBox";
+        nameTextBox.Size = new Size(656, 50);
+        nameTextBox.TabIndex = 17;
+        nameTextBox.Tag = "";
+        // 
+        // locationTextBox
+        // 
+        locationTextBox.Location = new Point(651, 391);
+        locationTextBox.Margin = new Padding(5);
+        locationTextBox.Name = "locationTextBox";
+        locationTextBox.Size = new Size(656, 50);
+        locationTextBox.TabIndex = 18;
+        // 
+        // descriptionTextBox
+        // 
+        descriptionTextBox.Location = new Point(651, 480);
+        descriptionTextBox.Margin = new Padding(5);
+        descriptionTextBox.Name = "descriptionTextBox";
+        descriptionTextBox.Size = new Size(656, 50);
+        descriptionTextBox.TabIndex = 19;
+        // 
         // AddTournamentForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
@@ -132,7 +132,7 @@ partial class AddTournamentForm
         BackColor = Color.Black;
         ClientSize = new Size(1858, 994);
         Controls.Add(backButton);
-        Controls.Add(createTournamentButton);
+        Controls.Add(submitButton);
         Controls.Add(descriptionTextBox);
         Controls.Add(locationTextBox);
         Controls.Add(nameTextBox);
@@ -152,12 +152,12 @@ partial class AddTournamentForm
     #endregion
 
     private Label titleLabel;
-    private TextBox descriptionTextBox;
-    private TextBox locationTextBox;
-    private TextBox nameTextBox;
     private Label descriptionLabel;
     private Label locationLabel;
     private Label nameLabel;
-    private Button createTournamentButton;
+    private Button submitButton;
     private Label backButton;
+    private TextBox nameTextBox;
+    private TextBox locationTextBox;
+    private TextBox descriptionTextBox;
 }

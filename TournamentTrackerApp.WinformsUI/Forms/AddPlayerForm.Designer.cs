@@ -40,6 +40,7 @@ partial class AddPlayerForm
         lastnameLabel = new Label();
         emailTextBox = new TextBox();
         emailLabel = new Label();
+        backButton = new Label();
         SuspendLayout();
         // 
         // createPlayerButton
@@ -150,12 +151,24 @@ partial class AddPlayerForm
         emailLabel.TabIndex = 39;
         emailLabel.Text = "Email :";
         // 
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(85, 73);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 42;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
         // AddPlayerForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1911, 1093);
+        Controls.Add(backButton);
         Controls.Add(emailTextBox);
         Controls.Add(emailLabel);
         Controls.Add(lastnameTextBox);
@@ -191,4 +204,5 @@ partial class AddPlayerForm
     private Label lastnameLabel;
     private TextBox emailTextBox;
     private Label emailLabel;
+    private Label backButton;
 }

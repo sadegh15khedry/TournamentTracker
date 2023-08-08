@@ -28,24 +28,14 @@ partial class TournamentTeamSelectionForm
     /// </summary>
     private void InitializeComponent()
     {
-        goToAddTeamButton = new Label();
         addTeamButton = new Button();
         teamsComboBox = new ComboBox();
         titleLabel = new Label();
         selectedTeamsListBox = new ListBox();
         removeSelectedFromListButton = new Button();
-        startTournametButton = new Button();
+        DoneButton = new Button();
+        backButton = new Label();
         SuspendLayout();
-        // 
-        // goToAddTeamButton
-        // 
-        goToAddTeamButton.AutoSize = true;
-        goToAddTeamButton.Location = new Point(282, 538);
-        goToAddTeamButton.Name = "goToAddTeamButton";
-        goToAddTeamButton.Size = new Size(226, 45);
-        goToAddTeamButton.TabIndex = 18;
-        goToAddTeamButton.Text = "Create A Team";
-        goToAddTeamButton.Click += goToAddTeamButton_Click;
         // 
         // addTeamButton
         // 
@@ -80,7 +70,6 @@ partial class TournamentTeamSelectionForm
         titleLabel.Size = new Size(875, 106);
         titleLabel.TabIndex = 15;
         titleLabel.Text = "@nameOfTournament";
-
         // 
         // selectedTeamsListBox
         // 
@@ -103,35 +92,46 @@ partial class TournamentTeamSelectionForm
         removeSelectedFromListButton.UseVisualStyleBackColor = true;
         removeSelectedFromListButton.Click += removeSelectedFromListButton_Click;
         // 
-        // startTournametButton
+        // DoneButton
         // 
-        startTournametButton.ForeColor = Color.Black;
-        startTournametButton.Location = new Point(646, 870);
-        startTournametButton.Margin = new Padding(5);
-        startTournametButton.Name = "startTournametButton";
-        startTournametButton.Size = new Size(436, 61);
-        startTournametButton.TabIndex = 21;
-        startTournametButton.Text = "Start Tournament";
-        startTournametButton.UseVisualStyleBackColor = true;
-        startTournametButton.Click += startTournamentButton_Click;
+        DoneButton.ForeColor = Color.Black;
+        DoneButton.Location = new Point(676, 870);
+        DoneButton.Margin = new Padding(5);
+        DoneButton.Name = "DoneButton";
+        DoneButton.Size = new Size(436, 61);
+        DoneButton.TabIndex = 21;
+        DoneButton.Text = "Done";
+        DoneButton.UseVisualStyleBackColor = true;
+        DoneButton.Click += startTournamentButton_Click;
         // 
-        // TournamentTeamSelection
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(63, 77);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 43;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
+        // TournamentTeamSelectionForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1752, 1032);
-        Controls.Add(startTournametButton);
+        Controls.Add(backButton);
+        Controls.Add(DoneButton);
         Controls.Add(removeSelectedFromListButton);
         Controls.Add(selectedTeamsListBox);
-        Controls.Add(goToAddTeamButton);
         Controls.Add(addTeamButton);
         Controls.Add(teamsComboBox);
         Controls.Add(titleLabel);
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "TournamentTeamSelection";
+        Name = "TournamentTeamSelectionForm";
         Text = "TournamentTeamSelection";
         ResumeLayout(false);
         PerformLayout();
@@ -146,4 +146,6 @@ partial class TournamentTeamSelectionForm
     private ListBox selectedTeamsListBox;
     private Button removeSelectedFromListButton;
     private Button startTournametButton;
+    private Button DoneButton;
+    private Label backButton;
 }

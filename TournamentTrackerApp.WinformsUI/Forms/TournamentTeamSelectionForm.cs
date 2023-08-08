@@ -32,22 +32,15 @@ public partial class TournamentTeamSelectionForm : Form
 
     private void addTeamToTournamentButton_Click(object sender, EventArgs e)
     {
-
         Team team = TeamsNotInTournament.ElementAtOrDefault(teamsComboBox.SelectedIndex);
 
-        MessageBox.Show(team.Id.ToString() + "  " + team.Name
-            + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
         var tournamentTeam = new TournamentTeam()
         {
             TeamId = team.Id,
             TournamentId = SelectedTournament.Id
         };
 
-        MessageBox.Show(_teamData.JoinedTournament(tournamentTeam).Result);
-
         PageRefresh();
-
-
     }
 
 
@@ -77,7 +70,7 @@ public partial class TournamentTeamSelectionForm : Form
     private void startTournamentButton_Click(object sender, EventArgs e)
     {
         this.Hide();
-
+        FormFactory.CreateTournamentDetails(SelectedTournament.Id).Show();
     }
 
     private void PageRefresh()
@@ -101,5 +94,11 @@ public partial class TournamentTeamSelectionForm : Form
         {
             teamsComboBox.Items.Add(team.Name);
         }
+    }
+
+    private void backButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateTournamentDetails(SelectedTournament.Id).Show();
     }
 }

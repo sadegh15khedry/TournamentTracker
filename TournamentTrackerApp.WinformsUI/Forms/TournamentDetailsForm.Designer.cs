@@ -3,12 +3,12 @@
 partial class TournamentDetailsForm
 {
     /// <summary>
-    ///  Required designer variable.
+    /// Required designer variable.
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
     /// <summary>
-    ///  Clean up any resources being used.
+    /// Clean up any resources being used.
     /// </summary>
     /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
     protected override void Dispose(bool disposing)
@@ -23,28 +23,21 @@ partial class TournamentDetailsForm
     #region Windows Form Designer generated code
 
     /// <summary>
-    ///  Required method for Designer support - do not modify
-    ///  the contents of this method with the code editor.
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent()
     {
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerDetailsForm));
         titleLabel = new Label();
-        idLabel = new Label();
-        SSNLabel = new Label();
-        firstNameLabel = new Label();
-        lastNameLabel = new Label();
-        emailLabel = new Label();
-        phoneLabel = new Label();
-        teamLabel = new Label();
-        idValueLabel = new Label();
-        firstNameValueLabel = new Label();
-        lastNameValueLabel = new Label();
-        SSNValueLabel = new Label();
-        teamValueLabel = new Label();
-        phoneValueLabel = new Label();
-        emailValueLabel = new Label();
-        editPlayerButton = new Button();
+        descriptionLabel = new Label();
+        locationLabel = new Label();
+        nameLabel = new Label();
+        EditTournamentButton = new Button();
+        descriptionValueLabel = new Label();
+        locationValueLabel = new Label();
+        nameValueLabel = new Label();
+        TournamentTeamsButton = new Button();
+        startTournamentButton = new Button();
         backButton = new Label();
         SuspendLayout();
         // 
@@ -53,211 +46,147 @@ partial class TournamentDetailsForm
         titleLabel.AutoSize = true;
         titleLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Point);
         titleLabel.ForeColor = Color.White;
-        titleLabel.Location = new Point(727, 39);
+        titleLabel.Location = new Point(601, 66);
         titleLabel.Margin = new Padding(5, 0, 5, 0);
         titleLabel.Name = "titleLabel";
-        titleLabel.Size = new Size(482, 106);
-        titleLabel.TabIndex = 9;
-        titleLabel.Text = "Player Page";
+        titleLabel.Size = new Size(705, 106);
+        titleLabel.TabIndex = 10;
+        titleLabel.Text = "Tournament Page";
         // 
-        // idLabel
+        // descriptionLabel
         // 
-        idLabel.AutoSize = true;
-        idLabel.Location = new Point(187, 328);
-        idLabel.Name = "idLabel";
-        idLabel.Size = new Size(64, 45);
-        idLabel.TabIndex = 10;
-        idLabel.Text = "Id :";
+        descriptionLabel.AutoSize = true;
+        descriptionLabel.Location = new Point(1253, 318);
+        descriptionLabel.Name = "descriptionLabel";
+        descriptionLabel.Size = new Size(198, 45);
+        descriptionLabel.TabIndex = 16;
+        descriptionLabel.Text = "Description :";
         // 
-        // SSNLabel
+        // locationLabel
         // 
-        SSNLabel.AutoSize = true;
-        SSNLabel.Location = new Point(1656, 328);
-        SSNLabel.Name = "SSNLabel";
-        SSNLabel.Size = new Size(103, 45);
-        SSNLabel.TabIndex = 11;
-        SSNLabel.Text = "SSN : ";
+        locationLabel.AutoSize = true;
+        locationLabel.Location = new Point(654, 318);
+        locationLabel.Name = "locationLabel";
+        locationLabel.Size = new Size(157, 45);
+        locationLabel.TabIndex = 15;
+        locationLabel.Text = "Location :";
         // 
-        // firstNameLabel
+        // nameLabel
         // 
-        firstNameLabel.AutoSize = true;
-        firstNameLabel.Location = new Point(521, 328);
-        firstNameLabel.Name = "firstNameLabel";
-        firstNameLabel.Size = new Size(190, 45);
-        firstNameLabel.TabIndex = 12;
-        firstNameLabel.Text = "First Name :";
+        nameLabel.AutoSize = true;
+        nameLabel.Location = new Point(160, 318);
+        nameLabel.Name = "nameLabel";
+        nameLabel.Size = new Size(121, 45);
+        nameLabel.TabIndex = 14;
+        nameLabel.Text = "Name :";
         // 
-        // lastNameLabel
+        // EditTournamentButton
         // 
-        lastNameLabel.AutoSize = true;
-        lastNameLabel.Location = new Point(1131, 328);
-        lastNameLabel.Name = "lastNameLabel";
-        lastNameLabel.Size = new Size(186, 45);
-        lastNameLabel.TabIndex = 13;
-        lastNameLabel.Text = "Last Name :";
+        EditTournamentButton.ForeColor = Color.Black;
+        EditTournamentButton.Location = new Point(1404, 682);
+        EditTournamentButton.Name = "EditTournamentButton";
+        EditTournamentButton.Size = new Size(235, 92);
+        EditTournamentButton.TabIndex = 20;
+        EditTournamentButton.Text = "Edit";
+        EditTournamentButton.UseVisualStyleBackColor = true;
+        EditTournamentButton.Click += EditTournamentButton_Click;
         // 
-        // emailLabel
+        // descriptionValueLabel
         // 
-        emailLabel.AutoSize = true;
-        emailLabel.Location = new Point(1351, 476);
-        emailLabel.Name = "emailLabel";
-        emailLabel.Size = new Size(112, 45);
-        emailLabel.TabIndex = 17;
-        emailLabel.Text = "Email :";
+        descriptionValueLabel.AutoSize = true;
+        descriptionValueLabel.Location = new Point(1468, 318);
+        descriptionValueLabel.Name = "descriptionValueLabel";
+        descriptionValueLabel.Size = new Size(331, 45);
+        descriptionValueLabel.TabIndex = 23;
+        descriptionValueLabel.Text = "descriptionValueLabel";
         // 
-        // phoneLabel
+        // locationValueLabel
         // 
-        phoneLabel.AutoSize = true;
-        phoneLabel.Location = new Point(860, 476);
-        phoneLabel.Name = "phoneLabel";
-        phoneLabel.Size = new Size(126, 45);
-        phoneLabel.TabIndex = 16;
-        phoneLabel.Text = "Phone :";
+        locationValueLabel.AutoSize = true;
+        locationValueLabel.Location = new Point(837, 318);
+        locationValueLabel.Name = "locationValueLabel";
+        locationValueLabel.Size = new Size(286, 45);
+        locationValueLabel.TabIndex = 22;
+        locationValueLabel.Text = "locationValueLabel";
         // 
-        // teamLabel
+        // nameValueLabel
         // 
-        teamLabel.AutoSize = true;
-        teamLabel.Location = new Point(432, 476);
-        teamLabel.Name = "teamLabel";
-        teamLabel.Size = new Size(111, 45);
-        teamLabel.TabIndex = 14;
-        teamLabel.Text = "Team :";
+        nameValueLabel.AutoSize = true;
+        nameValueLabel.Location = new Point(287, 318);
+        nameValueLabel.Name = "nameValueLabel";
+        nameValueLabel.Size = new Size(251, 45);
+        nameValueLabel.TabIndex = 21;
+        nameValueLabel.Text = "nameValueLabel";
         // 
-        // idValueLabel
+        // TournamentTeamsButton
         // 
-        idValueLabel.AutoSize = true;
-        idValueLabel.Location = new Point(274, 328);
-        idValueLabel.Name = "idValueLabel";
-        idValueLabel.Size = new Size(124, 45);
-        idValueLabel.TabIndex = 18;
-        idValueLabel.Text = "idValue";
+        TournamentTeamsButton.ForeColor = Color.Black;
+        TournamentTeamsButton.Location = new Point(780, 682);
+        TournamentTeamsButton.Name = "TournamentTeamsButton";
+        TournamentTeamsButton.Size = new Size(358, 92);
+        TournamentTeamsButton.TabIndex = 24;
+        TournamentTeamsButton.Text = "Tournament's Team";
+        TournamentTeamsButton.UseVisualStyleBackColor = true;
+        TournamentTeamsButton.Click += TournamentTeamsButton_Click;
         // 
-        // firstNameValueLabel
+        // startTournamentButton
         // 
-        firstNameValueLabel.AutoSize = true;
-        firstNameValueLabel.Location = new Point(727, 328);
-        firstNameValueLabel.Name = "firstNameValueLabel";
-        firstNameValueLabel.Size = new Size(230, 45);
-        firstNameValueLabel.TabIndex = 19;
-        firstNameValueLabel.Text = "firstnameValue";
-        // 
-        // lastNameValueLabel
-        // 
-        lastNameValueLabel.AutoSize = true;
-        lastNameValueLabel.Location = new Point(1323, 328);
-        lastNameValueLabel.Name = "lastNameValueLabel";
-        lastNameValueLabel.Size = new Size(225, 45);
-        lastNameValueLabel.TabIndex = 20;
-        lastNameValueLabel.Text = "lastnameValue";
-        // 
-        // SSNValueLabel
-        // 
-        SSNValueLabel.AutoSize = true;
-        SSNValueLabel.Location = new Point(1749, 328);
-        SSNValueLabel.Name = "SSNValueLabel";
-        SSNValueLabel.Size = new Size(155, 45);
-        SSNValueLabel.TabIndex = 21;
-        SSNValueLabel.Text = "SSNValue";
-        // 
-        // teamValueLabel
-        // 
-        teamValueLabel.AutoSize = true;
-        teamValueLabel.Location = new Point(549, 476);
-        teamValueLabel.Name = "teamValueLabel";
-        teamValueLabel.Size = new Size(172, 45);
-        teamValueLabel.TabIndex = 22;
-        teamValueLabel.Text = "TeamValue";
-        // 
-        // phoneValueLabel
-        // 
-        phoneValueLabel.AutoSize = true;
-        phoneValueLabel.Location = new Point(980, 476);
-        phoneValueLabel.Name = "phoneValueLabel";
-        phoneValueLabel.Size = new Size(187, 45);
-        phoneValueLabel.TabIndex = 23;
-        phoneValueLabel.Text = "PhoneValue";
-        // 
-        // emailValueLabel
-        // 
-        emailValueLabel.AutoSize = true;
-        emailValueLabel.Location = new Point(1469, 476);
-        emailValueLabel.Name = "emailValueLabel";
-        emailValueLabel.Size = new Size(173, 45);
-        emailValueLabel.TabIndex = 24;
-        emailValueLabel.Text = "EmailValue";
-        // 
-        // editPlayerButton
-        // 
-        editPlayerButton.BackColor = Color.White;
-        editPlayerButton.ForeColor = Color.Black;
-        editPlayerButton.Location = new Point(889, 729);
-        editPlayerButton.Name = "editPlayerButton";
-        editPlayerButton.Size = new Size(196, 80);
-        editPlayerButton.TabIndex = 25;
-        editPlayerButton.Text = "Edit";
-        editPlayerButton.UseVisualStyleBackColor = false;
-        editPlayerButton.Click += editPlayerButton_Click;
+        startTournamentButton.ForeColor = Color.Black;
+        startTournamentButton.Location = new Point(192, 682);
+        startTournamentButton.Name = "startTournamentButton";
+        startTournamentButton.Size = new Size(358, 92);
+        startTournamentButton.TabIndex = 25;
+        startTournamentButton.Text = "Start";
+        startTournamentButton.UseVisualStyleBackColor = true;
         // 
         // backButton
         // 
         backButton.AutoSize = true;
         backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
-        backButton.Location = new Point(38, 39);
+        backButton.Location = new Point(52, 66);
         backButton.Name = "backButton";
         backButton.Size = new Size(87, 81);
-        backButton.TabIndex = 26;
+        backButton.TabIndex = 42;
         backButton.Text = "←";
         backButton.Click += backButton_Click;
         // 
-        // PlayerDetailsForm
+        // TournamentDetailsForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
-        ClientSize = new Size(2012, 1036);
+        ClientSize = new Size(1858, 994);
         Controls.Add(backButton);
-        Controls.Add(editPlayerButton);
-        Controls.Add(emailValueLabel);
-        Controls.Add(phoneValueLabel);
-        Controls.Add(teamValueLabel);
-        Controls.Add(SSNValueLabel);
-        Controls.Add(lastNameValueLabel);
-        Controls.Add(firstNameValueLabel);
-        Controls.Add(idValueLabel);
-        Controls.Add(emailLabel);
-        Controls.Add(phoneLabel);
-        Controls.Add(teamLabel);
-        Controls.Add(lastNameLabel);
-        Controls.Add(firstNameLabel);
-        Controls.Add(SSNLabel);
-        Controls.Add(idLabel);
+        Controls.Add(startTournamentButton);
+        Controls.Add(TournamentTeamsButton);
+        Controls.Add(descriptionValueLabel);
+        Controls.Add(locationValueLabel);
+        Controls.Add(nameValueLabel);
+        Controls.Add(EditTournamentButton);
+        Controls.Add(descriptionLabel);
+        Controls.Add(locationLabel);
+        Controls.Add(nameLabel);
         Controls.Add(titleLabel);
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
-        Icon = (Icon)resources.GetObject("$this.Icon");
         Margin = new Padding(5);
-        Name = "PlayerDetailsForm";
-        Text = "Login";
+        Name = "TournamentDetailsForm";
+        Text = "AddTournament";
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
+
     private Label titleLabel;
-    private Label idLabel;
-    private Label SSNLabel;
-    private Label firstNameLabel;
-    private Label lastNameLabel;
-    private Label emailLabel;
-    private Label phoneLabel;
-    private Label teamLabel;
-    private Label idValueLabel;
-    private Label firstNameValueLabel;
-    private Label lastNameValueLabel;
-    private Label SSNValueLabel;
-    private Label teamValueLabel;
-    private Label phoneValueLabel;
-    private Label emailValueLabel;
-    private Button editPlayerButton;
+    private Label descriptionLabel;
+    private Label locationLabel;
+    private Label nameLabel;
+    private Button EditTournamentButton;
+    private Label descriptionValueLabel;
+    private Label locationValueLabel;
+    private Label nameValueLabel;
+    private Button TournamentTeamsButton;
+    private Button startTournamentButton;
     private Label backButton;
 }

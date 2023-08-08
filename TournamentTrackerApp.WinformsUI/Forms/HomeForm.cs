@@ -49,6 +49,7 @@ public partial class HomeForm : Form
 
     private void addPlayerButton_Click(object sender, EventArgs e)
     {
+        this.Hide();
         FormFactory.CreateAddPlayerForm().Show();
     }
 

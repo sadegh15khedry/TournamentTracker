@@ -36,6 +36,7 @@ partial class AddTeamForm
         cityLabel = new Label();
         nameLabel = new Label();
         titleLabel = new Label();
+        backButton = new Label();
         SuspendLayout();
         // 
         // createTournamentButton
@@ -112,12 +113,24 @@ partial class AddTeamForm
         titleLabel.TabIndex = 21;
         titleLabel.Text = "Create A Team";
         // 
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(71, 87);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 42;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
         // AddTeamForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1846, 1001);
+        Controls.Add(backButton);
         Controls.Add(createTournamentButton);
         Controls.Add(ownerTextBox);
         Controls.Add(cityTextBox);
@@ -145,4 +158,5 @@ partial class AddTeamForm
     private Label cityLabel;
     private Label nameLabel;
     private Label titleLabel;
+    private Label backButton;
 }

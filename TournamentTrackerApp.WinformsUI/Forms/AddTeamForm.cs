@@ -28,4 +28,10 @@ public partial class AddTeamForm : Form
         //MessageBox.Show(insertedTeam.Id.ToString());
         FormFactory.CreateHomeForm().Show();
     }
+
+    private void backButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateHomeForm().Show();
+    }
 }

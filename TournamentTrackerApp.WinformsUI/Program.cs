@@ -66,7 +66,7 @@ static class Program
 
                 services.AddTransient<AddPlayerForm>();
                 services.AddTransient<AddTeamForm>();
-                services.AddTransient<AddTournamentForm>();
+                services.AddTransient<EditTournamentForm>();
                 services.AddTransient<LoginForm>();
                 services.AddTransient<MatchForm>();
                 services.AddTransient<SignupForm>();
