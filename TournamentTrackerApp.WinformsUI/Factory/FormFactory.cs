@@ -85,4 +85,9 @@ public static class FormFactory
     {
         return new EditTournamentForm(_tournamentData, tournamentId);
     }
+
+    public static TournamentChartForm CreateTournamentChart(int tournamentId)
+    {
+        return new TournamentChartForm(_tournamentData, _teamData, _seriesData, tournamentId);
+    }
 }

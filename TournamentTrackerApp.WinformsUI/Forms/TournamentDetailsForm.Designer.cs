@@ -138,6 +138,7 @@ partial class TournamentDetailsForm
         startTournamentButton.TabIndex = 25;
         startTournamentButton.Text = "Start";
         startTournamentButton.UseVisualStyleBackColor = true;
+        startTournamentButton.Click += startTournamentButton_Click;
         // 
         // backButton
         // 

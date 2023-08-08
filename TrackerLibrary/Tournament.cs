@@ -36,7 +36,7 @@ public class Tournament
     /// <summary>
     /// List of Matches in The tournament 
     /// </summary>
-    //public List<Match> Matches { get; set; }
+    public List<Series> Series { get; set; }
 
     public bool IsFinished { get; set; }
 

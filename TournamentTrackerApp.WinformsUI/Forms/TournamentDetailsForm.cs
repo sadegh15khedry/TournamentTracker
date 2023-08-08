@@ -41,4 +41,12 @@ public partial class TournamentDetailsForm : Form
         this.Hide();
         FormFactory.CreateEditTournamentForm(SelectedTournament.Id).Show();
     }
+
+    private void startTournamentButton_Click(object sender, EventArgs e)
+    {
+        this.Hide();
+        FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
+    }
+
+
 }

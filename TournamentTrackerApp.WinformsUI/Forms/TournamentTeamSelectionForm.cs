@@ -40,6 +40,9 @@ public partial class TournamentTeamSelectionForm : Form
             TournamentId = SelectedTournament.Id
         };
 
+        _teamData.JoinedTournament(tournamentTeam);
+
+        Thread.Sleep(100);
         PageRefresh();
     }
 
@@ -55,8 +58,6 @@ public partial class TournamentTeamSelectionForm : Form
     {
         Team team = TeamsInTournament.ElementAtOrDefault(selectedTeamsListBox.SelectedIndex);
 
-        //MessageBox.Show(team.Id.ToString() + "  " + team.Name
-        //  + "\n" + SelectedTournament.Id.ToString() + SelectedTournament.Name);
         var tournamentTeam = new TournamentTeam()
         {
             TeamId = team.Id,
