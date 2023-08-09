@@ -36,8 +36,10 @@ public class Tournament
     /// <summary>
     /// List of Matches in The tournament 
     /// </summary>
-    public List<Series> Series { get; set; }
+    public List<Series>? Series { get; set; }
 
-    public bool IsFinished { get; set; }
+    public bool IsFinished { get; set; } = false;
+
+    public bool IsStarted { get; set; } = false;
 
 }

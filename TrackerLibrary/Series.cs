@@ -64,7 +64,7 @@ public class Series
     /// <summary>
     ///list of matches in the series 
     /// </summary>
-    public List<Match> Matches { get; set; } = new List<Match>();
+    public List<Match>? Matches { get; set; } = new List<Match>();
 
     /// <summary>
     /// wins count of First Team in the series

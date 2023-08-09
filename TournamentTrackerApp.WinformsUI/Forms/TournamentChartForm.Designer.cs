@@ -105,6 +105,7 @@ partial class TournamentChartForm
         label43 = new Label();
         label44 = new Label();
         label45 = new Label();
+        backButton = new Label();
         SuspendLayout();
         // 
         // teamHLabel
@@ -803,12 +804,24 @@ partial class TournamentChartForm
         label45.TabIndex = 99;
         label45.Text = "0";
         // 
+        // backButton
+        // 
+        backButton.AutoSize = true;
+        backButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
+        backButton.Location = new Point(69, 39);
+        backButton.Name = "backButton";
+        backButton.Size = new Size(87, 81);
+        backButton.TabIndex = 100;
+        backButton.Text = "←";
+        backButton.Click += backButton_Click;
+        // 
         // TournamentChartForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1860, 1149);
+        Controls.Add(backButton);
         Controls.Add(label45);
         Controls.Add(label44);
         Controls.Add(label43);
@@ -974,4 +987,5 @@ partial class TournamentChartForm
     private Label label43;
     private Label label44;
     private Label label45;
+    private Label backButton;
 }

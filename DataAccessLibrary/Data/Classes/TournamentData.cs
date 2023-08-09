@@ -59,7 +59,8 @@ public class TournamentData : ITournamentData
             tournament.Name,
             tournament.Location,
             tournament.Description,
-            tournament.IsFinished
+            tournament.IsFinished,
+            tournament.IsStarted
         });
 
     }

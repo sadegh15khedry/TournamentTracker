@@ -46,6 +46,9 @@ public partial class TournamentDetailsForm : Form
     {
         this.Hide();
         FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
+        SelectedTournament.IsStarted = true;
+        _tournamentData.Update(SelectedTournament);
+
     }
 
 

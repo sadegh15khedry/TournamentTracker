@@ -2,7 +2,7 @@
 	@Id int
 AS
 Begin
-	SELECT Id, Name, Location,Description 
+	SELECT Id, Name, Location,Description,IsStarted
 	From dbo.[Tournament]
 	where Id=@Id
 End
