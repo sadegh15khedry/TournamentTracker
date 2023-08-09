@@ -31,8 +31,21 @@ public class TournamentData : ITournamentData
 
     public async Task<Tournament> GetById(int id)
     {
-        var results = await _db.LoadData<Tournament, dynamic>("dbo.spTournament_GetByID", new { Id = id });
-        return results.FirstOrDefault();
+        var results = await _db.LoadData<Tournament, dynamic>
+            ("dbo.spTournament_GetByID", new { Id = id });
+
+        Tournament tournament = results.FirstOrDefault();
+        tournament.Teams = GetTournamentTeams(id).Result.ToList();
+        tournament.Series = GetTournamentSeries(id).Result.ToList();
+
+        foreach (var series in tournament.Series)
+        {
+            series.FirstTeam = tournament.Teams.Where(s => s.Id == series.FirstTeamId).FirstOrDefault();
+            series.SecondTeam = tournament.Teams.Where(s => s.Id == series.SecondTeamId).FirstOrDefault();
+
+        }
+
+        return tournament;
     }
 
     public async Task Insert(Tournament tournament)
@@ -70,4 +83,10 @@ public class TournamentData : ITournamentData
         await _db.SaveData("dbo.spTournament_Delete", new { id });
     }
 
+    public async Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId)
+    {
+        return await _db.LoadData<Series, dynamic>("spSeries_GetByTournamentId",
+            new { TournamentId = tournamentId });
+
+    }
 }

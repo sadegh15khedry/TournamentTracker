@@ -63,9 +63,9 @@ partial class TournamentChartForm
         label1 = new Label();
         label2 = new Label();
         label3 = new Label();
-        label4 = new Label();
+        ijklVmnopLabel = new Label();
         label5 = new Label();
-        label6 = new Label();
+        abcdVefghLabel = new Label();
         label7 = new Label();
         label8 = new Label();
         label12 = new Label();
@@ -426,14 +426,14 @@ partial class TournamentChartForm
         label3.TabIndex = 54;
         label3.Text = "X";
         // 
-        // label4
+        // ijklVmnopLabel
         // 
-        label4.AutoSize = true;
-        label4.Location = new Point(552, 537);
-        label4.Name = "label4";
-        label4.Size = new Size(39, 45);
-        label4.TabIndex = 55;
-        label4.Text = "X";
+        ijklVmnopLabel.AutoSize = true;
+        ijklVmnopLabel.Location = new Point(552, 537);
+        ijklVmnopLabel.Name = "ijklVmnopLabel";
+        ijklVmnopLabel.Size = new Size(39, 45);
+        ijklVmnopLabel.TabIndex = 55;
+        ijklVmnopLabel.Text = "X";
         // 
         // label5
         // 
@@ -444,14 +444,14 @@ partial class TournamentChartForm
         label5.TabIndex = 56;
         label5.Text = "X";
         // 
-        // label6
+        // abcdVefghLabel
         // 
-        label6.AutoSize = true;
-        label6.Location = new Point(1228, 528);
-        label6.Name = "label6";
-        label6.Size = new Size(39, 45);
-        label6.TabIndex = 57;
-        label6.Text = "X";
+        abcdVefghLabel.AutoSize = true;
+        abcdVefghLabel.Location = new Point(1228, 528);
+        abcdVefghLabel.Name = "abcdVefghLabel";
+        abcdVefghLabel.Size = new Size(39, 45);
+        abcdVefghLabel.TabIndex = 57;
+        abcdVefghLabel.Text = "X";
         // 
         // label7
         // 
@@ -861,9 +861,9 @@ partial class TournamentChartForm
         Controls.Add(label12);
         Controls.Add(label8);
         Controls.Add(label7);
-        Controls.Add(label6);
+        Controls.Add(abcdVefghLabel);
         Controls.Add(label5);
-        Controls.Add(label4);
+        Controls.Add(ijklVmnopLabel);
         Controls.Add(label3);
         Controls.Add(label2);
         Controls.Add(label1);
@@ -945,9 +945,9 @@ partial class TournamentChartForm
     private Label label1;
     private Label label2;
     private Label label3;
-    private Label label4;
+    private Label ijklVmnopLabel;
     private Label label5;
-    private Label label6;
+    private Label abcdVefghLabel;
     private Label label7;
     private Label label8;
     private Label label12;

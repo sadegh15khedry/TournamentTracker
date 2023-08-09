@@ -27,7 +27,11 @@ public class SeriesData : ISeriesData
     {
         await _db.SaveData("dbo.spSeries_Insert", new
         {
-
+            series.Round,
+            series.PlaceInRound,
+            series.FirstTeamId,
+            series.SecondTeamId,
+            series.TournamentId
         });
     }
     public async Task Update(Series series)

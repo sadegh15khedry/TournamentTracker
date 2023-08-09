@@ -30,7 +30,29 @@ public class TournamentsController : Controller
     // GET: TournamentController/5
     public ActionResult GetById(int id)
     {
-        return Ok(_db.GetById(id).Result);
+        Tournament tournament = _db.GetById(id).Result;
+        tournament.Teams = _db.GetTournamentTeams(id).Result.ToList();
+        //tournament.Series = _db.GetTournamentSeries(id).Result.ToList();
+
+
+
+        /*        if (tournament == null)
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Tournament not Found");
+                }
+                if (teams is null)
+                {
+                    return StatusCode((int)HttpStatusCode.OK, tournament);
+                }
+                tournament.Teams = teams;
+                if (series is null)
+                {
+                    return StatusCode((int)HttpStatusCode.NotFound, "Tournament not Found");
+                }
+                tournament.Series = series;*/
+        return StatusCode((int)HttpStatusCode.OK, tournament);
+
+
     }
 
 

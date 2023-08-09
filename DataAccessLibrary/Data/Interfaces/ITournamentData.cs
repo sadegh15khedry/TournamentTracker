@@ -14,5 +14,6 @@ namespace DataAccessLibrary.Data.Interfaces
         Task Insert(Tournament tournament);
         Task SetToFinished(int id);
         Task Update(Tournament tournament);
+        Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId);
     }
 }

@@ -24,9 +24,9 @@ public class Series
     public int PlaceInRound { get; set; }
 
     /// <summary>
-    /// Detemines if the series has been finished.
+    /// Determines if the series has been finished.
     /// </summary>
-    public bool IsSeriesEnded { get; set; } = false;
+    public bool? IsSeriesEnded { get; set; } = false;
 
     /// <summary>
     /// Id of the FirstTeam participating in the Series
@@ -59,7 +59,7 @@ public class Series
     /// <summary>
     ///Tournament of the Series 
     /// </summary>
-    public Tournament? Tournament { get; set; }
+    //public Tournament? Tournament { get; set; }
 
     /// <summary>
     ///list of matches in the series 

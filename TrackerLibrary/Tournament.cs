@@ -26,12 +26,12 @@ public class Tournament
     /// <summary>
     /// List of Teams that participate in the tournament.  
     /// </summary>
-    //public List<Team> Teams { get; set; } = new List<Team>();
+    public List<Team>? Teams { get; set; } = new List<Team>();
 
     /// <summary>
     /// the team that won the tournament.
     /// </summary>
-    //public Team WinnerTeam { get; set; } = new Team();
+    public Team? WinnerTeam { get; set; } = new Team();
 
     /// <summary>
     /// List of Matches in The tournament 
