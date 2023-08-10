@@ -2,6 +2,6 @@
 	@TeamId int
 AS
 Begin
-	Select * from dbo.[TournamentTeam]
+	Select Id, TournamentId, TeamId from dbo.[TournamentTeam]
 	Where @TeamId = @TeamId
 End

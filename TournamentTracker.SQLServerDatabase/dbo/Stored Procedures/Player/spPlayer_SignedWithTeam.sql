@@ -5,5 +5,7 @@ AS
 begin
 
 	Update dbo.[Player] Set TeamId = @TeamId
-	Where Id = @PlayerId  
+	Output Inserted.Id, Inserted.SSN, Inserted.FirstName, Inserted.LastName,
+	Inserted.TeamId, Inserted.Phone, Inserted.Email
+	Where Id = @PlayerId
 End

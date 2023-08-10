@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spTournamentTeam_GetAll]
 AS
 Begin
-	Select * from dbo.[TournamentTeam]
+	Select Id, TournamentId, TeamId from dbo.[TournamentTeam]
 End

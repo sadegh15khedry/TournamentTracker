@@ -3,6 +3,12 @@
 	@TournamentId int
 AS
 Begin
-	Insert Into dbo.[TournamentTeam] (TeamId, TournamentId)
-	Values (@TeamId, @TournamentId)
+	Insert Into dbo.[TournamentTeam]
+		(TeamId, TournamentId)
+	output
+	Inserted.Id,
+	Inserted.TournamentId,
+	Inserted.TeamId
+	Values
+		(@TeamId, @TournamentId)
 End

@@ -5,6 +5,13 @@
 	@SeriesId int
 AS
 Begin
-	Insert Into dbo.[Match] (Outcome, FirstTeamScore, SecondTeamScore, SeriesId)
-	Values (@Outcome, @FirstTeamScore, @SecondTeamScore,  @SeriesId)
+	Insert Into dbo.[Match]
+		(Outcome, FirstTeamScore, SecondTeamScore, SeriesId)
+	OUTPUT
+	Inserted.Id,
+	Inserted.Outcome,
+	Inserted.FirstTeamScore,
+	Inserted.SecondTeamScore
+	Values
+		(@Outcome, @FirstTeamScore, @SecondTeamScore, @SeriesId)
 End

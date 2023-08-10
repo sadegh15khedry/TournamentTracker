@@ -5,6 +5,6 @@
 AS
 Begin 
 	Insert Into dbo.[Team] (Name, City, Owner)
-	 output INSERTED.Id, inserted.Name, inserted.City, inserted.Owner
+	output INSERTED.Id, Inserted.Name, Inserted.City, Inserted.Owner
 	Values (@Name, @City, @Owner)
 End

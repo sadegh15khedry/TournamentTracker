@@ -5,6 +5,9 @@
 AS
 Begin
 	Insert Into dbo.[Tournament] (Name, Description, Location,  IsFinished, IsStarted)
+	output Inserted.Id, Inserted.Name, Inserted.Location,
+	Inserted.Description, Inserted.IsFinished, Inserted.IsStarted
+	
 	Values (@Name, @Description, @Location, 0, 0 )
 	
 End

@@ -13,5 +13,8 @@ Begin
 	Location = @Location,
 	IsFinished = @IsFinished,
 	IsStarted = @IsStarted
+	output Inserted.Id, Inserted.Name, Inserted.Location,
+	Inserted.Description, Inserted.IsFinished, Inserted.IsStarted
+
 	Where Id = @Id
 End
