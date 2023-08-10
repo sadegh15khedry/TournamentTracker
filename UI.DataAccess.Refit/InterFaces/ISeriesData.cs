@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Refit;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 
 namespace UI.DataAccess.Refit.InterFaces;
 

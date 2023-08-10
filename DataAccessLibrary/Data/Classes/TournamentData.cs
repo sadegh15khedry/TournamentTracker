@@ -1,5 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Classes;
 
@@ -48,25 +48,27 @@ public class TournamentData : ITournamentData
         return tournament;
     }
 
-    public async Task Insert(Tournament tournament)
+    public async Task<Tournament> Insert(Tournament tournament)
     {
-        await _db.SaveData("dbo.spTournament_Insert", new
+        var result = await _db.LoadData<Tournament, dynamic>("dbo.spTournament_Insert", new
         {
             tournament.Name,
             tournament.Location,
             tournament.Description
         });
+        return result.FirstOrDefault();
     }
 
-    public async Task SetToFinished(int id)
+    public async Task<Tournament> SetToFinished(int id)
     {
-        await _db.SaveData("spTournament_SetToFinished", new { Id = id });
+        var result = await _db.LoadData<Tournament, dynamic>("spTournament_SetToFinished", new { Id = id });
+        return result.FirstOrDefault();
     }
 
 
-    public async Task Update(Tournament tournament)
+    public async Task<Tournament> Update(Tournament tournament)
     {
-        await _db.SaveData("dbo.spTournament_Update", new
+        var result = await _db.LoadData<Tournament, dynamic>("dbo.spTournament_Update", new
         {
             tournament.Id,
             tournament.Name,
@@ -75,12 +77,13 @@ public class TournamentData : ITournamentData
             tournament.IsFinished,
             tournament.IsStarted
         });
-
+        return result.FirstOrDefault();
     }
 
-    public async Task Delete(int id)
+    public async Task<Tournament> Delete(int id)
     {
-        await _db.SaveData("dbo.spTournament_Delete", new { id });
+        var result = await _db.LoadData<Tournament, dynamic>("dbo.spTournament_Delete", new { id });
+        return result.FirstOrDefault();
     }
 
     public async Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId)

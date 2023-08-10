@@ -1,5 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Classes;
 
@@ -23,9 +23,9 @@ public class SeriesData : ISeriesData
         return results.FirstOrDefault();
     }
 
-    public async Task Insert(Series series)
+    public async Task<Series> Insert(Series series)
     {
-        await _db.SaveData("dbo.spSeries_Insert", new
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
         {
             series.Round,
             series.PlaceInRound,
@@ -33,10 +33,11 @@ public class SeriesData : ISeriesData
             series.SecondTeamId,
             series.TournamentId
         });
+        return result.FirstOrDefault();
     }
-    public async Task Update(Series series)
+    public async Task<Series> Update(Series series)
     {
-        await _db.SaveData("dbo.spSeries_Update", new
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Update", new
         {
             series.Round,
             series.PlaceInRound,
@@ -44,11 +45,13 @@ public class SeriesData : ISeriesData
             series.SecondTeamId,
             series.TournamentId
         });
+        return result.FirstOrDefault();
     }
 
-    public async Task Delete(int id)
+    public async Task<Series> Delete(int id)
     {
-        await _db.SaveData("dbo.spSeries_Delete", new { id });
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Delete", new { id });
+        return result.FirstOrDefault();
     }
 
 }

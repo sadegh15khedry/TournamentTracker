@@ -1,4 +1,4 @@
-﻿namespace TrackerLibrary;
+﻿namespace TournamentTrackerLibrary.Models;
 
 public class Match
 {

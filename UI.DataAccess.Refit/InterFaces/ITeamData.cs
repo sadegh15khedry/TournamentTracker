@@ -1,6 +1,5 @@
-﻿using DataModels;
-using Refit;
-using TrackerLibrary;
+﻿using Refit;
+using TournamentTrackerLibrary.Models;
 
 namespace UI.DataAccess.Refit.InterFaces;
 

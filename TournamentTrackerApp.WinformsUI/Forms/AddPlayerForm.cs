@@ -1,5 +1,5 @@
 ﻿using TournamentTrackerApp.WinformsUI.Factory;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 using UI.DataAccess.Refit.InterFaces;
 
 namespace TournamentTrackerApp.WinformsUI.Forms;

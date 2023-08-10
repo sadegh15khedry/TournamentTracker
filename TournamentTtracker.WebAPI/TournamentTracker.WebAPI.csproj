@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataBase.DataAccessLibrary.Dapper.csproj" />
-    <ProjectReference Include="..\TrackerLibrary\DataModels.csproj" />
+    <ProjectReference Include="..\TrackerLibrary\TournamentTrackerLibrary.csproj" />
   </ItemGroup>
 
 </Project>

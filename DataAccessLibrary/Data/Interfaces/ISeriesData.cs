@@ -1,4 +1,4 @@
-﻿using TrackerLibrary;
+﻿using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Interfaces
 {
@@ -6,10 +6,10 @@ namespace DataAccessLibrary.Data.Interfaces
     {
         ISqlDataAccess _db { get; }
 
-        Task Delete(int id);
+        Task<Series> Delete(int id);
         Task<IEnumerable<Series>> GetAll();
         Task<Series> GetById(int id);
-        Task Insert(Series series);
-        Task Update(Series series);
+        Task<Series> Insert(Series series);
+        Task<Series> Update(Series series);
     }
 }

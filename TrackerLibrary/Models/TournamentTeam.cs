@@ -1,4 +1,4 @@
-﻿namespace DataModels;
+﻿namespace TournamentTrackerLibrary.Models;
 
 public class TournamentTeam
 {

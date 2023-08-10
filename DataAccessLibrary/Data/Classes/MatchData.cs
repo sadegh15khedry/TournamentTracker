@@ -1,4 +1,4 @@
-﻿using TrackerLibrary;
+﻿using Match = TournamentTrackerLibrary.Models.Match;
 
 namespace DataAccessLibrary.Data;
 
@@ -26,19 +26,20 @@ public class MatchData : IMatchData
         return results.FirstOrDefault();
     }
 
-    public async Task Insert(Match match)
+    public async Task<Match> Insert(Match match)
     {
-        await _db.SaveData("dbo.spMatch_Insert", new
+        var result = await _db.LoadData<Match, dynamic>("dbo.spMatch_Insert", new
         {
             match.Outcome,
             match.FirstTeamScore,
             match.SecondTeamScore,
             match.SeriesId
         });
+        return result.FirstOrDefault();
     }
-    public async Task Update(Match match)
+    public async Task<Match> Update(Match match)
     {
-        await _db.SaveData("dbo.spMatch_Update", new
+        var result = await _db.LoadData<Match, dynamic>("dbo.spMatch_Update", new
         {
             match.Id,
             match.Outcome,
@@ -46,10 +47,14 @@ public class MatchData : IMatchData
             match.SecondTeamScore,
             match.SeriesId
         });
+        return result.FirstOrDefault();
+
     }
-    public async Task Delete(int id)
+    public async Task<Match> Delete(int id)
     {
-        await _db.SaveData("dbo.spMatch_Delete", new { id });
+        var result = await _db.LoadData<Match, dynamic>("dbo.spMatch_Delete", new { id });
+        return result.FirstOrDefault();
+
     }
 
 

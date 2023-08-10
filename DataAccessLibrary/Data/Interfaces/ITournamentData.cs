@@ -1,4 +1,5 @@
-﻿using TrackerLibrary;
+﻿
+using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Interfaces
 {
@@ -6,14 +7,14 @@ namespace DataAccessLibrary.Data.Interfaces
     {
         ISqlDataAccess _db { get; }
 
-        Task Delete(int id);
+        Task<Tournament> Delete(int id);
         Task<IEnumerable<Tournament>> GetAll();
         Task<IEnumerable<Team>> GetTournamentTeams(int tournamentId);
         Task<IEnumerable<Team>> GetTeamsNotInTournament(int tournamentId);
         Task<Tournament> GetById(int id);
-        Task Insert(Tournament tournament);
-        Task SetToFinished(int id);
-        Task Update(Tournament tournament);
+        Task<Tournament> Insert(Tournament tournament);
+        Task<Tournament> SetToFinished(int id);
+        Task<Tournament> Update(Tournament tournament);
         Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary;
 
@@ -16,15 +16,16 @@ public class PlayerData : IPlayerData
         _db = db;
     }
 
-    public async Task CanceledContract(int playerId)
+    public async Task<Player> CanceledContract(int playerId)
     {
-        await _db.SaveData("dbo.spPlayer_CanceledContract", new { Id = playerId });
-
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_CanceledContract", new { Id = playerId });
+        return result.FirstOrDefault();
     }
 
-    public async Task SignedWithTeam(int playerId, int teamId)
+    public async Task<Player> SignedWithTeam(int playerId, int teamId)
     {
-        await _db.SaveData("dbo.spPlayer_SignedWithTeam", new { playerId, teamId });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_SignedWithTeam", new { playerId, teamId });
+        return result.FirstOrDefault();
 
     }
     public async Task<Team> GetPlayerTeam(int teamId)
@@ -44,9 +45,9 @@ public class PlayerData : IPlayerData
         return results.FirstOrDefault();
     }
 
-    public async Task Insert(Player player)
+    public async Task<Player> Insert(Player player)
     {
-        await _db.SaveData("dbo.spPlayer_Insert", new
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_Insert", new
         {
             player.SSN,
             player.FirstName,
@@ -54,11 +55,13 @@ public class PlayerData : IPlayerData
             player.Phone,
             player.Email
         });
+        return result.FirstOrDefault();
+
     }
 
-    public async Task Update(Player player)
+    public async Task<Player> Update(Player player)
     {
-        await _db.SaveData("dbo.spPlayer_Update", new
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_Update", new
         {
             player.Id,
             player.SSN,
@@ -67,12 +70,15 @@ public class PlayerData : IPlayerData
             player.Phone,
             player.Email
         });
+        return result.FirstOrDefault();
+
 
     }
 
-    public async Task Delete(int id)
+    public async Task<Player> Delete(int id)
     {
-        await _db.SaveData("dbo.spPlayer_Delete", new { id });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_Delete", new { id });
+        return result.FirstOrDefault();
     }
 
     public async Task<IEnumerable<Player>> GetFreeAgentPlayers()

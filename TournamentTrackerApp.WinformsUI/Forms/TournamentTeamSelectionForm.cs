@@ -1,6 +1,5 @@
-﻿using DataModels;
-using TournamentTrackerApp.WinformsUI.Factory;
-using TrackerLibrary;
+﻿using TournamentTrackerApp.WinformsUI.Factory;
+using TournamentTrackerLibrary.Models;
 using UI.DataAccess.Refit.InterFaces;
 
 namespace TournamentTrackerApp.WinformsUI;

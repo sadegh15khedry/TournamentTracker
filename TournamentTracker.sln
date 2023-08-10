@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentTrackerApp.WinformsUI", "TournamentTrackerApp.WinformsUI\TournamentTrackerApp.WinformsUI.csproj", "{9BA8194B-1035-4C5C-973B-FD899A20D13B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModels", "TrackerLibrary\DataModels.csproj", "{FD272F70-494B-4B60-8DD1-95CDE8B154FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentTrackerLibrary", "TrackerLibrary\TournamentTrackerLibrary.csproj", "{FD272F70-494B-4B60-8DD1-95CDE8B154FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBase.DataAccessLibrary.Dapper", "DataAccessLibrary\DataBase.DataAccessLibrary.Dapper.csproj", "{97F7627A-7640-4A04-B27A-BEBBFA33F56B}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentTracker.WebAPI", 
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TournamentTracker.SQLServerDatabase", "TournamentTracker.SQLServerDatabase\TournamentTracker.SQLServerDatabase.sqlproj", "{F50602FA-3648-43AC-BA23-F8C69DD8B742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.DataAccess.Refit", "UI.DataAccess.Refit\UI.DataAccess.Refit.csproj", "{1296694C-EDE9-4C0C-980F-EF184DF9D99F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.DataAccess.Refit", "UI.DataAccess.Refit\UI.DataAccess.Refit.csproj", "{1296694C-EDE9-4C0C-980F-EF184DF9D99F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

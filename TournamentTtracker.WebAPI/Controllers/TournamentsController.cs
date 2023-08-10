@@ -1,7 +1,7 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TrackerLibrary;
+using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
 [Produces("application/json")]
