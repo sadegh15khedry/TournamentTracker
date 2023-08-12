@@ -20,67 +20,67 @@ public class TeamsController : ControllerBase
 
     // GET: api/Teams
     [HttpGet]
-    public ActionResult<IEnumerable<Team>> GetAll()
+    public async Task<ActionResult<IEnumerable<Team>>> GetAll()
     {
-        return StatusCode((int)HttpStatusCode.OK, _db.GetAll().Result);
+        var result = await _db.GetAll();
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     // GET api/Teams/5
     [HttpGet]
     [Route("/api/[controller]/{id}")]
-    public ActionResult<Team> GetById(int id)
+    public async Task<ActionResult<Team>> GetById(int id)
     {
-        return StatusCode((int)HttpStatusCode.OK, _db.GetById(id).Result);
+        var result = await _db.GetById(id);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     // POST api/Teams
     [HttpPost]
-    public ActionResult<Team> Insert(Team team)
+    public async Task<ActionResult<Team>> Insert(Team team)
     {
-
-        return Ok(_db.Insert(team).Result);
+        var result = await _db.Insert(team);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
-    // PUT api/Team
     [HttpPut]
-    public ActionResult Update(Team team)
+    // PUT api/Team
+    public async Task<ActionResult<Team>> Update(Team team)
     {
-        _db.Update(team);
-        return StatusCode((int)HttpStatusCode.OK, "Updated");
+        var result = await _db.Update(team);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
-    // DELETE api/Team/5
     [HttpDelete("{id}")]
-    public ActionResult Delete(int id)
+    // DELETE api/Team/5
+    public async Task<ActionResult<Team>> Delete(int id)
     {
         try
         {
-            _db.Delete(id);
-            return StatusCode((int)HttpStatusCode.OK, "Deleted");
+            var result = await _db.Delete(id);
+            return StatusCode((int)HttpStatusCode.OK, result);
 
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
-
             throw;
         }
     }
 
     [HttpPost]
     [Route("/api/[Controller]/[Action]")]
-    public ActionResult JoinedTournament([FromBody] TournamentTeam tournamentTeam)
+    public async Task<ActionResult<TournamentTeam>> JoinedTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        _db.JoinedTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
-        return StatusCode((int)HttpStatusCode.Created, "Joined");
+        var result = await _db.JoinedTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        return StatusCode((int)HttpStatusCode.Created, result);
     }
 
     [HttpPost]
     [Route("/api/[Controller]/[Action]")]
-    public ActionResult LeftTournament([FromBody] TournamentTeam tournamentTeam)
+    public async Task<ActionResult<TournamentTeam>> LeftTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        _db.LeftTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
-        return StatusCode((int)HttpStatusCode.Created, "Left");
+        var result = await _db.LeftTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        return StatusCode((int)HttpStatusCode.Created, result);
     }
 }

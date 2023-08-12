@@ -21,8 +21,9 @@ public class TournamentsController : Controller
     // GET: Tournaments
     public async Task<ActionResult<IEnumerable<Tournament>>> GetAll()
     {
-        var tournaments = await _db.GetAll();
-        return Ok(tournaments);
+        var result = await _db.GetAll();
+        return StatusCode((int)HttpStatusCode.OK, result);
+
     }
 
 
@@ -111,7 +112,7 @@ public class TournamentsController : Controller
     /// </returns>
     [Route("/api/[Controller]/[Action]/{id}")]
     [HttpPost]
-    public async Task<ActionResult<Tournament>> spTournament_SetToFinishedAsync(int id)
+    public async Task<ActionResult<Tournament>> SetToFinished(int id)
     {
         var result = await _db.SetToFinished(id);
         return StatusCode((int)HttpStatusCode.OK, result);
@@ -123,8 +124,7 @@ public class TournamentsController : Controller
     public async Task<ActionResult<IEnumerable<Team>>> GetTournamentTeams(int tournamentId)
     {
         var result = await _db.GetTournamentTeams(tournamentId);
-        return Ok(result);
-
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
 
@@ -133,7 +133,7 @@ public class TournamentsController : Controller
     public async Task<ActionResult<IEnumerable<Team>>> GetTeamsNotInTournament(int tournamentId)
     {
         var teams = await _db.GetTeamsNotInTournament(tournamentId);
-        return Ok(teams);
+        return StatusCode((int)HttpStatusCode.OK, teams);
     }
 
 }

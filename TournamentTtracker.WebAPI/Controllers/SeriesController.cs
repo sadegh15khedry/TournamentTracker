@@ -21,29 +21,30 @@ public class SeriesController : ControllerBase
 
     [HttpGet]
     // GET: api/Series
-    public async Task<ActionResult> GetAll()
+    public async Task<ActionResult<IEnumerable<Series>>> GetAll()
     {
-        var series = _db.GetAll().Result;
-        return Ok(series);
+        var result = await _db.GetAll();
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     [HttpGet]
     [Route("/api/[Controller]/{id}")]
     // GET: api/Series/5
-    public ActionResult GetById(int id)
+    public async Task<ActionResult<Series>> GetById(int id)
     {
-        var series = _db.GetById(id).Result;
-        return Ok(series);
+        var result = await _db.GetById(id);
+        return StatusCode((int)HttpStatusCode.OK, result);
+
     }
 
-    // POST: api/Series/Create
     [HttpPost]
-    public ActionResult Create([FromBody] Series series)
+    // POST: api/Series/Create
+    public async Task<ActionResult<Series>> Create([FromBody] Series series)
     {
         try
         {
-            _db.Insert(series);
-            return StatusCode((int)HttpStatusCode.Created, "added");
+            var result = await _db.Insert(series);
+            return StatusCode((int)HttpStatusCode.Created, result);
         }
         catch
         {
@@ -53,20 +54,20 @@ public class SeriesController : ControllerBase
 
     [HttpPut]
     // POST: api/Series/Edit/5
-    public ActionResult Update(Series series)
+    public async Task<ActionResult<Series>> Update(Series series)
     {
-        _db.Update(series);
-        return StatusCode((int)HttpStatusCode.OK, "Updated");
+        var result = await _db.Update(series);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     // Delete: api/Series/
     [HttpDelete]
-    public ActionResult Delete(int id)
+    public async Task<ActionResult<Series>> Delete(int id)
     {
         try
         {
-            _db.Delete(id);
-            return StatusCode((int)HttpStatusCode.OK, "Deleted");
+            var result = await _db.Delete(id);
+            return StatusCode((int)HttpStatusCode.OK, result);
         }
         catch
         {

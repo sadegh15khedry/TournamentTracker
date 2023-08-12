@@ -20,26 +20,27 @@ public class PlayersController : Controller
 
     [HttpGet]
     // GET: api/Players
-    public async Task<ActionResult> GetAll()
+    public async Task<ActionResult<Player>> GetAll()
     {
-        var players = _db.GetAll().Result;
+        var players = await _db.GetAll();
         foreach (var player in players)
         {
             if (player.TeamId.HasValue)
             {
-                player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result;
+                player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
             }
         }
-        return Ok(players);
+
+        return StatusCode((int)HttpStatusCode.OK, players);
     }
 
     [HttpGet]
     [Route("/api/[Controller]/{id}")]
 
     // GET: api/Players/5
-    public ActionResult GetById(int id)
+    public async Task<ActionResult<Player>> GetById(int id)
     {
-        var player = _db.GetById(id).Result;
+        var player = await _db.GetById(id);
 
         if (player is null)
         {
@@ -50,17 +51,18 @@ public class PlayersController : Controller
             return Ok(player);
         }
 
-        player.Team = _db.GetPlayerTeam(player.TeamId.Value).Result; ;
-        return Ok(player);
+        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
+        return StatusCode((int)HttpStatusCode.OK, player);
+
     }
 
     // POST: api/Players/Create
     [HttpPost]
-    public ActionResult Create([FromBody] Player player)
+    public async Task<ActionResult<Player>> Create([FromBody] Player player)
     {
         try
         {
-            _db.Insert(player);
+            var result = await _db.Insert(player);
             return StatusCode((int)HttpStatusCode.Created, "added");
         }
         catch
@@ -71,19 +73,19 @@ public class PlayersController : Controller
 
     [HttpPut]
     // POST: api/TournamentController/Edit/5
-    public ActionResult Update(Player player)
+    public async Task<ActionResult<Player>> Update(Player player)
     {
-        _db.Update(player);
-        return StatusCode((int)HttpStatusCode.OK, "Updated");
+        var result = await _db.Update(player);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     // POST: api/Delete/5
     [HttpDelete]
-    public ActionResult Delete(int id)
+    public async Task<ActionResult<Player>> Delete(int id)
     {
         try
         {
-            _db.Delete(id);
+            var result = await _db.Delete(id);
             return StatusCode((int)HttpStatusCode.OK, "Deleted");
         }
         catch
@@ -95,33 +97,36 @@ public class PlayersController : Controller
     [HttpPost]
     [Route("/api/[Controller]/[Action]")]
     // POST: api/TournamentController/SignedWithTeam
-    public ActionResult SignedWithTeam(int playerId, int teamId)
+    public async Task<ActionResult<Player>> SignedWithTeam(int playerId, int teamId)
     {
-        _db.SignedWithTeam(playerId, teamId);
-        return StatusCode((int)HttpStatusCode.OK, "Signed");
+        var result = await _db.SignedWithTeam(playerId, teamId);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     [HttpPost]
     [Route("/api/[Controller]/[Action]")]
     // POST: api/TournamentController/CanceledContract
-    public ActionResult CanceledContract(int playerId)
+    public async Task<ActionResult<Player>> CanceledContract(int playerId)
     {
-        _db.CanceledContract(playerId);
-        return StatusCode((int)HttpStatusCode.OK, "Contract Cancelled");
+        var result = await _db.CanceledContract(playerId);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
     [HttpGet]
     [Route("/api/[Controller]/[Action]")]
-    public async Task<ActionResult> GetFreeAgentPlayers()
+    public async Task<ActionResult<IEnumerable<Player>>> GetFreeAgentPlayers()
     {
-        return Ok(_db.GetFreeAgentPlayers().Result);
+        var result = await _db.GetFreeAgentPlayers();
+        return StatusCode((int)HttpStatusCode.OK, result);
+
     }
 
     [HttpGet]
     [Route("/api/[Controller]/[Action]")]
     public async Task<ActionResult> GetTeamPlayers(int teamId)
     {
-        return Ok(_db.GetTeamPlayers(teamId).Result);
+        var result = await _db.GetTeamPlayers(teamId);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
 }
