@@ -24,7 +24,7 @@ public interface ISeriesData
 
 
     [Delete("/Series/{id}")]
-    Task<string> Delete(int id);
+    Task<Series> Delete(int id);
 
 
 }

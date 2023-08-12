@@ -20,7 +20,7 @@ public interface IMatchData
     Task<Match> Update(Match match);
 
     [Delete("/Matches")]
-    Task<string> Delete(int id);
+    Task<Match> Delete(int id);
 
 
 }

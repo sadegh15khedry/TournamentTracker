@@ -136,4 +136,88 @@ public class TournamentsController : Controller
         return StatusCode((int)HttpStatusCode.OK, teams);
     }
 
+    [HttpPost]
+    [Route("/api/[Controller]/[Action]")]
+    public async Task<ActionResult<TournamentTeam>> AddTeamToTournament([FromBody] TournamentTeam tournamentTeam)
+    {
+        var tournament = await _db.GetById(tournamentTeam.TournamentId);
+
+        if (tournament.IsStarted == true || tournament.IsFinished == true)
+        {
+            return StatusCode((int)HttpStatusCode.Created,
+                "Tournament is either Started or Finished," +
+                " adding or removing team from this tournament is not allowed");
+        }
+
+        var result = await _db.AddTeamToTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        return StatusCode((int)HttpStatusCode.Created, result);
+    }
+
+    [HttpPost]
+    [Route("/api/[Controller]/[Action]")]
+    public async Task<ActionResult<TournamentTeam>> RemoveTeamFromTournament([FromBody] TournamentTeam tournamentTeam)
+    {
+        var tournament = await _db.GetById(tournamentTeam.TournamentId);
+
+        if (tournament.IsStarted == true || tournament.IsFinished == true)
+        {
+            return StatusCode((int)HttpStatusCode.Created,
+                "Tournament is either Started or Finished," +
+                " adding or removing team from this tournament is not allowed");
+        }
+
+        var result = await _db.RemoveTeamFromTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        return StatusCode((int)HttpStatusCode.Created, result);
+    }
+
+    [HttpPost]
+    [Route("/api/[Controller]/[Action]")]
+    public async Task<ActionResult<IEnumerable<Series>>> GenerateSeries(int tournamentId)
+    {
+        var teams = await _db.GetTournamentTeams(tournamentId);
+        teams = teams.OrderBy(s => Guid.NewGuid()).ToList();
+
+        int round = GetTournamentSeriesRound(teams.Count() / 2);
+        int placeInRound = 1;
+
+        // TODO : implementing bulk insert for Series Generation.
+        for (int i = 0; i < teams.Count(); i += 2)
+        {
+            Series series = new Series()
+            {
+                TournamentId = tournamentId,
+                FirstTeamId = teams.ElementAt(i).Id,
+                SecondTeamId = teams.ElementAt(i + 1).Id,
+                IsSeriesEnded = false,
+                Round = round,
+                PlaceInRound = placeInRound
+            };
+            await _db.InsertSeries(series);
+            placeInRound++;
+        }
+        var result = await _db.GetTournamentSeries(tournamentId);
+        return StatusCode((int)HttpStatusCode.OK, teams);
+
+
+    }
+
+    private int GetTournamentSeriesRound(int seriesCount)
+    {
+        if (seriesCount == 1)
+        {
+            return 0;
+        }
+        else if (seriesCount == 2)
+        {
+            return 1;
+        }
+        else if (seriesCount == 8)
+        {
+            return 3;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }

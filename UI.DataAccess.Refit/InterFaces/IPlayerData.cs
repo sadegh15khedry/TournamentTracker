@@ -8,10 +8,10 @@ public interface IPlayerData
 {
 
     [Post("/Players/SignedWithTeam")]
-    Task<string> SignedWithTeam(int playerId, int teamId);
+    Task<Player> SignedWithTeam(int playerId, int teamId);
 
     [Post("/Players/CanceledContract")]
-    Task<string> CanceledContract(int playerId);
+    Task<Player> CanceledContract(int playerId);
 
     [Get("/Players")]
     Task<List<Player>> GetAll();
@@ -26,7 +26,7 @@ public interface IPlayerData
     Task<Player> Update(Player player);
 
     [Delete("/Players")]
-    Task<string> Delete(int id);
+    Task<Player> Delete(int id);
 
     [Get("/Players/GetFreeAgentPlayers")]
     Task<List<Player>> GetFreeAgentPlayers();

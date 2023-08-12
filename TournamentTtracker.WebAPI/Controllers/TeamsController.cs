@@ -68,19 +68,7 @@ public class TeamsController : ControllerBase
         }
     }
 
-    [HttpPost]
-    [Route("/api/[Controller]/[Action]")]
-    public async Task<ActionResult<TournamentTeam>> JoinedTournament([FromBody] TournamentTeam tournamentTeam)
-    {
-        var result = await _db.JoinedTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
-        return StatusCode((int)HttpStatusCode.Created, result);
-    }
 
-    [HttpPost]
-    [Route("/api/[Controller]/[Action]")]
-    public async Task<ActionResult<TournamentTeam>> LeftTournament([FromBody] TournamentTeam tournamentTeam)
-    {
-        var result = await _db.LeftTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
-        return StatusCode((int)HttpStatusCode.Created, result);
-    }
+
+
 }

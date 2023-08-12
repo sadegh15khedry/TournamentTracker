@@ -18,14 +18,10 @@ public interface ITeamData
     Task<Team> Update(Team team);
 
     [Delete("/Teams/{id}")]
-    Task<string> Delete(int id);
+    Task<Team> Delete(int id);
 
 
 
-    [Post("/Teams/JoinedTournament")]
-    Task<string> JoinedTournament([Body] TournamentTeam tournamentTeam);
 
-    [Post("/Teams/LeftTournament")]
-    Task<string> LeftTournament([Body] TournamentTeam tournamentTeam);
 
 }

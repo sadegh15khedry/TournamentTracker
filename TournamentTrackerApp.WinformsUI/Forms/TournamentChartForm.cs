@@ -30,11 +30,14 @@ public partial class TournamentChartForm : Form
         ClearLabels();
         titleLabel.Text = SelectedTournament.Name;
         backButton.Text = "←";
+
         MessageBox.Show(SelectedTournament.Teams.Count.ToString());
         MessageBox.Show(SelectedTournament.Series.Count.ToString());
+
         if (SelectedTournament.Series.Count == 0)
         {
-            InitializeTournamentSeries();
+            SelectedTournament.Series = _tournamentData
+                .GenerateSeries(SelectedTournament.Id).Result;
         }
 
         foreach (var series in SelectedTournament.Series)
@@ -65,51 +68,9 @@ public partial class TournamentChartForm : Form
 
     }
 
-    private void InitializeTournamentSeries()
-    {
-        SelectedTournament.Teams = SelectedTournament.Teams.OrderBy(s => Guid.NewGuid()).ToList();
-        int round = GetTournamentSeriesRound(SelectedTournament.Teams.Count / 2);
-        int placeInRound = 1;
-        for (int i = 0; i < SelectedTournament.Teams.Count; i += 2)
-        {
-            Series series = new Series()
-            {
-                TournamentId = SelectedTournament.Id,
-                FirstTeamId = SelectedTournament.Teams[i].Id,
-                SecondTeamId = SelectedTournament.Teams[i + 1].Id,
-                IsSeriesEnded = false,
-                Round = round,
-                PlaceInRound = placeInRound
-            };
-            _seriesData.Create(series);
-            placeInRound++;
-        }
-        this.Hide();
-        Thread.Sleep(200);
-        FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
-    }
 
-    private int GetTournamentSeriesRound(int seriesCount)
-    {
 
-        MessageBox.Show("round is =  " + seriesCount.ToString());
-        if (seriesCount == 1)
-        {
-            return 0;
-        }
-        else if (seriesCount == 2)
-        {
-            return 1;
-        }
-        else if (seriesCount == 8)
-        {
-            return 3;
-        }
-        else
-        {
-            return -1;
-        }
-    }
+
 
     private void ClearLabels()
     {
@@ -125,4 +86,5 @@ public partial class TournamentChartForm : Form
         this.Hide();
         FormFactory.CreateTournamentDetails(SelectedTournament.Id).Show();
     }
+
 }

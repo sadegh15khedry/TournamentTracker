@@ -16,5 +16,9 @@ namespace DataAccessLibrary.Data.Interfaces
         Task<Tournament> SetToFinished(int id);
         Task<Tournament> Update(Tournament tournament);
         Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId);
+
+        Task<TournamentTeam> AddTeamToTournament(int teamId, int tournamentId);
+        Task<TournamentTeam> RemoveTeamFromTournament(int teamId, int tournamentId);
+        Task<Series> InsertSeries(Series series);
     }
 }

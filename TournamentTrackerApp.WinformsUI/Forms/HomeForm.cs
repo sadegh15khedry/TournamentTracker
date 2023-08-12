@@ -67,27 +67,40 @@ public partial class HomeForm : Form
 
     private void goToPlayerButton_Click(object sender, EventArgs e)
     {
-        this.Hide();
         int selectedPlayerIndex = playersListBox.SelectedIndex;
         var player = Players.ElementAtOrDefault(selectedPlayerIndex);
-        FormFactory.CreatePlayerDetailForm(player.Id).Show();
+
+        if (player is not null)
+        {
+            this.Hide();
+            FormFactory.CreatePlayerDetailForm(player.Id).Show();
+        }
+
 
     }
 
     private void goToTeamButton_Click(object sender, EventArgs e)
     {
-        this.Hide();
         int selectedTeamIndex = teamsListBox.SelectedIndex;
         var team = Teams.ElementAtOrDefault(selectedTeamIndex);
-        FormFactory.CreateTeamDetailsForm(team.Id).Show();
+        if (team is not null)
+        {
+            this.Hide();
+            FormFactory.CreateTeamDetailsForm(team.Id).Show();
+        }
+
     }
 
     private void goToTournamentButton_Click(object sender, EventArgs e)
     {
-        this.Hide();
+
         int selectedTournamentIndex = tournamentsListBox.SelectedIndex;
         var tournament = Tournaments.ElementAtOrDefault(selectedTournamentIndex);
-        FormFactory.CreateTournamentDetails(tournament.Id).Show();
+        if (tournament is not null)
+        {
+            this.Hide();
+            FormFactory.CreateTournamentDetails(tournament.Id).Show();
+        }
     }
 
 

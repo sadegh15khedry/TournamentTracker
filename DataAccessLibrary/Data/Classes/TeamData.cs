@@ -12,17 +12,7 @@ public class TeamData : ITeamData
         _db = db;
     }
 
-    public async Task<TournamentTeam> LeftTournament(int teamId, int tournamentId)
-    {
-        var result = await _db.LoadData<TournamentTeam, dynamic>("dbo.spTournamentTeam_Delete", new { TeamId = teamId, TournamentId = tournamentId });
-        return result.FirstOrDefault();
-    }
 
-    public async Task<TournamentTeam> JoinedTournament(int teamId, int tournamentId)
-    {
-        var result = await _db.LoadData<TournamentTeam, dynamic>("SpTournamentTeam_Insert", new { TeamId = teamId, TournamentId = tournamentId });
-        return result.FirstOrDefault();
-    }
 
     public async Task<IEnumerable<Team>> GetAll()
     {

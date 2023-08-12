@@ -92,4 +92,32 @@ public class TournamentData : ITournamentData
             new { TournamentId = tournamentId });
 
     }
+
+
+    public async Task<TournamentTeam> AddTeamToTournament(int teamId, int tournamentId)
+    {
+        var result = await _db.LoadData<TournamentTeam, dynamic>("SpTournamentTeam_Insert",
+            new { TeamId = teamId, TournamentId = tournamentId });
+        return result.FirstOrDefault();
+    }
+
+    public async Task<TournamentTeam> RemoveTeamFromTournament(int teamId, int tournamentId)
+    {
+        var result = await _db.LoadData<TournamentTeam, dynamic>("dbo.spTournamentTeam_Delete",
+            new { TeamId = teamId, TournamentId = tournamentId });
+        return result.FirstOrDefault();
+    }
+
+    public async Task<Series> InsertSeries(Series series)
+    {
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
+        {
+            series.Round,
+            series.PlaceInRound,
+            series.FirstTeamId,
+            series.SecondTeamId,
+            series.TournamentId
+        });
+        return result.FirstOrDefault();
+    }
 }

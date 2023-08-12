@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Refit;
+﻿using Refit;
 using TournamentTrackerLibrary.Models;
 
 namespace UI.DataAccess.Refit.InterFaces;
@@ -26,9 +25,20 @@ public interface ITournamentData
     Task<Tournament> Update(Tournament tournament);
 
     [Delete("/Tournaments")]
-    Task<string> Delete(int id);
+    Task<Tournament> Delete(int id);
 
     [Post("/Tournaments/SetToFinished/{id}")]
-    Task<ActionResult> SetToFinished(int id);
+    Task<Tournament> SetToFinished(int id);
+
+    [Post("/Tournaments/AddTeamToTournament")]
+    Task<TournamentTeam> AddTeamToTournament([Body] TournamentTeam tournamentTeam);
+
+    [Post("/Tournaments/RemoveTeamFromTournament")]
+    Task<TournamentTeam> RemoveTeamFromTournament([Body] TournamentTeam tournamentTeam);
+
+    [Post("/Tournaments/GenerateSeries")]
+    Task<List<Series>> GenerateSeries(int tournamentId);
+
+
 
 }

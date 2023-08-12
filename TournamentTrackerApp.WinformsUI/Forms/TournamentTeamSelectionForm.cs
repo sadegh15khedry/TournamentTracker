@@ -39,7 +39,7 @@ public partial class TournamentTeamSelectionForm : Form
             TournamentId = SelectedTournament.Id
         };
 
-        _teamData.JoinedTournament(tournamentTeam);
+        _tournamentData.AddTeamToTournament(tournamentTeam);
 
         Thread.Sleep(100);
         PageRefresh();
@@ -62,7 +62,7 @@ public partial class TournamentTeamSelectionForm : Form
             TeamId = team.Id,
             TournamentId = SelectedTournament.Id
         };
-        _teamData.LeftTournament(tournamentTeam);
+        _tournamentData.RemoveTeamFromTournament(tournamentTeam);
         PageRefresh();
 
     }
