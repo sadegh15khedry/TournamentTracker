@@ -18,20 +18,22 @@ public class TournamentsController : Controller
 
 
     [HttpGet]
-    // GET: TournamentController
-    public async Task<ActionResult> GetAll()
+    // GET: Tournaments
+    public async Task<ActionResult<IEnumerable<Tournament>>> GetAll()
     {
-        return Ok(_db.GetAll().Result);
+        var tournaments = await _db.GetAll();
+        return Ok(tournaments);
     }
 
 
     [Route("/api/[Controller]/{id}")]
     [HttpGet]
-    // GET: TournamentController/5
-    public ActionResult GetById(int id)
+    // GET: Tournaments/5
+    public async Task<ActionResult<Tournament>> GetById(int id)
     {
-        Tournament tournament = _db.GetById(id).Result;
-        tournament.Teams = _db.GetTournamentTeams(id).Result.ToList();
+        var tournament = await _db.GetById(id);
+        var teams = await _db.GetTournamentTeams(id);
+        tournament.Teams = teams.ToList();
         //tournament.Series = _db.GetTournamentSeries(id).Result.ToList();
 
 
@@ -56,32 +58,31 @@ public class TournamentsController : Controller
     }
 
 
-    // POST: TournamentController/Create
+    // POST: Tournaments/Create
     [HttpPost]
-    public ActionResult Create(Tournament tournament)
+    public async Task<ActionResult<Tournament>> Create(Tournament tournament)
     {
-        _db.Insert(tournament);
-        return StatusCode((int)HttpStatusCode.Created, "Added");
+        var result = await _db.Insert(tournament);
+        return StatusCode((int)HttpStatusCode.Created, result);
     }
 
 
     [HttpPut]
-    // POST: TournamentController/Edit/5
-    public ActionResult Update(Tournament tournament)
+    // POST: Tournaments/Edit/5
+    public async Task<ActionResult<Tournament>> Update(Tournament tournament)
     {
-        _db.Update(tournament);
-        return StatusCode((int)HttpStatusCode.OK, "Updated");
+        var result = await _db.Update(tournament);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
-
-    // POST: TournamentController/Delete/5
     [HttpDelete]
-    public ActionResult Delete(int id)
+    // POST: Tournaments/Delete/5
+    public async Task<ActionResult<Tournament>> Delete(int id)
     {
         try
         {
-            _db.Delete(id);
-            return StatusCode((int)HttpStatusCode.OK, "Deleted");
+            var result = await _db.Delete(id);
+            return StatusCode((int)HttpStatusCode.OK, result);
         }
         catch
         {
@@ -110,27 +111,29 @@ public class TournamentsController : Controller
     /// </returns>
     [Route("/api/[Controller]/[Action]/{id}")]
     [HttpPost]
-    public ActionResult spTournament_SetToFinished(int id)
+    public async Task<ActionResult<Tournament>> spTournament_SetToFinishedAsync(int id)
     {
-        _db.SetToFinished(id);
-        return StatusCode((int)HttpStatusCode.OK, "Finished");
+        var result = await _db.SetToFinished(id);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
 
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
     [HttpGet]
-    public async Task<ActionResult> GetTournamentTeams(int tournamentId)
+    public async Task<ActionResult<IEnumerable<Team>>> GetTournamentTeams(int tournamentId)
     {
-        return Ok(_db.GetTournamentTeams(tournamentId).Result);
+        var result = await _db.GetTournamentTeams(tournamentId);
+        return Ok(result);
 
     }
 
 
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
     [HttpGet]
-    public async Task<ActionResult> GetTeamsNotInTournament(int tournamentId)
+    public async Task<ActionResult<IEnumerable<Team>>> GetTeamsNotInTournament(int tournamentId)
     {
-        return Ok(_db.GetTeamsNotInTournament(tournamentId).Result);
+        var teams = await _db.GetTeamsNotInTournament(tournamentId);
+        return Ok(teams);
     }
 
 }

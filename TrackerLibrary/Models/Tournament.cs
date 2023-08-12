@@ -23,6 +23,12 @@ public class Tournament
     /// </summary>
     public string? Location { get; set; }
 
+
+    public bool? IsFinished { get; set; } = false;
+
+    public bool? IsStarted { get; set; } = false;
+
+
     /// <summary>
     /// List of Teams that participate in the tournament.  
     /// </summary>
@@ -38,8 +44,6 @@ public class Tournament
     /// </summary>
     public List<Series>? Series { get; set; }
 
-    public bool IsFinished { get; set; } = false;
 
-    public bool IsStarted { get; set; } = false;
 
 }
