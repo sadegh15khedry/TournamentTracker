@@ -65,7 +65,7 @@ public partial class TournamentChartForm : Form
                 teamABCDLabel.Text = series.FirstTeam.Name;
                 teamEFGHLabel.Text = series.SecondTeam.Name;
                 abcdVefghLabel.Text = "X";
-                ijklVmnopLabel.Click += (sender, e) => { GoToSeries(series.Id); };
+                abcdVefghLabel.Click += (sender, e) => { GoToSeries(series.Id); };
 
             }
             else if (series.Round == 1 && series.PlaceInRound == 2)
@@ -83,6 +83,7 @@ public partial class TournamentChartForm : Form
 
     private void GoToSeries(int seriesId)
     {
+        this.Hide();
         FormFactory.CreateSeriesDetailsForm(seriesId).Show();
     }
 

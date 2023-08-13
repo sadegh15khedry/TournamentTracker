@@ -93,6 +93,6 @@ public static class FormFactory
 
     public static SeriesDetailsForm CreateSeriesDetailsForm(int seriesId)
     {
-        return new SeriesDetailsForm(_seriesData, seriesId);
+        return new SeriesDetailsForm(_matchData, _seriesData, seriesId);
     }
 }

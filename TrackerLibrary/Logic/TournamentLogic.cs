@@ -48,4 +48,14 @@ public static class TournamentLogic
             return -1;
         }
     }
+
+    public static int GetMatchOutcome(Match match)
+    {
+        if (match.FirstTeamScore > match.SecondTeamScore)
+            return 1;
+        else if (match.FirstTeamScore < match.SecondTeamScore)
+            return 2;
+        else
+            return 0;
+    }
 }

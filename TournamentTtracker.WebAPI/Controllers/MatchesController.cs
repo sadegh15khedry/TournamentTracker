@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TournamentTrackerLibrary.Logic;
 using Match = TournamentTrackerLibrary.Models.Match;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -44,6 +45,7 @@ public class MatchesController : ControllerBase
     {
         try
         {
+            match.Outcome = TournamentLogic.GetMatchOutcome(match);
             var result = await _db.Insert(match);
             return StatusCode((int)HttpStatusCode.Created, result);
         }

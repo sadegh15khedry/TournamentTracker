@@ -32,7 +32,7 @@ partial class SeriesDetailsForm
         backButton = new Label();
         secondTeamScoreTextBox = new TextBox();
         firstTeamScoreTextBox = new TextBox();
-        createTournamentButton = new Button();
+        submitMatchButton = new Button();
         firstTeamNameLabel = new Label();
         secondTeamNameLabel = new Label();
         firstMatchSecondTeamScoreLabel = new Label();
@@ -44,6 +44,8 @@ partial class SeriesDetailsForm
         firstMatchVsLabel = new Label();
         secondMatchVsLabel = new Label();
         thirdMatchVsLabel = new Label();
+        secondTeamWinsLabel = new Label();
+        firstTeamWinsLabel = new Label();
         SuspendLayout();
         // 
         // titleLabel
@@ -85,15 +87,16 @@ partial class SeriesDetailsForm
         firstTeamScoreTextBox.Size = new Size(656, 50);
         firstTeamScoreTextBox.TabIndex = 27;
         // 
-        // createTournamentButton
+        // submitMatchButton
         // 
-        createTournamentButton.ForeColor = Color.Black;
-        createTournamentButton.Location = new Point(843, 831);
-        createTournamentButton.Name = "createTournamentButton";
-        createTournamentButton.Size = new Size(235, 92);
-        createTournamentButton.TabIndex = 28;
-        createTournamentButton.Text = "submit";
-        createTournamentButton.UseVisualStyleBackColor = true;
+        submitMatchButton.ForeColor = Color.Black;
+        submitMatchButton.Location = new Point(843, 831);
+        submitMatchButton.Name = "submitMatchButton";
+        submitMatchButton.Size = new Size(235, 92);
+        submitMatchButton.TabIndex = 28;
+        submitMatchButton.Text = "submit";
+        submitMatchButton.UseVisualStyleBackColor = true;
+        submitMatchButton.Click += submitMatchButton_Click;
         // 
         // firstTeamNameLabel
         // 
@@ -227,12 +230,38 @@ partial class SeriesDetailsForm
         thirdMatchVsLabel.TabIndex = 53;
         thirdMatchVsLabel.Text = "vs";
         // 
-        // SeriesForm
+        // secondTeamWinsLabel
+        // 
+        secondTeamWinsLabel.AutoSize = true;
+        secondTeamWinsLabel.Font = new Font("Segoe UI", 17F, FontStyle.Bold, GraphicsUnit.Point);
+        secondTeamWinsLabel.ForeColor = Color.White;
+        secondTeamWinsLabel.Location = new Point(1499, 337);
+        secondTeamWinsLabel.Margin = new Padding(5, 0, 5, 0);
+        secondTeamWinsLabel.Name = "secondTeamWinsLabel";
+        secondTeamWinsLabel.Size = new Size(40, 46);
+        secondTeamWinsLabel.TabIndex = 54;
+        secondTeamWinsLabel.Text = "0";
+        // 
+        // firstTeamWinsLabel
+        // 
+        firstTeamWinsLabel.AutoSize = true;
+        firstTeamWinsLabel.Font = new Font("Segoe UI", 17F, FontStyle.Bold, GraphicsUnit.Point);
+        firstTeamWinsLabel.ForeColor = Color.White;
+        firstTeamWinsLabel.Location = new Point(424, 337);
+        firstTeamWinsLabel.Margin = new Padding(5, 0, 5, 0);
+        firstTeamWinsLabel.Name = "firstTeamWinsLabel";
+        firstTeamWinsLabel.Size = new Size(40, 46);
+        firstTeamWinsLabel.TabIndex = 55;
+        firstTeamWinsLabel.Text = "0";
+        // 
+        // SeriesDetailsForm
         // 
         AutoScaleDimensions = new SizeF(18F, 45F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.Black;
         ClientSize = new Size(1846, 1001);
+        Controls.Add(firstTeamWinsLabel);
+        Controls.Add(secondTeamWinsLabel);
         Controls.Add(thirdMatchVsLabel);
         Controls.Add(secondMatchVsLabel);
         Controls.Add(firstMatchVsLabel);
@@ -245,14 +274,14 @@ partial class SeriesDetailsForm
         Controls.Add(secondTeamNameLabel);
         Controls.Add(firstTeamNameLabel);
         Controls.Add(backButton);
-        Controls.Add(createTournamentButton);
+        Controls.Add(submitMatchButton);
         Controls.Add(firstTeamScoreTextBox);
         Controls.Add(secondTeamScoreTextBox);
         Controls.Add(titleLabel);
         Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         Margin = new Padding(5);
-        Name = "SeriesForm";
+        Name = "SeriesDetailsForm";
         Text = "AddTeam";
         ResumeLayout(false);
         PerformLayout();
@@ -260,13 +289,7 @@ partial class SeriesDetailsForm
 
     #endregion
 
-    private Button createTournamentButton;
-    private TextBox ownerTextBox;
-    private TextBox cityTextBox;
-    private TextBox nameTextBox;
-    private Label ownerLabel;
-    private Label cityLabel;
-    private Label nameLabel;
+    private Button submitMatchButton;
     private Label titleLabel;
     private Label backButton;
     private Label firstTeamNameLabel;
@@ -282,4 +305,6 @@ partial class SeriesDetailsForm
     private Label thirdMatchVsLabel;
     private TextBox secondTeamScoreTextBox;
     private TextBox firstTeamScoreTextBox;
+    private Label secondTeamWinsLabel;
+    private Label firstTeamWinsLabel;
 }
