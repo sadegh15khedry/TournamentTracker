@@ -20,7 +20,40 @@ public class SeriesData : ISeriesData
     public async Task<Series> GetById(int id)
     {
         var results = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetByID", new { Id = id });
-        return results.FirstOrDefault();
+        var series = results.FirstOrDefault();
+        int firstTeamWins = 0;
+        int secondTeamWins = 0;
+
+        var firstTeam = await _db.LoadData<Team, dynamic>
+            ("dbo.spTeam_GetById", new { Id = series.FirstTeamId });
+        var secondTeam = await _db.LoadData<Team, dynamic>
+            ("dbo.spTeam_GetById", new { Id = series.SecondTeamId });
+        var matches = await _db.LoadData<Match, dynamic>
+            ("spMatch_GetBySeriesId", new { SeriesId = series.Id });
+        foreach (var match in matches)
+        {
+            if (match.Outcome == 1)
+            {
+                firstTeamWins++;
+            }
+            else if (match.Outcome == 2)
+            {
+                secondTeamWins++;
+            }
+        }
+
+        series.FirstTeam = firstTeam.FirstOrDefault();
+        series.SecondTeam = secondTeam.FirstOrDefault();
+        series.Matches = matches.ToList();
+        series.FirstTeamWins = firstTeamWins;
+        series.SecondTeamWins = secondTeamWins;
+
+
+
+
+
+
+        return series;
     }
 
     public async Task<Series> Insert(Series series)

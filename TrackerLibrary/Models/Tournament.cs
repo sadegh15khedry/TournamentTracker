@@ -42,7 +42,7 @@ public class Tournament
     /// <summary>
     /// List of Matches in The tournament 
     /// </summary>
-    public List<Series>? Series { get; set; }
+    public List<Series>? Series { get; set; } = new List<Series>();
 
 
 

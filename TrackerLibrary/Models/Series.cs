@@ -3,7 +3,7 @@
 public class Series
 {
     /// <summary>
-    /// Autmaticly generated Identifier for Series
+    /// Automaticly generated Identifier for Series
     /// </summary>
     public int Id { get; set; }
 

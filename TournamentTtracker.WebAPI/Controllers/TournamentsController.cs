@@ -1,6 +1,7 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
@@ -175,49 +176,21 @@ public class TournamentsController : Controller
     public async Task<ActionResult<IEnumerable<Series>>> GenerateSeries(int tournamentId)
     {
         var teams = await _db.GetTournamentTeams(tournamentId);
-        teams = teams.OrderBy(s => Guid.NewGuid()).ToList();
 
-        int round = GetTournamentSeriesRound(teams.Count() / 2);
-        int placeInRound = 1;
+        var seriesList = TournamentLogic.GenerateInitialTournamentSeries(teams.ToList(),
+            tournamentId);
 
         // TODO : implementing bulk insert for Series Generation.
-        for (int i = 0; i < teams.Count(); i += 2)
+
+        foreach (Series series in seriesList)
         {
-            Series series = new Series()
-            {
-                TournamentId = tournamentId,
-                FirstTeamId = teams.ElementAt(i).Id,
-                SecondTeamId = teams.ElementAt(i + 1).Id,
-                IsSeriesEnded = false,
-                Round = round,
-                PlaceInRound = placeInRound
-            };
             await _db.InsertSeries(series);
-            placeInRound++;
         }
+
+
         var result = await _db.GetTournamentSeries(tournamentId);
         return StatusCode((int)HttpStatusCode.OK, teams);
-
-
     }
 
-    private int GetTournamentSeriesRound(int seriesCount)
-    {
-        if (seriesCount == 1)
-        {
-            return 0;
-        }
-        else if (seriesCount == 2)
-        {
-            return 1;
-        }
-        else if (seriesCount == 8)
-        {
-            return 3;
-        }
-        else
-        {
-            return -1;
-        }
-    }
+
 }

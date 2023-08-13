@@ -90,4 +90,9 @@ public static class FormFactory
     {
         return new TournamentChartForm(_tournamentData, _teamData, _seriesData, tournamentId);
     }
+
+    public static SeriesDetailsForm CreateSeriesDetailsForm(int seriesId)
+    {
+        return new SeriesDetailsForm(_seriesData, seriesId);
+    }
 }

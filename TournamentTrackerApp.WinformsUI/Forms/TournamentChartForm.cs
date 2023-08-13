@@ -21,6 +21,7 @@ public partial class TournamentChartForm : Form
         _seriesData = seriesData;
         SelectedTournament = _tournamentData.GetById(tournamentId).Result;
 
+
         PageSetup();
     }
 
@@ -36,39 +37,54 @@ public partial class TournamentChartForm : Form
 
         if (SelectedTournament.Series.Count == 0)
         {
-            SelectedTournament.Series = _tournamentData
-                .GenerateSeries(SelectedTournament.Id).Result;
+            var series = _tournamentData
+               .GenerateSeries(SelectedTournament.Id).Result;
+
+            //Thread.Sleep(3000);
+
+            //SelectedTournament.Series = series;
+            this.Hide();
+            FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
         }
 
+        MessageBox.Show(SelectedTournament.Teams.Count.ToString());
+        MessageBox.Show(SelectedTournament.Series.Count.ToString());
+
+        DisplaySeriesInChart();
+
+
+    }
+
+    private void DisplaySeriesInChart()
+    {
         foreach (var series in SelectedTournament.Series)
         {
-            DisplaySeriesInChart(series);
+            if (series.Round == 1 && series.PlaceInRound == 1)
+
+            {
+                teamABCDLabel.Text = series.FirstTeam.Name;
+                teamEFGHLabel.Text = series.SecondTeam.Name;
+                abcdVefghLabel.Text = "X";
+                ijklVmnopLabel.Click += (sender, e) => { GoToSeries(series.Id); };
+
+            }
+            else if (series.Round == 1 && series.PlaceInRound == 2)
+            {
+                teamIJKLLabel.Text = series.FirstTeam.Name;
+                teamMNOPLabel.Text = series.SecondTeam.Name;
+                ijklVmnopLabel.Text = "X";
+                ijklVmnopLabel.Click += (sender, e) => { GoToSeries(series.Id); };
+            }
         }
+
 
 
     }
 
-    private void DisplaySeriesInChart(Series series)
+    private void GoToSeries(int seriesId)
     {
-        MessageBox.Show(series.FirstTeam.Name);
-
-        if (series.Round == 1 && series.PlaceInRound == 1)
-
-        {
-            teamABCDLabel.Text = series.FirstTeam.Name;
-            teamEFGHLabel.Text = series.SecondTeam.Name;
-            abcdVefghLabel.Text = "X";
-        }
-        else if (series.Round == 1 && series.PlaceInRound == 2)
-        {
-            teamIJKLLabel.Text = series.FirstTeam.Name;
-            teamMNOPLabel.Text = series.SecondTeam.Name;
-            ijklVmnopLabel.Text = "X";
-        }
-
+        FormFactory.CreateSeriesDetailsForm(seriesId).Show();
     }
-
-
 
 
 
