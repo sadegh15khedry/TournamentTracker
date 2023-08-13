@@ -55,6 +55,8 @@ public class Series
     /// </summary>
     public Team? SecondTeam { get; set; } = new Team();
 
+    public Team? WinnerTeam { get; set; } = new Team();
+
 
     /// <summary>
     ///Tournament of the Series 

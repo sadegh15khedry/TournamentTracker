@@ -58,4 +58,13 @@ public static class TournamentLogic
         else
             return 0;
     }
+
+    public static bool IsSeriesEnded(Series series)
+    {
+        if (series.Matches.Count > 2)
+        {
+            return true;
+        }
+        return false;
+    }
 }

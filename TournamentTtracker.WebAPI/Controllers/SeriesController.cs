@@ -1,6 +1,7 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -73,5 +74,19 @@ public class SeriesController : ControllerBase
         {
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
         }
+    }
+
+    [HttpGet]
+    [Route("/api/[Controller]/[Action]/{seriesId}")]
+    public async Task<ActionResult<Series>> CheckIfSeriesEnded(int seriesId)
+    {
+        var series = await _db.GetById(seriesId);
+
+        if (TournamentLogic.IsSeriesEnded(series) == true)
+        {
+            series.IsSeriesEnded = true;
+            await _db.SetToFinished(series.Id);
+        }
+        return series;
     }
 }

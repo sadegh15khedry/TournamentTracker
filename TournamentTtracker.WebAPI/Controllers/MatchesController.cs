@@ -37,6 +37,8 @@ public class MatchesController : ControllerBase
         var result = await _db.GetById(id);
         return StatusCode((int)HttpStatusCode.OK, result);
 
+        //return Redirect("/api/Tournaments");
+
     }
 
     // POST: api/Players/Create
@@ -47,7 +49,8 @@ public class MatchesController : ControllerBase
         {
             match.Outcome = TournamentLogic.GetMatchOutcome(match);
             var result = await _db.Insert(match);
-            return StatusCode((int)HttpStatusCode.Created, result);
+            return Redirect("/api/Series/CheckIfSeriesEnded/" + match.SeriesId);
+            //return StatusCode((int)HttpStatusCode.Created, result);
         }
         catch
         {

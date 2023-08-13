@@ -14,13 +14,30 @@ public class SeriesData : ISeriesData
 
     public async Task<IEnumerable<Series>> GetAll()
     {
-        return await _db.LoadData<Series, dynamic>("dbo.spSeries_GetAll", new { });
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetAll", new { });
+        result = result.ToList();
+
+        foreach (Series series in result)
+        {
+            await SetSeriesAdditionalInfo(series);
+        }
+
+        return result;
+
     }
 
     public async Task<Series> GetById(int id)
     {
         var results = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetByID", new { Id = id });
         var series = results.FirstOrDefault();
+
+        await SetSeriesAdditionalInfo(series);
+
+        return series;
+    }
+
+    private async Task SetSeriesAdditionalInfo(Series? series)
+    {
         int firstTeamWins = 0;
         int secondTeamWins = 0;
 
@@ -30,6 +47,7 @@ public class SeriesData : ISeriesData
             ("dbo.spTeam_GetById", new { Id = series.SecondTeamId });
         var matches = await _db.LoadData<Match, dynamic>
             ("spMatch_GetBySeriesId", new { SeriesId = series.Id });
+
         foreach (var match in matches)
         {
             if (match.Outcome == 1)
@@ -47,13 +65,6 @@ public class SeriesData : ISeriesData
         series.Matches = matches.ToList();
         series.FirstTeamWins = firstTeamWins;
         series.SecondTeamWins = secondTeamWins;
-
-
-
-
-
-
-        return series;
     }
 
     public async Task<Series> Insert(Series series)
@@ -72,11 +83,21 @@ public class SeriesData : ISeriesData
     {
         var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Update", new
         {
-            series.Round,
-            series.PlaceInRound,
-            series.FirstTeamId,
-            series.SecondTeamId,
-            series.TournamentId
+            Id = series.Id,
+            IsSeriesFinished = series.IsSeriesEnded,
+            Round = series.Round,
+            PlaceInRound = series.PlaceInRound,
+            FirstTeamId = series.FirstTeamId,
+            SecondTeamId = series.SecondTeamId,
+            TournamentId = series.TournamentId
+        });
+        return result.FirstOrDefault();
+    }
+    public async Task<Series> SetToFinished(int seriesId)
+    {
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_SetToFinished", new
+        {
+            SeriesId = seriesId
         });
         return result.FirstOrDefault();
     }

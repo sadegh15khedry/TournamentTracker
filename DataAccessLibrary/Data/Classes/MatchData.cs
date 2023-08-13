@@ -35,6 +35,7 @@ public class MatchData : IMatchData
             match.SecondTeamScore,
             match.SeriesId
         });
+
         return result.FirstOrDefault();
     }
     public async Task<Match> Update(Match match)
