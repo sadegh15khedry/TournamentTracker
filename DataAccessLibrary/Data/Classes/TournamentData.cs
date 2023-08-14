@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Classes;
@@ -53,10 +54,10 @@ public class TournamentData : ITournamentData
 
         tournament.Teams = GetTournamentTeams(tournament.Id).Result.ToList();
 
-        if (tournament.IsStarted == false)
-        {
-            return;
-        }
+        /*        if (tournament.IsStarted == false)
+                {
+                    return;
+                }*/
 
         SetTournamentSeriesInfo(tournament);
 
@@ -65,11 +66,28 @@ public class TournamentData : ITournamentData
         {
             return;
         }
-        /*if (TournamentLogic.IsAllSeriesEned(tournament) == false)
+        if (tournament.IsStarted == true)
         {
             return;
         }
-        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);*/
+
+
+        if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false ||
+            TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == false)
+        {
+            return;
+        }
+        SetToStarted(tournament.Id);
+        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);
+
+
+        foreach (Series series in nextRoundSeries)
+        {
+            tournament.Series.Add(series);
+            InsertSeries(series);
+        }
+        return;
+
 
 
 
@@ -127,6 +145,13 @@ public class TournamentData : ITournamentData
         {
             series.FirstTeam = tournament.Teams.Where(s => s.Id == series.FirstTeamId).FirstOrDefault();
             series.SecondTeam = tournament.Teams.Where(s => s.Id == series.SecondTeamId).FirstOrDefault();
+
+            var matches = await _db.LoadData<Match, dynamic>("spMatch_GetBySeriesId",
+            new { SeriesId = series.Id });
+            series.Matches = matches.ToList();
+
+            TournamentLogic.SetSeriesWins(series);
+
         }
         return;
 
@@ -147,16 +172,16 @@ public class TournamentData : ITournamentData
         return result.FirstOrDefault();
     }
 
-    /*    private async Task InsertSeries(Series series)
+    private async Task InsertSeries(Series series)
+    {
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
         {
-            var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
-            {
-                series.Round,
-                series.PlaceInRound,
-                series.FirstTeamId,
-                series.SecondTeamId,
-                series.TournamentId
-            });
+            series.Round,
+            series.PlaceInRound,
+            series.FirstTeamId,
+            series.SecondTeamId,
+            series.TournamentId
+        });
 
-        }*/
+    }
 }

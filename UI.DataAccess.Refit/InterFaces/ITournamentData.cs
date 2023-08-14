@@ -27,8 +27,8 @@ public interface ITournamentData
     [Delete("/Tournaments")]
     Task<Tournament> Delete(int id);
 
-    [Post("/Tournaments/SetToFinished/{id}")]
-    Task<Tournament> SetToFinished(int id);
+    /*    [Post("/Tournaments/SetToFinished/{id}")]
+        Task<Tournament> SetToFinished(int id);*/
 
     [Post("/Tournaments/AddTeamToTournament")]
     Task<TournamentTeam> AddTeamToTournament([Body] TournamentTeam tournamentTeam);
@@ -36,8 +36,8 @@ public interface ITournamentData
     [Post("/Tournaments/RemoveTeamFromTournament")]
     Task<TournamentTeam> RemoveTeamFromTournament([Body] TournamentTeam tournamentTeam);
 
-    [Post("/Tournaments/GenerateSeries")]
-    Task<List<Series>> GenerateSeries(int tournamentId);
+    /*    [Post("/Tournaments/GenerateSeries")]
+        Task<List<Series>> GenerateSeries(int tournamentId);*/
 
 
 

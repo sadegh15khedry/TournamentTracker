@@ -93,13 +93,13 @@ public class TournamentsController : Controller
     ///         Tournament Not Found
     ///     </Respose>
     /// </returns>
-    [Route("/api/[Controller]/[Action]/{id}")]
+/*    [Route("/api/[Controller]/[Action]/{id}")]
     [HttpPost]
     public async Task<ActionResult<Tournament>> SetToFinished(int id)
     {
         var result = await _db.SetToFinished(id);
         return StatusCode((int)HttpStatusCode.OK, result);
-    }
+    }*/
 
 
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
@@ -153,7 +153,7 @@ public class TournamentsController : Controller
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
-    [HttpGet]
+    /*[HttpGet]
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
     // Get : api/Tournaments/GenerateSeries/1
     public async Task<ActionResult> SetToStarted(int tournamentId)
@@ -164,7 +164,7 @@ public class TournamentsController : Controller
 
         //return RedirectToAction("MultiInsert", "Series", new { seriesList });
 
-    }
+    }*/
 
 
 }

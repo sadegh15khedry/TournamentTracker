@@ -1,24 +1,26 @@
 ﻿using TournamentTrackerLibrary.Models;
+using Match = TournamentTrackerLibrary.Models.Match;
 
 namespace TournamentTrackerLibrary.Logic;
 
 public static class TournamentLogic
 {
-    public static List<Series> GenerateInitialTournamentSeries(List<Team> teams, int tournamentId)
+    public static List<Series> GetInitialTournamentSeries(Tournament tournament)
     {
-        teams = teams.OrderBy(s => Guid.NewGuid()).ToList();
-        int round = GetTournamentSeriesRound(teams.Count() / 2);
+        tournament.Teams = tournament.Teams.OrderBy(s => Guid.NewGuid()).ToList();
+
+        int round = GetTournamentSeriesRound(tournament.Teams.Count() / 2);
         int placeInRound = 1;
         List<Series> result = new List<Series>();
 
 
-        for (int i = 0; i < teams.Count(); i += 2)
+        for (int i = 0; i < tournament.Teams.Count(); i += 2)
         {
             Series series = new Series()
             {
-                TournamentId = tournamentId,
-                FirstTeamId = teams.ElementAt(i).Id,
-                SecondTeamId = teams.ElementAt(i + 1).Id,
+                TournamentId = tournament.Id,
+                FirstTeamId = tournament.Teams.ElementAt(i).Id,
+                SecondTeamId = tournament.Teams.ElementAt(i + 1).Id,
                 IsSeriesEnded = false,
                 Round = round,
                 PlaceInRound = placeInRound
@@ -68,13 +70,58 @@ public static class TournamentLogic
         return false;
     }
 
-    public static bool IsAllSeriesEned(Tournament tournament)
+    public static bool IsAllAvailableSeriesEnded(Tournament tournament)
     {
-        throw new NotImplementedException();
+        bool output = true;
+        foreach (var series in tournament.Series)
+        {
+            if (series.IsSeriesEnded == false)
+            {
+                output = false;
+                break;
+            }
+        }
+        return output;
     }
+
+    public static void SetSeriesWins(Series series)
+    {
+        int firstTeamWins = 0;
+        int secondTeamWins = 0;
+        foreach (var match in series.Matches)
+        {
+            if (match.Outcome == 1)
+            {
+                firstTeamWins++;
+            }
+            else if (match.Outcome == 2)
+            {
+                secondTeamWins++;
+            }
+        }
+        series.FirstTeamWins = firstTeamWins;
+        series.SecondTeamWins = secondTeamWins;
+    }
+
 
     public static List<Series> GetNextRoundSeries(Tournament tournament)
     {
-        throw new NotImplementedException();
+        if (tournament.Series.Count == 0)
+        {
+            return GetInitialTournamentSeries(tournament);
+        }
+        return new List<Series>();
+
+    }
+
+    public static bool IsTournamentNumberOfTeamsValid(Tournament tournament)
+    {
+        int tournamentNumberOfTeams = tournament.Teams.Count();
+        if (tournamentNumberOfTeams == 4 || tournamentNumberOfTeams == 6 ||
+            tournamentNumberOfTeams == 8 || tournamentNumberOfTeams == 16)
+        {
+            return true;
+        }
+        return false;
     }
 }

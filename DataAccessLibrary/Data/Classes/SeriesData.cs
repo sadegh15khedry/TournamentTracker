@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary.Data.Classes;
@@ -38,8 +39,7 @@ public class SeriesData : ISeriesData
 
     private async Task SetSeriesAdditionalInfo(Series? series)
     {
-        int firstTeamWins = 0;
-        int secondTeamWins = 0;
+
 
         var firstTeam = await _db.LoadData<Team, dynamic>
             ("dbo.spTeam_GetById", new { Id = series.FirstTeamId });
@@ -48,23 +48,27 @@ public class SeriesData : ISeriesData
         var matches = await _db.LoadData<Match, dynamic>
             ("spMatch_GetBySeriesId", new { SeriesId = series.Id });
 
-        foreach (var match in matches)
-        {
-            if (match.Outcome == 1)
-            {
-                firstTeamWins++;
-            }
-            else if (match.Outcome == 2)
-            {
-                secondTeamWins++;
-            }
-        }
+        /*        int firstTeamWins = 0;
+                int secondTeamWins = 0;
+                foreach (var match in matches)
+                {
+                    if (match.Outcome == 1)
+                    {
+                        firstTeamWins++;
+                    }
+                    else if (match.Outcome == 2)
+                    {
+                        secondTeamWins++;
+                    }
+                }*/
 
         series.FirstTeam = firstTeam.FirstOrDefault();
         series.SecondTeam = secondTeam.FirstOrDefault();
         series.Matches = matches.ToList();
-        series.FirstTeamWins = firstTeamWins;
-        series.SecondTeamWins = secondTeamWins;
+
+        TournamentLogic.SetSeriesWins(series);
+        /*        series.FirstTeamWins = firstTeamWins;
+                series.SecondTeamWins = secondTeamWins;*/
     }
 
     public async Task<Series> Insert(Series series)

@@ -7,8 +7,7 @@ namespace TournamentTrackerApp.WinformsUI.Forms;
 public partial class TournamentChartForm : Form
 {
     private readonly ITournamentData _tournamentData;
-    private readonly ITeamData _teamData;
-    private readonly ISeriesData _seriesData;
+
     public Tournament SelectedTournament { get; set; }
 
 
@@ -17,8 +16,6 @@ public partial class TournamentChartForm : Form
     {
         InitializeComponent();
         _tournamentData = tournamentData;
-        _teamData = teamData;
-        _seriesData = seriesData;
         SelectedTournament = _tournamentData.GetById(tournamentId).Result;
 
 
@@ -27,7 +24,6 @@ public partial class TournamentChartForm : Form
 
     private void PageSetup()
     {
-        titleLabel.Text = SelectedTournament.Name;
         ClearLabels();
         titleLabel.Text = SelectedTournament.Name;
         backButton.Text = "←";
@@ -37,19 +33,13 @@ public partial class TournamentChartForm : Form
 
         if (SelectedTournament.IsStarted == false)
         {
-            _tournamentData.GenerateSeries(SelectedTournament.Id);
-
-            //Thread.Sleep(3000);
-
-            //SelectedTournament.Series = ;
-            this.Hide();
-            FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
+            MessageBox.Show("tournament has not been started please check requirements.");
+        }
+        else
+        {
+            DisplaySeriesInChart();
         }
 
-        MessageBox.Show(SelectedTournament.Teams.Count.ToString());
-        MessageBox.Show(SelectedTournament.Series.Count.ToString());
-
-        DisplaySeriesInChart();
 
 
     }
@@ -61,6 +51,9 @@ public partial class TournamentChartForm : Form
             if (series.Round == 1 && series.PlaceInRound == 1)
 
             {
+                MessageBox.Show(teamABCDLabel.Text);
+                MessageBox.Show(teamEFGHLabel.Text);
+
                 teamABCDLabel.Text = series.FirstTeam.Name;
                 teamEFGHLabel.Text = series.SecondTeam.Name;
                 abcdVefghLabel.Text = "X";
