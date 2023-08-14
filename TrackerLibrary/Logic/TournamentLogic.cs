@@ -67,4 +67,14 @@ public static class TournamentLogic
         }
         return false;
     }
+
+    public static bool IsAllSeriesEned(Tournament tournament)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static List<Series> GetNextRoundSeries(Tournament tournament)
+    {
+        throw new NotImplementedException();
+    }
 }

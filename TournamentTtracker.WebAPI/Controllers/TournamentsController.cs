@@ -1,7 +1,6 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
@@ -34,26 +33,9 @@ public class TournamentsController : Controller
     public async Task<ActionResult<Tournament>> GetById(int id)
     {
         var tournament = await _db.GetById(id);
-        var teams = await _db.GetTournamentTeams(id);
-        tournament.Teams = teams.ToList();
-        //tournament.Series = _db.GetTournamentSeries(id).Result.ToList();
+        //var teams = await _db.GetTournamentTeams(id);
+        //tournament.Teams = teams.ToList();
 
-
-
-        /*        if (tournament == null)
-                {
-                    return StatusCode((int)HttpStatusCode.NotFound, "Tournament not Found");
-                }
-                if (teams is null)
-                {
-                    return StatusCode((int)HttpStatusCode.OK, tournament);
-                }
-                tournament.Teams = teams;
-                if (series is null)
-                {
-                    return StatusCode((int)HttpStatusCode.NotFound, "Tournament not Found");
-                }
-                tournament.Series = series;*/
         return StatusCode((int)HttpStatusCode.OK, tournament);
 
 
@@ -171,25 +153,17 @@ public class TournamentsController : Controller
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
-    [HttpPost]
-    [Route("/api/[Controller]/[Action]")]
-    public async Task<ActionResult<IEnumerable<Series>>> GenerateSeries(int tournamentId)
+    [HttpGet]
+    [Route("/api/[Controller]/[Action]/{tournamentId}")]
+    // Get : api/Tournaments/GenerateSeries/1
+    public async Task<ActionResult> SetToStarted(int tournamentId)
     {
-        var teams = await _db.GetTournamentTeams(tournamentId);
+        var result = await _db.SetToStarted(tournamentId);
 
-        var seriesList = TournamentLogic.GenerateInitialTournamentSeries(teams.ToList(),
-            tournamentId);
+        return StatusCode((int)HttpStatusCode.OK, result);
 
-        // TODO : implementing bulk insert for Series Generation.
+        //return RedirectToAction("MultiInsert", "Series", new { seriesList });
 
-        foreach (Series series in seriesList)
-        {
-            await _db.InsertSeries(series);
-        }
-
-
-        var result = await _db.GetTournamentSeries(tournamentId);
-        return StatusCode((int)HttpStatusCode.OK, teams);
     }
 
 

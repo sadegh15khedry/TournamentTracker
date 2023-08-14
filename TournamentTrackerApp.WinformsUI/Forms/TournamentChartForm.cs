@@ -35,14 +35,13 @@ public partial class TournamentChartForm : Form
         MessageBox.Show(SelectedTournament.Teams.Count.ToString());
         MessageBox.Show(SelectedTournament.Series.Count.ToString());
 
-        if (SelectedTournament.Series.Count == 0)
+        if (SelectedTournament.IsStarted == false)
         {
-            var series = _tournamentData
-               .GenerateSeries(SelectedTournament.Id).Result;
+            _tournamentData.GenerateSeries(SelectedTournament.Id);
 
             //Thread.Sleep(3000);
 
-            //SelectedTournament.Series = series;
+            //SelectedTournament.Series = ;
             this.Hide();
             FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
         }

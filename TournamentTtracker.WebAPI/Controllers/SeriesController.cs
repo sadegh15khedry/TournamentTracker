@@ -89,4 +89,16 @@ public class SeriesController : ControllerBase
         }
         return series;
     }
+
+    /*    [HttpGet]
+        [Route("/api/[Controller]/[Action]")]
+        public async Task<ActionResult> MultiInsert(List<Series> seriesList)
+        {
+            *//*        foreach (var series in seriesList)
+                    {
+                        await _db.Insert(series);
+                    }
+                    return StatusCode((int)HttpStatusCode.OK, "Added");*//*
+            return Ok("worked");
+        }*/
 }

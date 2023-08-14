@@ -26,7 +26,15 @@ public class TournamentData : ITournamentData
 
     public async Task<IEnumerable<Tournament>> GetAll()
     {
-        return await _db.LoadData<Tournament, dynamic>("dbo.spTournament_GetAll", new { });
+        var result = await _db.LoadData<Tournament, dynamic>("dbo.spTournament_GetAll", new { });
+        var tournaments = result.ToList();
+
+        foreach (var tournament in tournaments)
+        {
+            SetTournamentAdditionalInfo(tournament);
+        }
+
+        return tournaments;
     }
 
     public async Task<Tournament> GetById(int id)
@@ -35,17 +43,36 @@ public class TournamentData : ITournamentData
             ("dbo.spTournament_GetByID", new { Id = id });
 
         Tournament tournament = results.FirstOrDefault();
-        tournament.Teams = GetTournamentTeams(id).Result.ToList();
-        tournament.Series = GetTournamentSeries(id).Result.ToList();
-
-        foreach (var series in tournament.Series)
-        {
-            series.FirstTeam = tournament.Teams.Where(s => s.Id == series.FirstTeamId).FirstOrDefault();
-            series.SecondTeam = tournament.Teams.Where(s => s.Id == series.SecondTeamId).FirstOrDefault();
-
-        }
+        SetTournamentAdditionalInfo(tournament);
 
         return tournament;
+    }
+
+    private void SetTournamentAdditionalInfo(Tournament tournament)
+    {
+
+        tournament.Teams = GetTournamentTeams(tournament.Id).Result.ToList();
+
+        if (tournament.IsStarted == false)
+        {
+            return;
+        }
+
+        SetTournamentSeriesInfo(tournament);
+
+
+        if (tournament.IsFinished == true)
+        {
+            return;
+        }
+        /*if (TournamentLogic.IsAllSeriesEned(tournament) == false)
+        {
+            return;
+        }
+        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);*/
+
+
+
     }
 
     public async Task<Tournament> Insert(Tournament tournament)
@@ -64,7 +91,11 @@ public class TournamentData : ITournamentData
         var result = await _db.LoadData<Tournament, dynamic>("spTournament_SetToFinished", new { Id = id });
         return result.FirstOrDefault();
     }
-
+    public async Task<Tournament> SetToStarted(int id)
+    {
+        var result = await _db.LoadData<Tournament, dynamic>("[spTournament_SetToStarted]", new { Id = id });
+        return result.FirstOrDefault();
+    }
 
     public async Task<Tournament> Update(Tournament tournament)
     {
@@ -86,10 +117,18 @@ public class TournamentData : ITournamentData
         return result.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<Series>> GetTournamentSeries(int tournamentId)
+    private async Task SetTournamentSeriesInfo(Tournament tournament)
     {
-        return await _db.LoadData<Series, dynamic>("spSeries_GetByTournamentId",
-            new { TournamentId = tournamentId });
+        var result = await _db.LoadData<Series, dynamic>("spSeries_GetByTournamentId",
+            new { TournamentId = tournament.Id });
+
+        tournament.Series = result.ToList();
+        foreach (var series in tournament.Series)
+        {
+            series.FirstTeam = tournament.Teams.Where(s => s.Id == series.FirstTeamId).FirstOrDefault();
+            series.SecondTeam = tournament.Teams.Where(s => s.Id == series.SecondTeamId).FirstOrDefault();
+        }
+        return;
 
     }
 
@@ -108,16 +147,16 @@ public class TournamentData : ITournamentData
         return result.FirstOrDefault();
     }
 
-    public async Task<Series> InsertSeries(Series series)
-    {
-        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
+    /*    private async Task InsertSeries(Series series)
         {
-            series.Round,
-            series.PlaceInRound,
-            series.FirstTeamId,
-            series.SecondTeamId,
-            series.TournamentId
-        });
-        return result.FirstOrDefault();
-    }
+            var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
+            {
+                series.Round,
+                series.PlaceInRound,
+                series.FirstTeamId,
+                series.SecondTeamId,
+                series.TournamentId
+            });
+
+        }*/
 }

@@ -116,6 +116,7 @@
     <Build Include="dbo\Stored Procedures\Series\spSeries_GetByTournamentId.sql" />
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetBySeriesId.sql" />
     <Build Include="dbo\Stored Procedures\Series\spSeries_SetToFinished.sql" />
+    <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToStarted.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

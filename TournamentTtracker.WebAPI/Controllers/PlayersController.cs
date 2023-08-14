@@ -23,13 +23,13 @@ public class PlayersController : Controller
     public async Task<ActionResult<Player>> GetAll()
     {
         var players = await _db.GetAll();
-        foreach (var player in players)
-        {
-            if (player.TeamId.HasValue)
-            {
-                player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
-            }
-        }
+        /*        foreach (var player in players)
+                {
+                    if (player.TeamId.HasValue)
+                    {
+                        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
+                    }
+                }*/
 
         return StatusCode((int)HttpStatusCode.OK, players);
     }
@@ -46,12 +46,12 @@ public class PlayersController : Controller
         {
             return StatusCode((int)HttpStatusCode.NotFound, "player Not Found");
         }
-        if (player.TeamId is null)
+        /*if (player.TeamId is null)
         {
             return Ok(player);
         }
 
-        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
+        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);*/
         return StatusCode((int)HttpStatusCode.OK, player);
 
     }

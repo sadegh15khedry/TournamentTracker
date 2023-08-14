@@ -16,32 +16,27 @@ public class PlayerData : IPlayerData
         _db = db;
     }
 
-    public async Task<Player> CanceledContract(int playerId)
-    {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_CanceledContract", new { Id = playerId });
-        return result.FirstOrDefault();
-    }
 
-    public async Task<Player> SignedWithTeam(int playerId, int teamId)
-    {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_SignedWithTeam", new { playerId, teamId });
-        return result.FirstOrDefault();
-
-    }
-    public async Task<Team> GetPlayerTeam(int teamId)
-    {
-        var results = await _db.LoadData<Team, dynamic>
-            ("spPlayer_GetPlayerTeam", new { TeamId = teamId });
-        return results.FirstOrDefault();
-    }
     public async Task<IEnumerable<Player>> GetAll()
     {
-        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetAll", new { });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetAll", new { });
+        var players = result.ToList();
+
+        foreach (var player in players)
+        {
+            player.Team = GetPlayerTeam(player.Id).Result;
+        }
+
+        return players;
     }
 
     public async Task<Player> GetById(int id)
     {
         var results = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetByID", new { Id = id });
+        var player = results.FirstOrDefault();
+
+        player.Team = GetPlayerTeam(player.Id).Result;
+
         return results.FirstOrDefault();
     }
 
@@ -88,6 +83,24 @@ public class PlayerData : IPlayerData
     public async Task<IEnumerable<Player>> GetTeamPlayers(int teamId)
     {
         return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetTeamPlayers", new { TeamId = teamId });
+    }
+    public async Task<Player> CanceledContract(int playerId)
+    {
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_CanceledContract", new { Id = playerId });
+        return result.FirstOrDefault();
+    }
+
+    public async Task<Player> SignedWithTeam(int playerId, int teamId)
+    {
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_SignedWithTeam", new { playerId, teamId });
+        return result.FirstOrDefault();
+
+    }
+    public async Task<Team> GetPlayerTeam(int teamId)
+    {
+        var results = await _db.LoadData<Team, dynamic>
+            ("spPlayer_GetPlayerTeam", new { TeamId = teamId });
+        return results.FirstOrDefault();
     }
 
 
