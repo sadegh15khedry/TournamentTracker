@@ -7,6 +7,7 @@ namespace TournamentTrackerApp.WinformsUI.Forms;
 public partial class TournamentChartForm : Form
 {
     private readonly ITournamentData _tournamentData;
+    private readonly int _tournamentId;
 
     public Tournament SelectedTournament { get; set; }
 
@@ -15,10 +16,10 @@ public partial class TournamentChartForm : Form
     {
         InitializeComponent();
         _tournamentData = tournamentData;
-        SelectedTournament = _tournamentData.GetById(tournamentId).Result;
+        _tournamentId = tournamentId;
+        ClearLabels();
+        //Thread.Sleep(2000);
 
-
-        PageSetup();
     }
 
     private void PageSetup()
@@ -49,11 +50,11 @@ public partial class TournamentChartForm : Form
 
         foreach (var series in SelectedTournament.Series)
         {
-            if (series.Round == 1 && series.PlaceInRound == 1)
+            if (/*series.Round == 1 &&*/ series.PlaceInRound == 1)
 
             {
-                MessageBox.Show(teamABCDLabel.Text);
-                MessageBox.Show(teamEFGHLabel.Text);
+                //MessageBox.Show(teamABCDLabel.Text.ToString());
+                //MessageBox.Show(teamEFGHLabel.Text.ToString());
 
                 teamABCDLabel.Text = series.FirstTeam.Name;
                 teamEFGHLabel.Text = series.SecondTeam.Name;
@@ -61,7 +62,7 @@ public partial class TournamentChartForm : Form
                 abcdVefghLabel.Click += (sender, e) => { GoToSeries(series.Id); };
 
             }
-            else if (series.Round == 1 && series.PlaceInRound == 2)
+            else if (/*series.Round == 1 &&*/ series.PlaceInRound == 2)
             {
                 teamIJKLLabel.Text = series.FirstTeam.Name;
                 teamMNOPLabel.Text = series.SecondTeam.Name;
@@ -97,4 +98,9 @@ public partial class TournamentChartForm : Form
         FormFactory.CreateTournamentDetails(SelectedTournament.Id).Show();
     }
 
+    private async void TournamentChartForm_Load(object sender, EventArgs e)
+    {
+        SelectedTournament = await _tournamentData.GetById(_tournamentId);
+        PageSetup();
+    }
 }

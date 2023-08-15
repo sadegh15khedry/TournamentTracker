@@ -904,6 +904,7 @@ partial class TournamentChartForm
         Margin = new Padding(5);
         Name = "TournamentChartForm";
         Text = "TournamentChart";
+        Load += TournamentChartForm_Load;
         ResumeLayout(false);
         PerformLayout();
     }

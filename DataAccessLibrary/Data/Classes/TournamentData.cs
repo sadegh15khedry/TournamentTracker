@@ -21,8 +21,9 @@ public class TournamentData : ITournamentData
 
     public async Task<IEnumerable<Team>> GetTournamentTeams(int tournamentId)
     {
-        return await _db.LoadData<Team, dynamic>("dbo.spTournament_GetTeams",
+        var result = await _db.LoadData<Team, dynamic>("dbo.spTournament_GetTeams",
             new { TournamentId = tournamentId });
+        return result;
     }
 
     public async Task<IEnumerable<Tournament>> GetAll()
@@ -32,7 +33,7 @@ public class TournamentData : ITournamentData
 
         foreach (var tournament in tournaments)
         {
-            SetTournamentAdditionalInfo(tournament);
+            await SetTournamentAdditionalInfoAsync(tournament);
         }
 
         return tournaments;
@@ -44,17 +45,17 @@ public class TournamentData : ITournamentData
             ("dbo.spTournament_GetByID", new { Id = id });
 
         Tournament tournament = results.FirstOrDefault();
-        SetTournamentAdditionalInfo(tournament);
+        await SetTournamentAdditionalInfoAsync(tournament);
 
         return tournament;
     }
 
-    private void SetTournamentAdditionalInfo(Tournament tournament)
+    private async Task SetTournamentAdditionalInfoAsync(Tournament tournament)
     {
+        var teams = await GetTournamentTeams(tournament.Id);
+        tournament.Teams = teams.ToList();
 
-        tournament.Teams = GetTournamentTeams(tournament.Id).Result.ToList();
-
-        SetTournamentSeriesInfo(tournament);
+        await SetTournamentSeriesInfo(tournament);
 
         /*
                 if (tournament.IsFinished == true)
@@ -142,8 +143,11 @@ public class TournamentData : ITournamentData
         tournament.Series = result.ToList();
         foreach (var series in tournament.Series)
         {
-            series.FirstTeam = tournament.Teams.Where(s => s.Id == series.FirstTeamId).FirstOrDefault();
-            series.SecondTeam = tournament.Teams.Where(s => s.Id == series.SecondTeamId).FirstOrDefault();
+            series.FirstTeam = tournament.Teams
+                .Where(s => s.Id == series.FirstTeamId).First();
+
+            series.SecondTeam = tournament.Teams
+                .Where(s => s.Id == series.SecondTeamId).First();
 
             var matches = await _db.LoadData<Match, dynamic>("spMatch_GetBySeriesId",
             new { SeriesId = series.Id });
