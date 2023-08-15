@@ -26,7 +26,7 @@ public class Series
     /// <summary>
     /// Determines if the series has been finished.
     /// </summary>
-    public bool? IsSeriesEnded { get; set; } = false;
+    public bool? IsSeriesEnded { get; set; }
 
     /// <summary>
     /// Id of the FirstTeam participating in the Series

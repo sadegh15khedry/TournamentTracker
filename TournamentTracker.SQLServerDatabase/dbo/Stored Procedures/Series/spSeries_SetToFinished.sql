@@ -2,11 +2,11 @@
 	@SeriesId  int
 AS
 Begin
-	Update dbo.[Series] Set IsSeriesFinished = 1
+	Update dbo.[Series] Set isSeriesEnded = 1
 	output Inserted.Id,
 	Inserted.Round,
 	Inserted.PlaceInRound,
-	Inserted.IsSeriesFinished,
+	Inserted.isSeriesEnded,
 	Inserted.FirstTeamId,
 	Inserted.SecondTeamId,
 	Inserted.TournamentId

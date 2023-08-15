@@ -154,7 +154,7 @@ public class TournamentsController : Controller
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
-    [HttpGet]
+    [HttpPost]
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
     // Get : api/Tournaments/GenerateSeries/1
     public async Task<ActionResult> SetToStarted(int tournamentId)

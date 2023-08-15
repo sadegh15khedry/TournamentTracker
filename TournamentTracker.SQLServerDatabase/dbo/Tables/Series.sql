@@ -3,7 +3,7 @@
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Round] INT NULL, 
     [PlaceInRound] INT NULL, 
-    [IsSeriesFinished] BIT NOT NULL DEFAULT 0, 
+    [isSeriesEnded] BIT NOT NULL DEFAULT 0, 
     [FirstTeamId] INT NOT NULL, 
     [SecondTeamId] INT NOT NULL, 
     [TournamentId] INT NOT NULL, 

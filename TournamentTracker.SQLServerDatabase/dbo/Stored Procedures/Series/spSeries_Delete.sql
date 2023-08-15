@@ -3,7 +3,7 @@
 AS
 Begin
 	Delete From dbo.[Series]
-	output Deleted.Id, Deleted.Round, Deleted.PlaceInRound, Deleted.IsSeriesFinished,
+	output Deleted.Id, Deleted.Round, Deleted.PlaceInRound, Deleted.isSeriesEnded,
 	Deleted.FirstTeamId, Deleted.SecondTeamId, Deleted.TournamentId
 	Where Id = @Id
 End

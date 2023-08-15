@@ -60,51 +60,21 @@ partial class TournamentChartForm
         teamWestLabel = new Label();
         teamEastLabel = new Label();
         teamWinnerLabel = new Label();
-        label1 = new Label();
-        label2 = new Label();
-        label3 = new Label();
+        aVbLabel = new Label();
+        abVcdLabel = new Label();
+        edVghLabel = new Label();
         ijklVmnopLabel = new Label();
-        label5 = new Label();
+        finalsVLabel = new Label();
         abcdVefghLabel = new Label();
-        label7 = new Label();
-        label8 = new Label();
-        label12 = new Label();
-        label13 = new Label();
-        label14 = new Label();
-        label15 = new Label();
-        label16 = new Label();
-        label17 = new Label();
-        label18 = new Label();
-        label9 = new Label();
-        label10 = new Label();
-        label11 = new Label();
-        label19 = new Label();
-        label20 = new Label();
-        label21 = new Label();
-        label22 = new Label();
-        label23 = new Label();
-        label24 = new Label();
-        label25 = new Label();
-        label26 = new Label();
-        label27 = new Label();
-        label28 = new Label();
-        label29 = new Label();
-        label30 = new Label();
-        label31 = new Label();
-        label32 = new Label();
-        label33 = new Label();
-        label34 = new Label();
-        label35 = new Label();
-        label36 = new Label();
-        label37 = new Label();
-        label38 = new Label();
-        label39 = new Label();
-        label40 = new Label();
-        label41 = new Label();
-        label42 = new Label();
-        label43 = new Label();
-        label44 = new Label();
-        label45 = new Label();
+        mnVopLabel = new Label();
+        ijVkLLabel = new Label();
+        iVjLabel = new Label();
+        kVLLabel = new Label();
+        mVnLabel = new Label();
+        cVdLabel = new Label();
+        eVfLabel = new Label();
+        gVhLabel = new Label();
+        oVpLabel = new Label();
         backButton = new Label();
         SuspendLayout();
         // 
@@ -399,32 +369,32 @@ partial class TournamentChartForm
         teamWinnerLabel.TabIndex = 51;
         teamWinnerLabel.Text = "TeamWinner";
         // 
-        // label1
+        // aVbLabel
         // 
-        label1.AutoSize = true;
-        label1.Location = new Point(1663, 224);
-        label1.Name = "label1";
-        label1.Size = new Size(39, 45);
-        label1.TabIndex = 52;
-        label1.Text = "X";
+        aVbLabel.AutoSize = true;
+        aVbLabel.Location = new Point(1663, 224);
+        aVbLabel.Name = "aVbLabel";
+        aVbLabel.Size = new Size(39, 45);
+        aVbLabel.TabIndex = 52;
+        aVbLabel.Text = "X";
         // 
-        // label2
+        // abVcdLabel
         // 
-        label2.AutoSize = true;
-        label2.Location = new Point(1450, 302);
-        label2.Name = "label2";
-        label2.Size = new Size(39, 45);
-        label2.TabIndex = 53;
-        label2.Text = "X";
+        abVcdLabel.AutoSize = true;
+        abVcdLabel.Location = new Point(1450, 302);
+        abVcdLabel.Name = "abVcdLabel";
+        abVcdLabel.Size = new Size(39, 45);
+        abVcdLabel.TabIndex = 53;
+        abVcdLabel.Text = "X";
         // 
-        // label3
+        // edVghLabel
         // 
-        label3.AutoSize = true;
-        label3.Location = new Point(1450, 798);
-        label3.Name = "label3";
-        label3.Size = new Size(39, 45);
-        label3.TabIndex = 54;
-        label3.Text = "X";
+        edVghLabel.AutoSize = true;
+        edVghLabel.Location = new Point(1450, 798);
+        edVghLabel.Name = "edVghLabel";
+        edVghLabel.Size = new Size(39, 45);
+        edVghLabel.TabIndex = 54;
+        edVghLabel.Text = "X";
         // 
         // ijklVmnopLabel
         // 
@@ -435,14 +405,14 @@ partial class TournamentChartForm
         ijklVmnopLabel.TabIndex = 55;
         ijklVmnopLabel.Text = "X";
         // 
-        // label5
+        // finalsVLabel
         // 
-        label5.AutoSize = true;
-        label5.Location = new Point(892, 516);
-        label5.Name = "label5";
-        label5.Size = new Size(39, 45);
-        label5.TabIndex = 56;
-        label5.Text = "X";
+        finalsVLabel.AutoSize = true;
+        finalsVLabel.Location = new Point(892, 516);
+        finalsVLabel.Name = "finalsVLabel";
+        finalsVLabel.Size = new Size(39, 45);
+        finalsVLabel.TabIndex = 56;
+        finalsVLabel.Text = "X";
         // 
         // abcdVefghLabel
         // 
@@ -453,356 +423,86 @@ partial class TournamentChartForm
         abcdVefghLabel.TabIndex = 57;
         abcdVefghLabel.Text = "X";
         // 
-        // label7
-        // 
-        label7.AutoSize = true;
-        label7.Location = new Point(343, 771);
-        label7.Name = "label7";
-        label7.Size = new Size(39, 45);
-        label7.TabIndex = 58;
-        label7.Text = "X";
-        // 
-        // label8
-        // 
-        label8.AutoSize = true;
-        label8.Location = new Point(323, 302);
-        label8.Name = "label8";
-        label8.Size = new Size(39, 45);
-        label8.TabIndex = 59;
-        label8.Text = "X";
-        // 
-        // label12
-        // 
-        label12.AutoSize = true;
-        label12.Location = new Point(145, 226);
-        label12.Name = "label12";
-        label12.Size = new Size(39, 45);
-        label12.TabIndex = 63;
-        label12.Text = "X";
-        // 
-        // label13
-        // 
-        label13.AutoSize = true;
-        label13.Location = new Point(145, 439);
-        label13.Name = "label13";
-        label13.Size = new Size(39, 45);
-        label13.TabIndex = 64;
-        label13.Text = "X";
-        // 
-        // label14
-        // 
-        label14.AutoSize = true;
-        label14.Location = new Point(145, 672);
-        label14.Name = "label14";
-        label14.Size = new Size(39, 45);
-        label14.TabIndex = 65;
-        label14.Text = "X";
-        // 
-        // label15
-        // 
-        label15.AutoSize = true;
-        label15.Location = new Point(1663, 439);
-        label15.Name = "label15";
-        label15.Size = new Size(39, 45);
-        label15.TabIndex = 66;
-        label15.Text = "X";
-        // 
-        // label16
-        // 
-        label16.AutoSize = true;
-        label16.Location = new Point(1663, 674);
-        label16.Name = "label16";
-        label16.Size = new Size(39, 45);
-        label16.TabIndex = 67;
-        label16.Text = "X";
-        // 
-        // label17
-        // 
-        label17.AutoSize = true;
-        label17.Location = new Point(1663, 882);
-        label17.Name = "label17";
-        label17.Size = new Size(39, 45);
-        label17.TabIndex = 68;
-        label17.Text = "X";
-        // 
-        // label18
-        // 
-        label18.AutoSize = true;
-        label18.Location = new Point(145, 881);
-        label18.Name = "label18";
-        label18.Size = new Size(39, 45);
-        label18.TabIndex = 69;
-        label18.Text = "X";
-        // 
-        // label9
-        // 
-        label9.AutoSize = true;
-        label9.Location = new Point(1362, 347);
-        label9.Name = "label9";
-        label9.Size = new Size(37, 45);
-        label9.TabIndex = 70;
-        label9.Text = "0";
-        // 
-        // label10
-        // 
-        label10.AutoSize = true;
-        label10.Location = new Point(225, 391);
-        label10.Name = "label10";
-        label10.Size = new Size(37, 45);
-        label10.TabIndex = 71;
-        label10.Text = "0";
-        // 
-        // label11
-        // 
-        label11.AutoSize = true;
-        label11.Location = new Point(1123, 470);
-        label11.Name = "label11";
-        label11.Size = new Size(37, 45);
-        label11.TabIndex = 72;
-        label11.Text = "0";
-        // 
-        // label19
-        // 
-        label19.AutoSize = true;
-        label19.Location = new Point(1123, 587);
-        label19.Name = "label19";
-        label19.Size = new Size(37, 45);
-        label19.TabIndex = 73;
-        label19.Text = "0";
-        // 
-        // label20
-        // 
-        label20.AutoSize = true;
-        label20.Location = new Point(1362, 843);
-        label20.Name = "label20";
-        label20.Size = new Size(37, 45);
-        label20.TabIndex = 74;
-        label20.Text = "0";
-        // 
-        // label21
-        // 
-        label21.AutoSize = true;
-        label21.Location = new Point(1362, 737);
-        label21.Name = "label21";
-        label21.Size = new Size(37, 45);
-        label21.TabIndex = 75;
-        label21.Text = "0";
-        // 
-        // label22
-        // 
-        label22.AutoSize = true;
-        label22.Location = new Point(1585, 926);
-        label22.Name = "label22";
-        label22.Size = new Size(37, 45);
-        label22.TabIndex = 76;
-        label22.Text = "0";
-        // 
-        // label23
-        // 
-        label23.AutoSize = true;
-        label23.Location = new Point(1585, 837);
-        label23.Name = "label23";
-        label23.Size = new Size(37, 45);
-        label23.TabIndex = 77;
-        label23.Text = "0";
-        // 
-        // label24
-        // 
-        label24.AutoSize = true;
-        label24.Location = new Point(1585, 719);
-        label24.Name = "label24";
-        label24.Size = new Size(37, 45);
-        label24.TabIndex = 78;
-        label24.Text = "0";
-        // 
-        // label25
-        // 
-        label25.AutoSize = true;
-        label25.Location = new Point(1585, 627);
-        label25.Name = "label25";
-        label25.Size = new Size(37, 45);
-        label25.TabIndex = 79;
-        label25.Text = "0";
-        // 
-        // label26
-        // 
-        label26.AutoSize = true;
-        label26.Location = new Point(1585, 484);
-        label26.Name = "label26";
-        label26.Size = new Size(37, 45);
-        label26.TabIndex = 80;
-        label26.Text = "0";
-        // 
-        // label27
-        // 
-        label27.AutoSize = true;
-        label27.Location = new Point(1585, 391);
-        label27.Name = "label27";
-        label27.Size = new Size(37, 45);
-        label27.TabIndex = 81;
-        label27.Text = "0";
-        // 
-        // label28
-        // 
-        label28.AutoSize = true;
-        label28.Location = new Point(1362, 243);
-        label28.Name = "label28";
-        label28.Size = new Size(37, 45);
-        label28.TabIndex = 82;
-        label28.Text = "0";
-        // 
-        // label29
-        // 
-        label29.AutoSize = true;
-        label29.Location = new Point(1585, 280);
-        label29.Name = "label29";
-        label29.Size = new Size(37, 45);
-        label29.TabIndex = 83;
-        label29.Text = "0";
-        // 
-        // label30
-        // 
-        label30.AutoSize = true;
-        label30.Location = new Point(1585, 179);
-        label30.Name = "label30";
-        label30.Size = new Size(37, 45);
-        label30.TabIndex = 84;
-        label30.Text = "0";
-        // 
-        // label31
-        // 
-        label31.AutoSize = true;
-        label31.Location = new Point(987, 573);
-        label31.Name = "label31";
-        label31.Size = new Size(37, 45);
-        label31.TabIndex = 85;
-        label31.Text = "0";
-        // 
-        // label32
-        // 
-        label32.AutoSize = true;
-        label32.Location = new Point(784, 573);
-        label32.Name = "label32";
-        label32.Size = new Size(37, 45);
-        label32.TabIndex = 86;
-        label32.Text = "0";
-        // 
-        // label33
-        // 
-        label33.AutoSize = true;
-        label33.Location = new Point(228, 179);
-        label33.Name = "label33";
-        label33.Size = new Size(37, 45);
-        label33.TabIndex = 87;
-        label33.Text = "0";
-        // 
-        // label34
-        // 
-        label34.AutoSize = true;
-        label34.Location = new Point(228, 271);
-        label34.Name = "label34";
-        label34.Size = new Size(37, 45);
-        label34.TabIndex = 88;
-        label34.Text = "0";
-        // 
-        // label35
-        // 
-        label35.AutoSize = true;
-        label35.Location = new Point(225, 484);
-        label35.Name = "label35";
-        label35.Size = new Size(37, 45);
-        label35.TabIndex = 89;
-        label35.Text = "0";
-        // 
-        // label36
-        // 
-        label36.AutoSize = true;
-        label36.Location = new Point(228, 719);
-        label36.Name = "label36";
-        label36.Size = new Size(37, 45);
-        label36.TabIndex = 90;
-        label36.Text = "0";
-        // 
-        // label37
-        // 
-        label37.AutoSize = true;
-        label37.Location = new Point(228, 627);
-        label37.Name = "label37";
-        label37.Size = new Size(37, 45);
-        label37.TabIndex = 91;
-        label37.Text = "0";
-        // 
-        // label38
-        // 
-        label38.AutoSize = true;
-        label38.Location = new Point(228, 835);
-        label38.Name = "label38";
-        label38.Size = new Size(37, 45);
-        label38.TabIndex = 92;
-        label38.Text = "0";
-        // 
-        // label39
-        // 
-        label39.AutoSize = true;
-        label39.Location = new Point(228, 926);
-        label39.Name = "label39";
-        label39.Size = new Size(37, 45);
-        label39.TabIndex = 93;
-        label39.Text = "0";
-        // 
-        // label40
-        // 
-        label40.AutoSize = true;
-        label40.Location = new Point(433, 826);
-        label40.Name = "label40";
-        label40.Size = new Size(37, 45);
-        label40.TabIndex = 94;
-        label40.Text = "0";
-        // 
-        // label41
-        // 
-        label41.AutoSize = true;
-        label41.Location = new Point(433, 710);
-        label41.Name = "label41";
-        label41.Size = new Size(37, 45);
-        label41.TabIndex = 95;
-        label41.Text = "0";
-        // 
-        // label42
-        // 
-        label42.AutoSize = true;
-        label42.Location = new Point(411, 347);
-        label42.Name = "label42";
-        label42.Size = new Size(37, 45);
-        label42.TabIndex = 96;
-        label42.Text = "0";
-        // 
-        // label43
-        // 
-        label43.AutoSize = true;
-        label43.Location = new Point(411, 243);
-        label43.Name = "label43";
-        label43.Size = new Size(37, 45);
-        label43.TabIndex = 97;
-        label43.Text = "0";
-        // 
-        // label44
-        // 
-        label44.AutoSize = true;
-        label44.Location = new Point(657, 470);
-        label44.Name = "label44";
-        label44.Size = new Size(37, 45);
-        label44.TabIndex = 98;
-        label44.Text = "0";
-        // 
-        // label45
-        // 
-        label45.AutoSize = true;
-        label45.Location = new Point(657, 584);
-        label45.Name = "label45";
-        label45.Size = new Size(37, 45);
-        label45.TabIndex = 99;
-        label45.Text = "0";
+        // mnVopLabel
+        // 
+        mnVopLabel.AutoSize = true;
+        mnVopLabel.Location = new Point(343, 771);
+        mnVopLabel.Name = "mnVopLabel";
+        mnVopLabel.Size = new Size(39, 45);
+        mnVopLabel.TabIndex = 58;
+        mnVopLabel.Text = "X";
+        // 
+        // ijVkLLabel
+        // 
+        ijVkLLabel.AutoSize = true;
+        ijVkLLabel.Location = new Point(323, 302);
+        ijVkLLabel.Name = "ijVkLLabel";
+        ijVkLLabel.Size = new Size(39, 45);
+        ijVkLLabel.TabIndex = 59;
+        ijVkLLabel.Text = "X";
+        // 
+        // iVjLabel
+        // 
+        iVjLabel.AutoSize = true;
+        iVjLabel.Location = new Point(145, 226);
+        iVjLabel.Name = "iVjLabel";
+        iVjLabel.Size = new Size(39, 45);
+        iVjLabel.TabIndex = 63;
+        iVjLabel.Text = "X";
+        // 
+        // kVLLabel
+        // 
+        kVLLabel.AutoSize = true;
+        kVLLabel.Location = new Point(145, 439);
+        kVLLabel.Name = "kVLLabel";
+        kVLLabel.Size = new Size(39, 45);
+        kVLLabel.TabIndex = 64;
+        kVLLabel.Text = "X";
+        // 
+        // mVnLabel
+        // 
+        mVnLabel.AutoSize = true;
+        mVnLabel.Location = new Point(145, 672);
+        mVnLabel.Name = "mVnLabel";
+        mVnLabel.Size = new Size(39, 45);
+        mVnLabel.TabIndex = 65;
+        mVnLabel.Text = "X";
+        // 
+        // cVdLabel
+        // 
+        cVdLabel.AutoSize = true;
+        cVdLabel.Location = new Point(1663, 439);
+        cVdLabel.Name = "cVdLabel";
+        cVdLabel.Size = new Size(39, 45);
+        cVdLabel.TabIndex = 66;
+        cVdLabel.Text = "X";
+        // 
+        // eVfLabel
+        // 
+        eVfLabel.AutoSize = true;
+        eVfLabel.Location = new Point(1663, 674);
+        eVfLabel.Name = "eVfLabel";
+        eVfLabel.Size = new Size(39, 45);
+        eVfLabel.TabIndex = 67;
+        eVfLabel.Text = "X";
+        // 
+        // gVhLabel
+        // 
+        gVhLabel.AutoSize = true;
+        gVhLabel.Location = new Point(1663, 882);
+        gVhLabel.Name = "gVhLabel";
+        gVhLabel.Size = new Size(39, 45);
+        gVhLabel.TabIndex = 68;
+        gVhLabel.Text = "X";
+        // 
+        // oVpLabel
+        // 
+        oVpLabel.AutoSize = true;
+        oVpLabel.Location = new Point(145, 881);
+        oVpLabel.Name = "oVpLabel";
+        oVpLabel.Size = new Size(39, 45);
+        oVpLabel.TabIndex = 69;
+        oVpLabel.Text = "X";
         // 
         // backButton
         // 
@@ -822,51 +522,21 @@ partial class TournamentChartForm
         BackColor = Color.Black;
         ClientSize = new Size(1860, 1149);
         Controls.Add(backButton);
-        Controls.Add(label45);
-        Controls.Add(label44);
-        Controls.Add(label43);
-        Controls.Add(label42);
-        Controls.Add(label41);
-        Controls.Add(label40);
-        Controls.Add(label39);
-        Controls.Add(label38);
-        Controls.Add(label37);
-        Controls.Add(label36);
-        Controls.Add(label35);
-        Controls.Add(label34);
-        Controls.Add(label33);
-        Controls.Add(label32);
-        Controls.Add(label31);
-        Controls.Add(label30);
-        Controls.Add(label29);
-        Controls.Add(label28);
-        Controls.Add(label27);
-        Controls.Add(label26);
-        Controls.Add(label25);
-        Controls.Add(label24);
-        Controls.Add(label23);
-        Controls.Add(label22);
-        Controls.Add(label21);
-        Controls.Add(label20);
-        Controls.Add(label19);
-        Controls.Add(label11);
-        Controls.Add(label10);
-        Controls.Add(label9);
-        Controls.Add(label18);
-        Controls.Add(label17);
-        Controls.Add(label16);
-        Controls.Add(label15);
-        Controls.Add(label14);
-        Controls.Add(label13);
-        Controls.Add(label12);
-        Controls.Add(label8);
-        Controls.Add(label7);
+        Controls.Add(oVpLabel);
+        Controls.Add(gVhLabel);
+        Controls.Add(eVfLabel);
+        Controls.Add(cVdLabel);
+        Controls.Add(mVnLabel);
+        Controls.Add(kVLLabel);
+        Controls.Add(iVjLabel);
+        Controls.Add(ijVkLLabel);
+        Controls.Add(mnVopLabel);
         Controls.Add(abcdVefghLabel);
-        Controls.Add(label5);
+        Controls.Add(finalsVLabel);
         Controls.Add(ijklVmnopLabel);
-        Controls.Add(label3);
-        Controls.Add(label2);
-        Controls.Add(label1);
+        Controls.Add(edVghLabel);
+        Controls.Add(abVcdLabel);
+        Controls.Add(aVbLabel);
         Controls.Add(teamWinnerLabel);
         Controls.Add(teamWestLabel);
         Controls.Add(teamEastLabel);
@@ -943,50 +613,20 @@ partial class TournamentChartForm
     private Label teamWestLabel;
     private Label teamEastLabel;
     private Label teamWinnerLabel;
-    private Label label1;
-    private Label label2;
-    private Label label3;
+    private Label aVbLabel;
+    private Label abVcdLabel;
+    private Label edVghLabel;
     private Label ijklVmnopLabel;
-    private Label label5;
+    private Label finalsVLabel;
     private Label abcdVefghLabel;
-    private Label label7;
-    private Label label8;
-    private Label label12;
-    private Label label13;
-    private Label label14;
-    private Label label15;
-    private Label label16;
-    private Label label17;
-    private Label label18;
-    private Label label9;
-    private Label label10;
-    private Label label11;
-    private Label label19;
-    private Label label20;
-    private Label label21;
-    private Label label22;
-    private Label label23;
-    private Label label24;
-    private Label label25;
-    private Label label26;
-    private Label label27;
-    private Label label28;
-    private Label label29;
-    private Label label30;
-    private Label label31;
-    private Label label32;
-    private Label label33;
-    private Label label34;
-    private Label label35;
-    private Label label36;
-    private Label label37;
-    private Label label38;
-    private Label label39;
-    private Label label40;
-    private Label label41;
-    private Label label42;
-    private Label label43;
-    private Label label44;
-    private Label label45;
+    private Label mnVopLabel;
+    private Label ijVkLLabel;
+    private Label iVjLabel;
+    private Label kVLLabel;
+    private Label mVnLabel;
+    private Label cVdLabel;
+    private Label eVfLabel;
+    private Label gVhLabel;
+    private Label oVpLabel;
     private Label backButton;
 }

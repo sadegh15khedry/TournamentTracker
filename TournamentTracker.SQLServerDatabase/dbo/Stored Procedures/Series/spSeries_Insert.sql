@@ -7,12 +7,12 @@
 AS
 Begin
 	Insert Into dbo.[Series]
-		(Round, PlaceInRound, IsSeriesFinished, FirstTeamId, SecondTeamId, TournamentId)
+		(Round, PlaceInRound, isSeriesEnded, FirstTeamId, SecondTeamId, TournamentId)
 	output
 	Inserted.Id,
 	Inserted.Round,
 	Inserted.PlaceInRound,
-	Inserted.IsSeriesFinished,
+	Inserted.isSeriesEnded,
 	Inserted.FirstTeamId,
 	Inserted.SecondTeamId,
 	Inserted.TournamentId

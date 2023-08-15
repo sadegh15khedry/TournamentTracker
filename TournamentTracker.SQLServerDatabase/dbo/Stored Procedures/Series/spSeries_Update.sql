@@ -9,13 +9,13 @@
 AS
 Begin
 	Update dbo.[Series] 
-	Set Round = @Round, IsSeriesFinished = @IsSeriesFinished, PlaceInRound = @PlaceInRound,  
+	Set Round = @Round, isSeriesEnded = @IsSeriesFinished, PlaceInRound = @PlaceInRound,  
 		@FirstTeamId = @FirstTeamId, SecondTeamId = @SecondTeamId, TournamentId = @TournamentId
 	output
 	Inserted.Id,
 	Inserted.Round,
 	Inserted.PlaceInRound,
-	Inserted.IsSeriesFinished,
+	Inserted.IsSeriesEnded,
 	Inserted.FirstTeamId,
 	Inserted.SecondTeamId,
 	Inserted.TournamentId

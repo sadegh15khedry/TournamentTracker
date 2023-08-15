@@ -28,8 +28,8 @@ public partial class TournamentChartForm : Form
         titleLabel.Text = SelectedTournament.Name;
         backButton.Text = "←";
 
-        MessageBox.Show(SelectedTournament.Teams.Count.ToString());
-        MessageBox.Show(SelectedTournament.Series.Count.ToString());
+        //MessageBox.Show(SelectedTournament.Teams.Count.ToString());
+        //MessageBox.Show(SelectedTournament.Series.Count.ToString());
 
         if (SelectedTournament.IsStarted == false)
         {
@@ -50,30 +50,56 @@ public partial class TournamentChartForm : Form
 
         foreach (var series in SelectedTournament.Series)
         {
-            if (/*series.Round == 1 &&*/ series.PlaceInRound == 1)
 
+            //finals
+            if (series.Round == 0 && series.PlaceInRound == 1)
             {
-                //MessageBox.Show(teamABCDLabel.Text.ToString());
-                //MessageBox.Show(teamEFGHLabel.Text.ToString());
+                teamEastLabel.Text = series.FirstTeam.Name + "\n" + series.FirstTeamWins.ToString();
+                teamWestLabel.Text = series.SecondTeam.Name + "\n" + series.SecondTeamWins.ToString();
 
-                teamABCDLabel.Text = series.FirstTeam.Name;
-                teamEFGHLabel.Text = series.SecondTeam.Name;
+                finalsVLabel.Text = "X";
+                finalsVLabel.Click += (sender, e) => { GoToSeries(series.Id); };
+            }
+            //conference finals
+            else if (series.Round == 1 && series.PlaceInRound == 1)
+            {
+                teamABCDLabel.Text = series.FirstTeamWins.ToString() + "  " +
+                    series.FirstTeam.Name;
+
+                teamEFGHLabel.Text = series.SecondTeamWins.ToString() +
+                    "  " + series.SecondTeam.Name;
+
                 abcdVefghLabel.Text = "X";
                 abcdVefghLabel.Click += (sender, e) => { GoToSeries(series.Id); };
 
             }
-            else if (/*series.Round == 1 &&*/ series.PlaceInRound == 2)
+            else if (series.Round == 1 && series.PlaceInRound == 2)
             {
-                teamIJKLLabel.Text = series.FirstTeam.Name;
-                teamMNOPLabel.Text = series.SecondTeam.Name;
+                teamIJKLLabel.Text = series.FirstTeam.Name + "  " + series.FirstTeamWins.ToString();
+                teamMNOPLabel.Text = series.SecondTeam.Name + "  " + series.SecondTeamWins.ToString();
+
                 ijklVmnopLabel.Text = "X";
                 ijklVmnopLabel.Click += (sender, e) => { GoToSeries(series.Id); };
             }
+            //second round
+            else if (series.Round == 2 && series.PlaceInRound == 1)
+            {
+                teamABLabel.Text = series.FirstTeam.Name;
+                teamCDLabel.Text = series.SecondTeam.Name;
+
+                abcdVefghLabel.Text = "X";
+                ijklVmnopLabel.Click += (sender, e) => { GoToSeries(series.Id); };
+            }
+
+
+
+            //first round
         }
 
 
 
     }
+
 
     private void GoToSeries(int seriesId)
     {

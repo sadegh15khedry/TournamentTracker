@@ -2,7 +2,7 @@
 	@TournamentId int
 AS
 Begin
-	SELECT Id, Round, PlaceInRound, IsSeriesFinished, FirstTeamId, SecondTeamId, TournamentId
+	SELECT Id, Round, PlaceInRound, isSeriesEnded, FirstTeamId, SecondTeamId, TournamentId
 	From dbo.[Series] 
 	Where TournamentId = @TournamentId
 End

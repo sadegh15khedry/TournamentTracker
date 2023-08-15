@@ -49,6 +49,7 @@ public class MatchesController : ControllerBase
         {
             match.Outcome = TournamentLogic.GetMatchOutcome(match);
             var result = await _db.Insert(match);
+
             return Redirect("/api/Series/CheckIfSeriesEnded/" + match.SeriesId);
             //return StatusCode((int)HttpStatusCode.Created, result);
         }
