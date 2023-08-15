@@ -54,38 +54,28 @@ public class TournamentData : ITournamentData
 
         tournament.Teams = GetTournamentTeams(tournament.Id).Result.ToList();
 
-        /*        if (tournament.IsStarted == false)
+        SetTournamentSeriesInfo(tournament);
+
+        /*
+                if (tournament.IsFinished == true)
+                {
+                    return;
+                }
+                if (tournament.IsStarted == true)
                 {
                     return;
                 }*/
 
-        SetTournamentSeriesInfo(tournament);
 
-
-        if (tournament.IsFinished == true)
+        /*if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false ||
+            TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == fa lse)
         {
             return;
-        }
-        if (tournament.IsStarted == true)
-        {
-            return;
-        }
+        }*/
+        //SetToStarted(tournament.Id);
 
 
-        if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false ||
-            TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == false)
-        {
-            return;
-        }
-        SetToStarted(tournament.Id);
-        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);
 
-
-        foreach (Series series in nextRoundSeries)
-        {
-            tournament.Series.Add(series);
-            InsertSeries(series);
-        }
         return;
 
 
@@ -112,7 +102,16 @@ public class TournamentData : ITournamentData
     public async Task<Tournament> SetToStarted(int id)
     {
         var result = await _db.LoadData<Tournament, dynamic>("[spTournament_SetToStarted]", new { Id = id });
-        return result.FirstOrDefault();
+
+        var tournament = await GetById(id);
+        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);
+        foreach (Series series in nextRoundSeries)
+        {
+            //tournament.Series.Add(series);
+            InsertSeries(series);
+        }
+        tournament = await GetById(tournament.Id);
+        return tournament;
     }
 
     public async Task<Tournament> Update(Tournament tournament)
@@ -151,7 +150,6 @@ public class TournamentData : ITournamentData
             series.Matches = matches.ToList();
 
             TournamentLogic.SetSeriesWins(series);
-
         }
         return;
 

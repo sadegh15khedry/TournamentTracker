@@ -11,8 +11,7 @@ public partial class TournamentChartForm : Form
     public Tournament SelectedTournament { get; set; }
 
 
-    public TournamentChartForm(ITournamentData tournamentData, ITeamData teamData,
-        ISeriesData seriesData, int tournamentId)
+    public TournamentChartForm(ITournamentData tournamentData, int tournamentId)
     {
         InitializeComponent();
         _tournamentData = tournamentData;
@@ -46,6 +45,8 @@ public partial class TournamentChartForm : Form
 
     private void DisplaySeriesInChart()
     {
+        // MessageBox.Show()
+
         foreach (var series in SelectedTournament.Series)
         {
             if (series.Round == 1 && series.PlaceInRound == 1)

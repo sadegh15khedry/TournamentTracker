@@ -1,6 +1,7 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
@@ -153,18 +154,24 @@ public class TournamentsController : Controller
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
-    /*[HttpGet]
+    [HttpGet]
     [Route("/api/[Controller]/[Action]/{tournamentId}")]
     // Get : api/Tournaments/GenerateSeries/1
     public async Task<ActionResult> SetToStarted(int tournamentId)
     {
-        var result = await _db.SetToStarted(tournamentId);
+        //var result = await _db.SetToStarted(tournamentId);
+        var tournament = await _db.GetById(tournamentId);
+        if (TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == false ||
+            tournament.IsStarted == true)
+        {
+            return StatusCode((int)HttpStatusCode.BadRequest, false);
+        }
 
-        return StatusCode((int)HttpStatusCode.OK, result);
+        var result = await _db.SetToStarted(tournamentId);
+        return StatusCode((int)HttpStatusCode.OK, true);
 
         //return RedirectToAction("MultiInsert", "Series", new { seriesList });
-
-    }*/
+    }
 
 
 }

@@ -36,9 +36,11 @@ public interface ITournamentData
     [Post("/Tournaments/RemoveTeamFromTournament")]
     Task<TournamentTeam> RemoveTeamFromTournament([Body] TournamentTeam tournamentTeam);
 
-    /*    [Post("/Tournaments/GenerateSeries")]
-        Task<List<Series>> GenerateSeries(int tournamentId);*/
+    //[Post("/Tournaments/GenerateSeries/{tournamentId}")]
+    //Task<List<Series>> GenerateSeries(int tournamentId);
 
+    [Post("/Tournaments/SetToStarted/{tournamentId}")]
+    Task<bool> SetToStarted(int tournamentId);
 
 
 }

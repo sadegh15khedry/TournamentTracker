@@ -44,10 +44,21 @@ public partial class TournamentDetailsForm : Form
 
     private void startTournamentButton_Click(object sender, EventArgs e)
     {
+        if (SelectedTournament.IsStarted == true)
+        {
+            this.Hide();
+            FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
+            return;
+        }
+        var result = _tournamentData.SetToStarted(SelectedTournament.Id).Result;
+        if (result == false)
+        {
+            MessageBox.Show("start conditions did not met. check tournament teams.");
+            return;
+        }
+
         this.Hide();
         FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
-        SelectedTournament.IsStarted = true;
-        _tournamentData.Update(SelectedTournament);
 
     }
 

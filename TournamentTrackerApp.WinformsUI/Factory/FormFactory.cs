@@ -88,7 +88,7 @@ public static class FormFactory
 
     public static TournamentChartForm CreateTournamentChart(int tournamentId)
     {
-        return new TournamentChartForm(_tournamentData, _teamData, _seriesData, tournamentId);
+        return new TournamentChartForm(_tournamentData, tournamentId);
     }
 
     public static SeriesDetailsForm CreateSeriesDetailsForm(int seriesId)
