@@ -84,7 +84,7 @@ public static class TournamentLogic
         return output;
     }
 
-    public static void SetSeriesWins(Series series)
+    public static void SetSeriesWinInfo(Series series)
     {
         int firstTeamWins = 0;
         int secondTeamWins = 0;
@@ -101,18 +101,16 @@ public static class TournamentLogic
         }
         series.FirstTeamWins = firstTeamWins;
         series.SecondTeamWins = secondTeamWins;
-    }
-
-
-    public static List<Series> GetNextRoundSeries(Tournament tournament)
-    {
-        if (tournament.Series.Count == 0)
+        if (firstTeamWins > secondTeamWins)
         {
-            return GetInitialTournamentSeries(tournament);
+            series.WinnerTeam = series.FirstTeam;
         }
-        return new List<Series>();
-
+        else if (firstTeamWins < secondTeamWins)
+        {
+            series.WinnerTeam = series.SecondTeam;
+        }
     }
+
 
     public static bool IsTournamentNumberOfTeamsValid(Tournament tournament)
     {
@@ -123,5 +121,58 @@ public static class TournamentLogic
             return true;
         }
         return false;
+    }
+
+    public static bool IsNextRoundSeriesGenerationsNeeded(Tournament tournament)
+    {
+        if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false
+            || tournament.IsStarted == false || tournament.IsFinished == true)
+        {
+            return false;
+        }
+        return true;
+
+    }
+
+    public static List<Series> GenerateNextRoundSeries(Tournament tournament)
+    {
+        int latestRoundNumber = GetLatestRoundNumber(tournament);
+        int nextRoundNumber = latestRoundNumber - 1;
+        int nextRoundPlaceInRound = 1;
+        List<Series> latestRoundSeries = tournament.Series
+            .Where(s => s.Round == latestRoundNumber).OrderBy(d => d.PlaceInRound).ToList();
+        List<Series> nextRoundSeries = new List<Series>();
+
+        for (int i = 0; i < latestRoundNumber; i += 2)
+        {
+            nextRoundSeries.Add(new Series()
+            {
+                TournamentId = tournament.Id,
+                Round = nextRoundNumber,
+                PlaceInRound = nextRoundPlaceInRound,
+
+                FirstTeamId = latestRoundSeries.ElementAt(i).WinnerTeam.Id,
+                SecondTeamId = latestRoundSeries.ElementAt(i + 1).WinnerTeam.Id,
+
+                FirstTeam = latestRoundSeries.ElementAt(i).WinnerTeam,
+                SecondTeam = latestRoundSeries.ElementAt(i + 1).WinnerTeam
+
+
+            }); ;
+        }
+        return nextRoundSeries;
+    }
+
+    private static int GetLatestRoundNumber(Tournament tournament)
+    {
+        int latestRoundNumber = int.MaxValue;
+        foreach (var series in tournament.Series)
+        {
+            if (series.Round < latestRoundNumber)
+            {
+                latestRoundNumber = series.Round;
+            }
+        }
+        return latestRoundNumber;
     }
 }

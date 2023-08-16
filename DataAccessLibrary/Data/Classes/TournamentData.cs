@@ -57,31 +57,15 @@ public class TournamentData : ITournamentData
 
         await SetTournamentSeriesInfo(tournament);
 
-        /*
-                if (tournament.IsFinished == true)
-                {
-                    return;
-                }
-                if (tournament.IsStarted == true)
-                {
-                    return;
-                }*/
-
-
-        /*if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false ||
-            TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == fa lse)
+        if (TournamentLogic.IsNextRoundSeriesGenerationsNeeded(tournament) == false)
         {
             return;
-        }*/
-        //SetToStarted(tournament.Id);
-
-
-
-        return;
-
-
-
-
+        }
+        List<Series> nextRoundSeries = TournamentLogic.GenerateNextRoundSeries(tournament);
+        foreach (var series in nextRoundSeries)
+        {
+            await InsertSeries(series);
+        }
     }
 
     public async Task<Tournament> Insert(Tournament tournament)
@@ -105,8 +89,8 @@ public class TournamentData : ITournamentData
         var result = await _db.LoadData<Tournament, dynamic>("[spTournament_SetToStarted]", new { Id = id });
 
         var tournament = await GetById(id);
-        List<Series> nextRoundSeries = TournamentLogic.GetNextRoundSeries(tournament);
-        foreach (Series series in nextRoundSeries)
+        List<Series> initialSeries = TournamentLogic.GetInitialTournamentSeries(tournament);
+        foreach (Series series in initialSeries)
         {
             //tournament.Series.Add(series);
             InsertSeries(series);
@@ -153,7 +137,7 @@ public class TournamentData : ITournamentData
             new { SeriesId = series.Id });
             series.Matches = matches.ToList();
 
-            TournamentLogic.SetSeriesWins(series);
+            TournamentLogic.SetSeriesWinInfo(series);
         }
         return;
 

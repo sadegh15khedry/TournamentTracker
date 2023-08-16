@@ -66,7 +66,7 @@ public class SeriesData : ISeriesData
         series.SecondTeam = secondTeam.FirstOrDefault();
         series.Matches = matches.ToList();
 
-        TournamentLogic.SetSeriesWins(series);
+        TournamentLogic.SetSeriesWinInfo(series);
 
         /*        series.FirstTeamWins = firstTeamWins;
                 series.SecondTeamWins = secondTeamWins;*/
