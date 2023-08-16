@@ -125,8 +125,12 @@ public static class TournamentLogic
 
     public static bool IsNextRoundSeriesGenerationsNeeded(Tournament tournament)
     {
-        if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false
-            || tournament.IsStarted == false || tournament.IsFinished == true)
+        if (tournament.IsFinished == true)
+        {
+            return false;
+        }
+        else if (TournamentLogic.IsAllAvailableSeriesEnded(tournament) == false
+            || tournament.IsStarted == false)
         {
             return false;
         }
@@ -174,5 +178,15 @@ public static class TournamentLogic
             }
         }
         return latestRoundNumber;
+    }
+
+    public static bool IsTournamentEnded(Tournament tournament)
+    {
+        int latestRoundNumber = GetLatestRoundNumber(tournament);
+        if (latestRoundNumber == 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

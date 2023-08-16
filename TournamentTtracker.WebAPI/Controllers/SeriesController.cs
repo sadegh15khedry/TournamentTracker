@@ -78,7 +78,7 @@ public class SeriesController : ControllerBase
 
     [HttpGet]
     [Route("/api/[Controller]/[Action]/{seriesId}")]
-    public async Task<ActionResult<Series>> CheckIfSeriesEnded(int seriesId)
+    public async Task<ActionResult> CheckIfSeriesEnded(int seriesId)
     {
         var series = await _db.GetById(seriesId);
 
@@ -87,7 +87,8 @@ public class SeriesController : ControllerBase
             series.IsSeriesEnded = true;
             await _db.SetToFinished(series.Id);
         }
-        return series;
+        return Redirect("/api/Tournaments/CheckIfTournamentEnded/" + series.TournamentId);
+        //return series;
     }
 
     /*    [HttpGet]

@@ -173,5 +173,15 @@ public class TournamentsController : Controller
         //return RedirectToAction("MultiInsert", "Series", new { seriesList });
     }
 
-
+    [HttpGet]
+    [Route("/api/Tournaments/CheckIfTournamentEnded/{TournamentId}")]
+    public async Task<ActionResult> CheckIfTournamentEnded(int tournamentId)
+    {
+        var tournament = await _db.GetById(tournamentId);
+        if (TournamentLogic.IsTournamentEnded(tournament) == true)
+        {
+            await _db.SetToFinished(tournamentId);
+        }
+        return Ok(tournament);
+    }
 }
