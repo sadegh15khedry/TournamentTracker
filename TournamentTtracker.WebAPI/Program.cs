@@ -2,7 +2,11 @@ global using DataAccessLibrary;
 global using DataAccessLibrary.Data;
 using DataAccessLibrary.Data.Classes;
 using DataAccessLibrary.Data.Interfaces;
+using DataBase.DataAccessLibrary.Dapper.Data.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +30,26 @@ builder.Services.AddSingleton<IPlayerData, PlayerData>();
 builder.Services.AddSingleton<ITeamData, TeamData>();
 builder.Services.AddSingleton<ITournamentData, TournamentData>();
 builder.Services.AddSingleton<ISeriesData, SeriesData>();
+builder.Services.AddSingleton<IUserData, UserData>();
 
 
 builder.Services.AddControllers();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Tokens:Issuer"],
+                        ValidAudience = builder.Configuration["Tokens:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                            builder.Configuration["Tokens:Key"])),
+                        ClockSkew = TimeSpan.Zero,
+                    };
+                });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -45,6 +66,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

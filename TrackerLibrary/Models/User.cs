@@ -20,7 +20,7 @@ public class User
 
     /// <summary>
     /// Email Address of the user.
-    /// also used as Identifer for users 
+    /// also used as Identifier for users 
     /// </summary>
     public string Email { get; set; }
 

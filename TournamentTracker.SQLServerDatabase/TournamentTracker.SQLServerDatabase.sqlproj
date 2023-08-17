@@ -65,6 +65,7 @@
     <Folder Include="dbo\Stored Procedures\Team" />
     <Folder Include="dbo\Stored Procedures\TournamentTeam" />
     <Folder Include="dbo\Stored Procedures\Series" />
+    <Folder Include="dbo\Stored Procedures\User" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Match.sql" />
@@ -117,6 +118,12 @@
     <Build Include="dbo\Stored Procedures\Match\spMatch_GetBySeriesId.sql" />
     <Build Include="dbo\Stored Procedures\Series\spSeries_SetToFinished.sql" />
     <Build Include="dbo\Stored Procedures\Tounament\spTournament_SetToStarted.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_Insert.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_Update.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_PsswordReset.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
