@@ -125,8 +125,9 @@ public class UsersController : ControllerBase
         {
             return Unauthorized("wrong password");
         }
-
-        return StatusCode((int)HttpStatusCode.OK, user);
+        string token = TokenHelper.CreateToken(user, _configuration);
+        return StatusCode((int)HttpStatusCode.OK, token);
+        //return StatusCode((int)HttpStatusCode.OK, user);
 
 
         /*var claims = new[]
