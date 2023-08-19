@@ -32,7 +32,7 @@ static class Program
                 MessageBox.Show(ovr.Name);*/
 
         ApplicationConfiguration.Initialize();
-        Application.Run(FormFactory.CreateHomeForm());
+        Application.Run(FormFactory.CreateLoginForm());
 
 
 

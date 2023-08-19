@@ -5,7 +5,7 @@
 	@Password nvarchar(800)
 AS
 BEGIN
-	INSERT INTO dbo.[User] (FirstName, LastName, Email, Password)
-	OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email
-	VALUES (@FirstName, @LastName, @Email, @Password)
+	INSERT INTO dbo.[User] (FirstName, LastName, Email, Password, Role)
+	OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email, inserted.Role
+	VALUES (@FirstName, @LastName, @Email, @Password, 'user')
 END

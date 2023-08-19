@@ -12,5 +12,7 @@ namespace DataBase.DataAccessLibrary.Dapper.Data.Interfaces
         Task<User> GetById(int id);
         Task<User> Insert(User user);
         Task<User> Update(User user);
+        Task<bool> DoesEmailExists(string email);
+        Task<User> GetByEmail(string email);
     }
 }

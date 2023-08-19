@@ -62,8 +62,24 @@ public class UserData : IUserData
         var result = await _db.LoadData<User, dynamic>("dbo.spUser_Delete", new { Id = id });
         return result.FirstOrDefault();
     }
+    public async Task<bool> DoesEmailExists(string email)
+    {
+        var results = await _db.LoadData<User, dynamic>("spUser_EmailSearch", new { Email = email });
 
+        if (results.Count() > 0)
+        {
+            return true;
+        }
 
+        return false;
+    }
+
+    public async Task<User> GetByEmail(string email)
+    {
+        var results = await _db.LoadData<User, dynamic>("spUser_GetByEmail", new { Email = email });
+
+        return results.FirstOrDefault();
+    }
 
 
 }

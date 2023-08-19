@@ -124,6 +124,8 @@
     <Build Include="dbo\Stored Procedures\User\spUser_Delete.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_Update.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_PsswordReset.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_EmailSearch.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_GetByEmail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

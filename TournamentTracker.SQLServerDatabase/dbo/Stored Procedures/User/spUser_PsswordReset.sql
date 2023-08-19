@@ -4,6 +4,6 @@
 AS
 BEGIN
 	Update dbo.[User] Set Password = @Password
-	OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email
+	OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email, inserted.Role
 	Where Id = @Id
 END

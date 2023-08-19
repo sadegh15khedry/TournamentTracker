@@ -1,40 +1,43 @@
-﻿/*using AuthenticationPlugin;
+﻿using DataBase.DataAccessLibrary.Dapper.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+using System.Net;
+using System.Security.Cryptography;
+using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Produces("application/json")]
+[Route("api/[Controller]/")]
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private ShopDbContext _context;
+    private IUserData _db;
     private IConfiguration _configuration;
-    private readonly AuthService _auth;
+    //private readonly AuthService _auth;
 
 
-    public UsersController(ShopDbContext dbCotext, IConfiguration configuration)
+    public UsersController(IUserData userData, IConfiguration configuration)
     {
         _configuration = configuration;
-        _auth = new AuthService(_configuration);
-        _context = dbCotext;
+        //_auth = new AuthService(_configuration);
+        _db = userData;
     }
 
     // GET: api/<UsersController1>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<User>>> GetAll()
     {
-        return await _context.Users.ToListAsync();
+        var result = await _db.GetAll();
+        return result.ToList();
     }
 
     // GET api/<UsersController1>/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<IEnumerable<User>>> GetUser(int id)
+    public async Task<ActionResult<IEnumerable<User>>> GetById(int id)
     {
-        var user = await _context.Users.FindAsync(id);
+        var user = await _db.GetById(id);
         if (user == null)
         {
             return NotFound("user not found");
@@ -46,161 +49,93 @@ public class UsersController : ControllerBase
     }
 
 
-
-
-
-    // PUT api/<UsersController1>/AddPhoto/5
-    [HttpPut("[action]")]
-    [Authorize]
-    public async Task<IActionResult> AddPhotoUser([FromForm] IFormFile photo)
-    {
-        int userId = Int32.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value.ToString());
-        var myUser = await _context.Users.FindAsync(userId);
-        if (myUser == null)
-        {
-            return NotFound("not found");
-        }
-
-        else if (photo != null)
-        {
-            var guid = Guid.NewGuid();
-            var filePath = Path.Combine("wwwroot/img", guid + ".jpg");
-            var fileStream = new FileStream(filePath, FileMode.Create);
-            await photo.CopyToAsync(fileStream);
-            myUser.UserImageUrl = filePath.Remove(0, 7);
-            await _context.SaveChangesAsync();
-            return Ok("updated");
-        }
-        else
-        {
-            return BadRequest("not a valid image");
-        }
-    }
-
-
-    // PUT api/<UsersController1>/RemovePhoto/5
-    [HttpPut("[action]")]
-    [Authorize]
-    public async Task<IActionResult> RemovePhotoUser()
-    {
-        int userId = Int32.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value.ToString());
-        var myUser = await _context.Users.FindAsync(userId);
-
-        if (myUser == null)
-        {
-            return NotFound("not found");
-        }
-
-        else if (myUser != null)
-        {
-            myUser.UserImageUrl = "/img\\default_profile_pic.jpg";
-            await _context.SaveChangesAsync();
-            return Ok("updated");
-        }
-        else
-        {
-            return BadRequest("not valid");
-        }
-    }
-
-
     // PUT api/<UsersController1>/update/5
     [Authorize]
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUser(int id, [FromForm] User user)
+    [HttpPut]
+    public async Task<ActionResult<User>> Update([FromForm] User user)
     {
         if (user == null)
         {
             return BadRequest("user object is null");
         }
 
-        int userId = Int32.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value.ToString());
-        //var userEntity = await _context.Users.FindAsync(userId);
+        var result = await _db.Update(user);
+        return result;
+    }
 
-        if (user.UserId != userId)
-        {
-            Unauthorized("you are not allowed to update this user");
-        }
-
-        _context.Entry(user).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!(UserExists(id)))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-
-        await _context.SaveChangesAsync();
-        return Ok("updated");
+    // DELETE api/<UsersController1>/5
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _db.Delete(id);
+        return StatusCode((int)HttpStatusCode.OK, result);
     }
 
 
     // POST api/<UsersController1>/register
-    [HttpPost("[action]")]
-    public async Task<IActionResult> RegisterUser([FromForm] User user)
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
+    public async Task<IActionResult> RegisterUser(User user)
     {
         //ckecking email and username to see if already exists
-        *//*var userWithSameEmail = await _context.Users.Where(u => u.UserEmail == user.UserEmail).FirstOrDefaultAsync();
-        if (userWithSameEmail != null)
+        bool isEmailExists = await _db.DoesEmailExists(user.Email);
+        if (isEmailExists == true)
         {
-            return BadRequest("user with this email already exists");
-        }*//*
+            return BadRequest("a user with this email already exists");
+        }
 
         //UserValidator validations = new UserValidator();
         //var results = validations.Validate(user);
 
-        if (results.IsValid == false)
-        {
-            string validationErrorsMessage = "";
-            foreach (var failure in results.Errors)
-            {
-                validationErrorsMessage += "Property " + failure.PropertyName
-                    + " failed validation. Error was: " + failure.ErrorMessage + "\n";
-            }
-            return BadRequest(validationErrorsMessage);
-        }
+        /*        if (results.IsValid == true)
+                {
+                    string validationErrorsMessage = "";
+                    foreach (var failure in results.Errors)
+                    {
+                        validationErrorsMessage += "Property " + failure.PropertyName
+                            + " failed validation. Error was: " + failure.ErrorMessage + "\n";
+                    }
+                    return BadRequest(validationErrorsMessage);
+                }*/
+        user.Password = SecretHasher.Hash(user.Password);
+        //var isValid = hashing.Verify("test", hash);
 
+        user.Role = "user";
 
-        user.UserImageUrl = "/img\\default_profile_pic.jpg";
-        user.UserPassword = SecurePasswordHasherHelper.Hash(user.UserPassword);
-        user.UserRole = "user";
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+        var result = await _db.Insert(user);
+        return Ok(user.Password);
     }
 
 
     // POST api/<UsersController1>/login
-    [HttpPost("[action]")]
-    public async Task<IActionResult> LoginUser([FromForm] string userEmail, [FromForm] string userPassword)
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
+    public async Task<ActionResult<User>> LoginUser(string userEmail, string userPassword)
     {
-        var myUser = await _context.Users.FirstOrDefaultAsync(u => u.UserEmail == userEmail);
-        if (myUser == null)
+        var user = await _db.GetByEmail(userEmail);
+        if (user == null)
         {
             return NotFound("user not found");
         }
-        if (SecurePasswordHasherHelper.Verify(userPassword, myUser.UserPassword) == false)
+
+        //var hashing =  CreatePasswordHash();
+        var isValid = SecretHasher.Verify(userPassword, user.Password);
+        if (isValid == false)
         {
             return Unauthorized("wrong password");
         }
-        var claims = new[]
+
+        return StatusCode((int)HttpStatusCode.OK, user);
+
+
+        /*var claims = new[]
         {
                 new Claim(JwtRegisteredClaimNames.Email, myUser.UserEmail),
                 new Claim(ClaimTypes.Email, myUser.UserEmail),
                 new Claim(ClaimTypes.Role, myUser.UserRole),
                 new Claim(ClaimTypes.NameIdentifier, myUser.UserId.ToString()),
-            };
+        };
 
         var token = _auth.GenerateAccessToken(claims);
         return new ObjectResult(new
@@ -212,36 +147,30 @@ public class UsersController : ControllerBase
             expiration_Time = token.ValidTo,
             user_id = myUser.UserId,
             user_role = myUser.UserRole,
-        });
+        });*/
 
     }
-
-
-    // DELETE api/<UsersController1>/5
-    [HttpDelete("{id}")]
-    //[Authorize(Roles = "admin")]
-    public async Task<IActionResult> DeleteUser(int id)
+    public static void CreatePasswordHash(string password, out byte[] passwordHash,
+        out byte[] passwordSalt)
     {
-        var myUser = await _context.Users.FindAsync(id);
-        if (myUser == null)
+        using (var hmac = new HMACSHA512())
         {
-            return NotFound("not found");
-        }
-        else
-        {
-            _context.Users.Remove(myUser);
-            await _context.SaveChangesAsync();
-            return Ok("deleted");
+            passwordSalt = hmac.Key;
+            passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
         }
     }
 
-
-    private bool UserExists(int id)
+    private bool VerifyPasswordHash(string password, byte[] passwordHash,
+        byte[] passwordSalt)
     {
-        return _context.Users.Any(e => e.UserId == id);
+        using (var hmac = new HMACSHA512(passwordSalt))
+        {
+
+            var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            return computedHash.SequenceEqual(passwordHash);
+        }
     }
-    //public static string SubjectId(this ClaimsPrincipal user) { return user?.Claims?.FirstOrDefault(c => c.Type.Equals("sub", StringComparison.OrdinalIgnoreCase))?.Value; }
+
 
 
 }
-*/
