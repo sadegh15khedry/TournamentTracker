@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TournamentTrackerLibrary.Logic;
@@ -8,6 +9,7 @@ namespace TournamentTracker.WebAPI.Controllers;
 [Produces("application/json")]
 [Route("api/[Controller]/")]
 [ApiController]
+[Authorize]
 public class TournamentsController : Controller
 {
     private readonly ITournamentData _db;

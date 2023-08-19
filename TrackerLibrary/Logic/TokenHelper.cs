@@ -12,20 +12,18 @@ public static class TokenHelper
 
     public static string CreateToken(User user, IConfiguration configuration)
     {
-        ///Initialize();
+
+
         List<Claim> claims = new List<Claim>()
         {
                 //new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(ClaimTypes.Email, user.Email)
-                //new Claim(ClaimTypes.Role, user.Role),
-                //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         };
-        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("Test test " +
-            "test test test testtest test test testtest test test " +
-            "testtest test test testtest test test testtest test " +
-            "test testtest test test testtest test test testtest test test test" +
-            "test testtest test test testtest test test testtest test test test" +
-            "test testtest test test testtest test test testtest test test test"
+
+        var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+            configuration.GetSection("Tokens:Key").Value
             ));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -39,5 +37,10 @@ public static class TokenHelper
 
 
         return jwt;
+    }
+
+    private static void Initialize(IConfiguration configuration)
+    {
+
     }
 }
