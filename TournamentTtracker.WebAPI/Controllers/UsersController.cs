@@ -87,7 +87,7 @@ public class UsersController : ControllerBase
         user.Role = "user";
 
         var result = await _db.Insert(user);
-        return Ok(result);
+        return StatusCode((int)HttpStatusCode.Created, result);
     }
 
 

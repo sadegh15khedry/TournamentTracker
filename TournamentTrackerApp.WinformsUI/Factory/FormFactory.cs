@@ -29,7 +29,7 @@ public static class FormFactory
     }
     public static SignupForm CreateSignupForm()
     {
-        return new SignupForm();
+        return new SignupForm(_userData);
     }
     public static AddTeamForm CreateAddTeamForm()
     {

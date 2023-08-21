@@ -192,7 +192,7 @@ partial class SignupForm
         signupButton.TabIndex = 10;
         signupButton.Text = "Signup";
         signupButton.UseVisualStyleBackColor = true;
-        signupButton.Click += signupButton_Click;
+        signupButton.Click += signupButton_ClickAsync;
         // 
         // Signup
         // 

@@ -19,10 +19,7 @@ public partial class LoginForm : Form
     {
         this.Hide();
         string result = await _userData.Login(emailTextBox.Text, passwordTextBox.Text);
-        result.Remove(0);
-        result.Remove(1);
         result = result.Substring(1, result.Length - 2);
-
 
         TokenStore.AccessToken = result;
         MessageBox.Show(result);
