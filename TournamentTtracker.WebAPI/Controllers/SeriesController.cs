@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TournamentTrackerLibrary.Logic;
@@ -8,8 +9,10 @@ using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[Authorize]
+
 public class SeriesController : ControllerBase
 {
     private readonly ISeriesData _db;
@@ -62,7 +65,8 @@ public class SeriesController : ControllerBase
     }
 
     // Delete: api/Series/
-    [HttpDelete]
+    [Authorize(Roles = "Admin")]
+    [HttpDelete(Name = "DeletePlayer")]
     public async Task<ActionResult<Series>> Delete(int id)
     {
         try

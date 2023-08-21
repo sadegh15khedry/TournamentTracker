@@ -50,7 +50,7 @@ partial class LoginForm
         loginButton.TabIndex = 1;
         loginButton.Text = "Login";
         loginButton.UseVisualStyleBackColor = true;
-        loginButton.Click += loginButton_Click;
+        loginButton.Click += loginButton_ClickAsync;
         // 
         // emailTextBox
         // 

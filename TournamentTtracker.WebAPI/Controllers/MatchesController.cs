@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TournamentTrackerLibrary.Logic;
 using Match = TournamentTrackerLibrary.Models.Match;
@@ -7,8 +8,10 @@ using Match = TournamentTrackerLibrary.Models.Match;
 
 namespace TournamentTracker.WebAPI.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[Authorize]
+
 public class MatchesController : ControllerBase
 {
     // GET: api/match

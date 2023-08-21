@@ -94,8 +94,8 @@ public class UsersController : ControllerBase
     // POST api/<UsersController1>/login
     [Route("/api/[Controller]/[Action]")]
     [HttpPost]
-    public async Task<ActionResult<User>> Login([FromForm] string userEmail,
-        [FromForm] string userPassword)
+    public async Task<ActionResult<User>> Login(string userEmail,
+         string userPassword)
     {
         var user = await _db.GetByEmail(userEmail);
         if (user == null)

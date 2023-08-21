@@ -3,6 +3,7 @@ using TournamentTrackerLibrary.Models;
 
 namespace UI.DataAccess.Refit.InterFaces;
 
+//[Headers("Authorization: Bearer")]
 public interface ITeamData
 {
     [Get("/Teams")]

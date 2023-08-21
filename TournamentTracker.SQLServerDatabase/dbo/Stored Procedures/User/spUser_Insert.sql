@@ -7,5 +7,5 @@ AS
 BEGIN
 	INSERT INTO dbo.[User] (FirstName, LastName, Email, Password, Role)
 	OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email, inserted.Role
-	VALUES (@FirstName, @LastName, @Email, @Password, 'user')
+	VALUES (@FirstName, @LastName, @Email, @Password, 'User')
 END

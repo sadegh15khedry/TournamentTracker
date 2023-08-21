@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TournamentTrackerLibrary.Models;
@@ -7,8 +8,10 @@ using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
+[Authorize]
+
 public class TeamsController : ControllerBase
 {
     private readonly ITeamData _db;

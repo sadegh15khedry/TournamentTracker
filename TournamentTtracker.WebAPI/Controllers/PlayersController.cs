@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using TournamentTrackerLibrary.Models;
@@ -7,6 +8,8 @@ namespace TournamentTracker.WebAPI;
 
 [ApiController]
 [Route("api/[Controller]")]
+[Authorize]
+
 public class PlayersController : Controller
 {
     private readonly IPlayerData _db;

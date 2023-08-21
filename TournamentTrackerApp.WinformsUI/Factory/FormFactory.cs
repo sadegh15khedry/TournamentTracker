@@ -5,6 +5,8 @@ namespace TournamentTrackerApp.WinformsUI.Factory;
 
 public static class FormFactory
 {
+    public static string CachedToken { get; set; } = string.Empty;
+    public static IUserData? _userData { set; get; }
     public static ITeamData? _teamData { set; get; }
     public static ITournamentData? _tournamentData { set; get; }
     public static ISeriesData? _seriesData { get; set; }
@@ -15,7 +17,7 @@ public static class FormFactory
 
     public static LoginForm CreateLoginForm()
     {
-        return new LoginForm();
+        return new LoginForm(_userData);
     }
     public static TournamentsForm CreateTournamentsForm()
     {
