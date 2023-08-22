@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using TournamentTrackerLibrary.Authentication;
 using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
@@ -108,9 +109,21 @@ public class UsersController : ControllerBase
         {
             return Unauthorized("wrong password");
         }
-        string token = TokenHelper.CreateToken(user, _configuration);
-        return StatusCode((int)HttpStatusCode.OK, token);
+        string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
+        RefreshToken refreshToken = TokenHelper.CreateRefreshToken(user);
+        SetRefreshToken(refreshToken);
+        return StatusCode((int)HttpStatusCode.OK, jwtToken);
     }
 
+    private void SetRefreshToken(RefreshToken refreshToken)
+    {
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Expires = refreshToken.DateTimeExpires
+        };
+        Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
 
+
+    }
 }

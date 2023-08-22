@@ -2,6 +2,8 @@
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using TournamentTrackerLibrary.Authentication;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTrackerLibrary.Logic;
@@ -10,7 +12,7 @@ public static class TokenHelper
 {
 
 
-    public static string CreateToken(User user, IConfiguration configuration)
+    public static string CreateJwtToken(User user, IConfiguration configuration)
     {
 
 
@@ -39,8 +41,17 @@ public static class TokenHelper
         return jwt;
     }
 
-    private static void Initialize(IConfiguration configuration)
+    public static RefreshToken CreateRefreshToken(User user)
     {
-
+        var refreshToken = new RefreshToken()
+        {
+            UserId = user.Id,
+            Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+            DateTimeCreated = DateTime.Now,
+            DateTimeExpires = DateTime.Now.AddDays(7)
+        };
+        return refreshToken;
     }
+
+
 }
