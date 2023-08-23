@@ -7,4 +7,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="isSeriesEnded" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="f1f4bf90-b98f-4701-87f9-949b3fc0fd4a" ChangeDateTime="08/23/2023 04:25:17">
+    <Property Name="ElementName" Value="[dbo].[RefreshToken].[Is]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RefreshToken]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsValid" />
+  </Operation>
 </Operations>

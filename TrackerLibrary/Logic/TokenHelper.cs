@@ -47,8 +47,8 @@ public static class TokenHelper
         {
             UserId = user.Id,
             Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
-            DateTimeCreated = DateTime.Now,
-            DateTimeExpires = DateTime.Now.AddDays(7)
+            CreateDate = DateTime.Now,
+            ExpireDate = DateTime.Now.AddDays(90)
         };
         return refreshToken;
     }

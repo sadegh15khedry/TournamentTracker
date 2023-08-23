@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary;
+using TournamentTrackerLibrary.Authentication;
 using TournamentTrackerLibrary.Models;
 
 namespace DataBase.DataAccessLibrary.Dapper.Data.Interfaces
@@ -14,5 +15,8 @@ namespace DataBase.DataAccessLibrary.Dapper.Data.Interfaces
         Task<User> Update(User user);
         Task<bool> DoesEmailExists(string email);
         Task<User> GetByEmail(string email);
+        Task<RefreshToken> GetRefreshTokenByToken(string token);
+        Task<RefreshToken> SetRefreshTokenToNotValidByToken(string token);
+        Task<RefreshToken> InsertRefreshToken(RefreshToken refreshToken);
     }
 }

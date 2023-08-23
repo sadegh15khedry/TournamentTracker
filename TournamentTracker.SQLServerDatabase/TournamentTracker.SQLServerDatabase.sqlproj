@@ -66,6 +66,7 @@
     <Folder Include="dbo\Stored Procedures\TournamentTeam" />
     <Folder Include="dbo\Stored Procedures\Series" />
     <Folder Include="dbo\Stored Procedures\User" />
+    <Folder Include="dbo\Stored Procedures\RefreshToken" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Match.sql" />
@@ -126,6 +127,10 @@
     <Build Include="dbo\Stored Procedures\User\spUser_PsswordReset.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_EmailSearch.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_GetByEmail.sql" />
+    <Build Include="dbo\Tables\RefreshToken.sql" />
+    <Build Include="dbo\Stored Procedures\RefreshToken\spRefreshToken_GetByToken.sql" />
+    <Build Include="dbo\Stored Procedures\RefreshToken\spRefreshToken_SetToNotValidByToken.sql" />
+    <Build Include="dbo\Stored Procedures\RefreshToken\spRefreshToken_Insert.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -1,4 +1,5 @@
 ﻿using DataBase.DataAccessLibrary.Dapper.Data.Interfaces;
+using TournamentTrackerLibrary.Authentication;
 using TournamentTrackerLibrary.Models;
 
 namespace DataAccessLibrary;
@@ -62,6 +63,38 @@ public class UserData : IUserData
         var result = await _db.LoadData<User, dynamic>("dbo.spUser_Delete", new { Id = id });
         return result.FirstOrDefault();
     }
+
+    public async Task<RefreshToken> GetRefreshTokenByToken(string token)
+    {
+        var results = await _db.LoadData<RefreshToken, dynamic>
+            ("dbo.spRefreshToken_GetByToken", new { Token = token });
+
+        return results.FirstOrDefault();
+    }
+    public async Task<RefreshToken> SetRefreshTokenToNotValidByToken(string token)
+    {
+        var results = await _db.LoadData<RefreshToken, dynamic>
+            ("dbo.spRefreshToken_SetToNotValidByToken", new { Token = token });
+
+        return results.FirstOrDefault();
+    }
+
+    public async Task<RefreshToken> InsertRefreshToken(RefreshToken refreshToken)
+    {
+        var results = await _db.LoadData<RefreshToken, dynamic>
+            ("dbo.spRefreshToken_Insert", new
+            {
+                Token = refreshToken.Token,
+                UserId = refreshToken.UserId,
+                ExpireDate = refreshToken.ExpireDate,
+                CreateDate = refreshToken.CreateDate
+            });
+
+        return results.FirstOrDefault();
+    }
+
+
+
     public async Task<bool> DoesEmailExists(string email)
     {
         var results = await _db.LoadData<User, dynamic>("spUser_EmailSearch", new { Email = email });

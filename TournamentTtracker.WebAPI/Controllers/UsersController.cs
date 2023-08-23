@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Authentication;
 using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
@@ -111,19 +112,56 @@ public class UsersController : ControllerBase
         }
         string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
         RefreshToken refreshToken = TokenHelper.CreateRefreshToken(user);
+        await _db.InsertRefreshToken(refreshToken);
         SetRefreshToken(refreshToken);
         return StatusCode((int)HttpStatusCode.OK, jwtToken);
     }
 
+    [Authorize]
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
+    public async Task<ActionResult<string>> RefreshJwtToken()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity != null)
+        {
+            IEnumerable<Claim> claims = identity.Claims;
+            id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+
+        }
+
+
+        var storedRefreshToken = await _db.GetRefreshTokenByToken(refreshToken);
+        if (storedRefreshToken == null)
+        {
+            await _db.SetRefreshTokenToNotValidByToken(refreshToken);
+            return BadRequest("Sorry please Login");
+        }
+        if (storedRefreshToken.UserId != id)
+        {
+            await _db.SetRefreshTokenToNotValidByToken(refreshToken);
+            return BadRequest("Sorry please Login");
+        }
+        if (storedRefreshToken.ExpireDate < DateTime.Now)
+        {
+            await _db.SetRefreshTokenToNotValidByToken(refreshToken);
+            return BadRequest("Sorry please Login");
+        }
+        // should get id from claim and verify the tokens
+        User user = await _db.GetById(id);
+        string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
+        return StatusCode((int)HttpStatusCode.OK, jwtToken);
+    }
     private void SetRefreshToken(RefreshToken refreshToken)
     {
         var cookieOptions = new CookieOptions
         {
             HttpOnly = true,
-            Expires = refreshToken.DateTimeExpires
+            Expires = refreshToken.ExpireDate
         };
         Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
-
-
     }
+
 }
