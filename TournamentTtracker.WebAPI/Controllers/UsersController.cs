@@ -96,6 +96,21 @@ public class UsersController : ControllerBase
     // POST api/<UsersController1>/login
     [Route("/api/[Controller]/[Action]")]
     [HttpPost]
+    public async Task<ActionResult<User>> ConfirmEmail(int userId, string activationToken)
+    {
+        var user = await _db.
+            GetById(userId);
+        if (user == null)
+        {
+            return NotFound("user not found");
+        }
+        return Ok
+    }
+
+
+    // POST api/<UsersController1>/login
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
     public async Task<ActionResult<User>> Login(string userEmail,
          string userPassword)
     {
@@ -110,11 +125,32 @@ public class UsersController : ControllerBase
         {
             return Unauthorized("wrong password");
         }
+        if (user.IsEmailVerified == false)
+        {
+            var result = SendVerificationEmail(user);
+
+            return Ok("verification Email has been send to you." +
+                " please verify your Email to continue." + "   " + result);
+        }
         string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
         RefreshToken refreshToken = TokenHelper.CreateRefreshToken(user);
         await _db.InsertRefreshToken(refreshToken);
         SetRefreshToken(refreshToken);
         return StatusCode((int)HttpStatusCode.OK, jwtToken);
+    }
+
+    private string SendVerificationEmail(User user)
+    {
+        var emailBody = "please confirm your email Address <a href=\"#Url#\">Click Here</a> ";
+        string ActivationToken = Guid.NewGuid().ToString();
+        var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail",
+            "Users", new { userId = user.Id, activationToken = ActivationToken });
+        emailBody.Replace("#Url#", callbackUrl);
+
+        return emailBody;
+
+        //var expirationDate = DateTime.Now.AddMinutes(2);
+
     }
 
     [Authorize]

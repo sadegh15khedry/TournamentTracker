@@ -14,4 +14,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="IsValid" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="b360b8e5-4e4f-4f1b-be14-26e018d4ae10" ChangeDateTime="08/26/2023 05:19:16">
+    <Property Name="ElementName" Value="[dbo].[User].[    public string PhoneNumber { get; set; } = string.Empty;]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value=".Empty;" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="eb64190b-ab83-48b5-8865-136c1b3cc4fb" ChangeDateTime="08/26/2023 05:19:23">
+    <Property Name="ElementName" Value="[dbo].[User].[.Empty;]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PhoneNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31db359b-21ea-4b0a-b830-f6cf8764989e" ChangeDateTime="08/26/2023 06:21:01">
+    <Property Name="ElementName" Value="[dbo].[User].[EmailVerificationConde]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmailVerificationCode" />
+  </Operation>
 </Operations>

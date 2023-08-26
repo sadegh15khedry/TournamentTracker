@@ -6,5 +6,14 @@
     [FirstName] NVARCHAR(200) NOT NULL, 
     [LastName] NVARCHAR(200) NOT NULL, 
     [Role] NVARCHAR(50) NOT NULL, 
-    CONSTRAINT [AK_User_Email] UNIQUE ([Email]) 
+    [EmailVerificationCode] NVARCHAR(200) NULL, 
+    [EmailVerificationCondeExpirationDate] DATETIME2 NULL, 
+    [IsEmailVerified] BIT NULL DEFAULT 0, 
+    [PhoneNumber] NVARCHAR(50) NULL, 
+    [IsPhoneNumberVerified] BIT NULL DEFAULT 0, 
+    [PhoneVerificationConde] NVARCHAR(200) NULL, 
+    [PhoneVerificationCondeExpirationDate] DATETIME2 NULL, 
+    CONSTRAINT [AK_User_Email] UNIQUE ([Email]
+    ), 
+    CONSTRAINT [AK_User_PhoneNumber] UNIQUE ([PhoneNumber]) 
 )
