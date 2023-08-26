@@ -7,8 +7,8 @@ AS
 BEGIN
 	INSERT INTO dbo.[User] (FirstName, LastName, Email, Password, Role)
 		OUTPUT INSERTED.Id, inserted.FirstName, INSERTED.LastName, inserted.Email, inserted.Role,
-	Inserted.EmailVerificationCode,Inserted.EmailVerificationCondeExpirationDate,
+	Inserted.EmailVerificationCode,Inserted.EmailVerificationCodeExpirationDate,
     Inserted.IsEmailVerified,Inserted.PhoneNumber,Inserted.IsPhoneNumberVerified, 
-    Inserted.PhoneVerificationConde,Inserted.PhoneVerificationCondeExpirationDate
+    Inserted.PhoneVerificationCode,Inserted.PhoneVerificationCodeExpirationDate
 	VALUES (@FirstName, @LastName, @Email, @Password, 'User')
 END

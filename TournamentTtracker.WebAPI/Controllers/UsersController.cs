@@ -93,10 +93,11 @@ public class UsersController : ControllerBase
     }
 
 
-    // POST api/<UsersController1>/login
+    // POST api/<UsersController1>/ConfirmEmail
     [Route("/api/[Controller]/[Action]")]
-    [HttpPost]
-    public async Task<ActionResult<User>> ConfirmEmail(int userId, string activationToken)
+    [HttpGet]
+    public async Task<ActionResult<User>> ConfirmEmail([FromQuery] int userId,
+        [FromQuery] string activationToken)
     {
         var user = await _db.
             GetById(userId);
@@ -104,14 +105,14 @@ public class UsersController : ControllerBase
         {
             return NotFound("user not found");
         }
-        return Ok
+        return Ok("confirmed");
     }
 
 
     // POST api/<UsersController1>/login
     [Route("/api/[Controller]/[Action]")]
     [HttpPost]
-    public async Task<ActionResult<User>> Login(string userEmail,
+    public async Task<ActionResult<string>> Login(string userEmail,
          string userPassword)
     {
         var user = await _db.GetByEmail(userEmail);
@@ -127,10 +128,9 @@ public class UsersController : ControllerBase
         }
         if (user.IsEmailVerified == false)
         {
-            var result = SendVerificationEmail(user);
+            var result = await SendVerificationEmailAsync(user);
 
-            return Ok("verification Email has been send to you." +
-                " please verify your Email to continue." + "   " + result);
+            return Ok(result);
         }
         string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
         RefreshToken refreshToken = TokenHelper.CreateRefreshToken(user);
@@ -139,13 +139,23 @@ public class UsersController : ControllerBase
         return StatusCode((int)HttpStatusCode.OK, jwtToken);
     }
 
-    private string SendVerificationEmail(User user)
+    private async Task<string> SendVerificationEmailAsync(User user)
     {
         var emailBody = "please confirm your email Address <a href=\"#Url#\">Click Here</a> ";
-        string ActivationToken = Guid.NewGuid().ToString();
+        string ActivationToken = System.Text.Encodings.Web.HtmlEncoder.Default
+            .Encode(Guid.NewGuid().ToString());
+
+        ActivationToken = ActivationToken.Replace("-", "");
+
         var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail",
             "Users", new { userId = user.Id, activationToken = ActivationToken });
-        emailBody.Replace("#Url#", callbackUrl);
+        user.EmailVerificationCode = ActivationToken;
+        user.EmailVerificationCondeExpirationDate = DateTime.Now.AddMinutes(2);
+
+        await _db.Update(user);
+
+        emailBody = emailBody.Replace("#Url#", callbackUrl);
+
 
         return emailBody;
 

@@ -3,9 +3,9 @@
 AS
 Begin 
 	SELECT Id, FirstName, LastName, Email, Role,Password ,
-	EmailVerificationCode,EmailVerificationCondeExpirationDate,
+	EmailVerificationCode,EmailVerificationCodeExpirationDate,
     IsEmailVerified,PhoneNumber,IsPhoneNumberVerified, 
-    PhoneVerificationConde,PhoneVerificationCondeExpirationDate
+    PhoneVerificationCode,PhoneVerificationCodeExpirationDate
 	From dbo.[User]
 	WHERE Id = @Id
 End

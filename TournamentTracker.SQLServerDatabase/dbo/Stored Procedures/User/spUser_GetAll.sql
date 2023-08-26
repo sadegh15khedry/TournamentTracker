@@ -2,7 +2,7 @@
 AS
 Begin 
 	SELECT Id, FirstName, LastName, Email, Role,Password ,
-	EmailVerificationCode,EmailVerificationCondeExpirationDate,
+	EmailVerificationCode, EmailVerificationCodeExpirationDate,
     IsEmailVerified,PhoneNumber,IsPhoneNumberVerified, 
-    PhoneVerificationConde,PhoneVerificationCondeExpirationDate From dbo.[User]
+    PhoneVerificationCode,PhoneVerificationCodeExpirationDate From dbo.[User]
 End

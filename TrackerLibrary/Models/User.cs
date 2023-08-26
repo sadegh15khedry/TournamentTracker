@@ -25,13 +25,13 @@ public class User
     public string Email { get; set; } = string.Empty;
 
     public string EmailVerificationCode { get; set; } = string.Empty;
-    public DateTime EmailVerificationCondeExpirationDate { get; set; }
-    public bool IsEmailVerified { get; set; }
+    public DateTime? EmailVerificationCondeExpirationDate { get; set; }
+    public bool IsEmailVerified { get; set; } = false;
 
     public string PhoneNumber { get; set; } = string.Empty;
-    public bool IsPhoneNumberVerified { get; set; }
-    public string PhoneVerificationConde { get; set; } = string.Empty;
-    public DateTime PhoneVerificationCondeExpirationDate { get; set; }
+    public bool IsPhoneNumberVerified { get; set; } = false;
+    public string? PhoneVerificationConde { get; set; } = string.Empty;
+    public DateTime? PhoneVerificationCondeExpirationDate { get; set; }
 
     /// <summary>
     /// Password of the user.
@@ -39,6 +39,6 @@ public class User
     public string Password { get; set; } = string.Empty;
     //public byte? HashedPassword { get; set; }
 
-    public string? Role { get; set; } = string.Empty;
+    public string? Role { get; set; } = "user";
 
 }

@@ -52,6 +52,13 @@ public class UserData : IUserData
             FirstName = user.FirstName,
             LastName = user.LastName,
             Email = user.Email,
+            EmailVerificationCode = user.EmailVerificationCode,
+            EmailVerificationCodeExpirationDate = user.EmailVerificationCondeExpirationDate,
+            IsEmailVerified = user.IsEmailVerified,
+            PhoneNumber = user.PhoneNumber,
+            IsPhoneNumberVerified = user.IsPhoneNumberVerified,
+            PhoneVerificationCode = user.PhoneVerificationConde,
+            PhoneVerificationCodeExpirationDate = user.PhoneVerificationCondeExpirationDate
         });
         return result.FirstOrDefault();
 
