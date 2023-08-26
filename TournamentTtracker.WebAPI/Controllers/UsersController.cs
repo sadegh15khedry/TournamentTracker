@@ -99,12 +99,21 @@ public class UsersController : ControllerBase
     public async Task<ActionResult<User>> ConfirmEmail([FromQuery] int userId,
         [FromQuery] string activationToken)
     {
-        var user = await _db.
-            GetById(userId);
+        var user = await _db.GetById(userId);
         if (user == null)
         {
             return NotFound("user not found");
         }
+        if (user.EmailVerificationCode != activationToken)
+        {
+            return BadRequest("somthing is not right");
+        }
+        if (user.EmailVerificationCondeExpirationDate < DateTime.Now)
+        {
+            return BadRequest("please try again");
+        }
+        user.IsEmailVerified = true;
+        await _db.Update(user);
         return Ok("confirmed");
     }
 
