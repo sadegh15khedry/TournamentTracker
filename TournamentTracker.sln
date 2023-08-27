@@ -15,6 +15,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TournamentTracker.SQLServer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.DataAccess.Refit", "UI.DataAccess.Refit\UI.DataAccess.Refit.csproj", "{1296694C-EDE9-4C0C-980F-EF184DF9D99F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailHelperLibrary", "EmailHelperLibrary\EmailHelperLibrary.csproj", "{AA20577F-A328-455D-8CC1-A1E8950A407D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{1296694C-EDE9-4C0C-980F-EF184DF9D99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1296694C-EDE9-4C0C-980F-EF184DF9D99F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1296694C-EDE9-4C0C-980F-EF184DF9D99F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA20577F-A328-455D-8CC1-A1E8950A407D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA20577F-A328-455D-8CC1-A1E8950A407D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA20577F-A328-455D-8CC1-A1E8950A407D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA20577F-A328-455D-8CC1-A1E8950A407D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

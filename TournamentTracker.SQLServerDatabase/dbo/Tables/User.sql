@@ -15,5 +15,5 @@
     [PhoneVerificationCodeExpirationDate] DATETIME2 NULL, 
     CONSTRAINT [AK_User_Email] UNIQUE ([Email]
     ), 
-    CONSTRAINT [AK_User_PhoneNumber] UNIQUE ([PhoneNumber]) 
+
 )

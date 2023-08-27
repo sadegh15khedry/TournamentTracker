@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataBase.DataAccessLibrary.Dapper.csproj" />
+    <ProjectReference Include="..\EmailHelperLibrary\EmailHelperLibrary.csproj" />
     <ProjectReference Include="..\TrackerLibrary\TournamentTrackerLibrary.csproj" />
   </ItemGroup>
 

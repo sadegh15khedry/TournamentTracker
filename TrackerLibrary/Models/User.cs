@@ -28,7 +28,7 @@ public class User
     public DateTime? EmailVerificationCondeExpirationDate { get; set; }
     public bool IsEmailVerified { get; set; } = false;
 
-    public string PhoneNumber { get; set; } = string.Empty;
+    public string? PhoneNumber { get; set; } = string.Empty;
     public bool IsPhoneNumberVerified { get; set; } = false;
     public string? PhoneVerificationConde { get; set; } = string.Empty;
     public DateTime? PhoneVerificationCondeExpirationDate { get; set; }

@@ -1,4 +1,5 @@
 ﻿using DataBase.DataAccessLibrary.Dapper.Data.Interfaces;
+using EmailHelperLibrary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -165,6 +166,8 @@ public class UsersController : ControllerBase
 
         emailBody = emailBody.Replace("#Url#", callbackUrl);
 
+        await EmailHelper.SendEmailAsync("test@test.com", user.Email, "Email Verification" +
+            " Link", emailBody);
 
         return emailBody;
 
