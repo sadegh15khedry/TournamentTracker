@@ -175,6 +175,43 @@ public class UsersController : ControllerBase
 
     }
 
+
+    [Route("/api/[Controller]/[Action]")]
+    [HttpGet]
+    public async Task<ActionResult> RestPassword(int userId, string forgotPasswordToken)
+    {
+        return Ok("<a>this is a link</a> ");
+    }
+
+    // POST api/<UsersController1>/login
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
+    public async Task<ActionResult> ForgotPassword(string email)
+    {
+        var user = await _db.GetByEmail(email);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        var emailBody = "please fallow the link to rest your password.<a href=\"#Url#\">Click Here</a> ";
+        string forgotPasswordToken = System.Text.Encodings.Web.HtmlEncoder.Default
+            .Encode(Guid.NewGuid().ToString());
+
+        forgotPasswordToken = forgotPasswordToken.Replace("-", "");
+
+        user.EmailVerificationCode = forgotPasswordToken;
+        user.EmailVerificationCondeExpirationDate = DateTime.Now.AddMinutes(2);
+
+        await _db.Update(user);
+
+        var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("RestPassword",
+            "Users", new { userId = user.Id, forgotPasswordToken = forgotPasswordToken });
+        emailBody = emailBody.Replace("#Url#", callbackUrl);
+
+        return Ok(emailBody);
+
+    }
+
     [Authorize]
     [Route("/api/[Controller]/[Action]")]
     [HttpPost]

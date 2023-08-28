@@ -11,7 +11,8 @@ public static class EmailHelper
         var sender = new SmtpSender(() => new SmtpClient("localHost")
         {
             EnableSsl = false,
-            DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            Port = 25,
             PickupDirectoryLocation = @"c:\Demos"
         });
 
@@ -19,9 +20,9 @@ public static class EmailHelper
 
         var email = await Email
             .From(senderAddress)
-            .To("akvar@gmail.com")
-            .Subject("test")
-            .Body("this is an email")
+            .To(receiverAddress)
+            .Subject(subject)
+            .Body(emailBody)
             .SendAsync();
     }
 }
