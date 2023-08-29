@@ -86,6 +86,7 @@ public class UsersController : ControllerBase
         {
             return BadRequest("a user with this email already exists");
         }
+        //return Ok(user.Password.Length);
         user.Password = SecretHasher.Hash(user.Password);
         user.Role = "user";
 
@@ -107,7 +108,7 @@ public class UsersController : ControllerBase
         }
         if (user.EmailVerificationCode != activationToken)
         {
-            return BadRequest("somthing is not right");
+            return BadRequest("something is not right");
         }
         if (user.EmailVerificationCondeExpirationDate < DateTime.Now)
         {
@@ -136,12 +137,13 @@ public class UsersController : ControllerBase
         {
             return Unauthorized("wrong password");
         }
-        if (user.IsEmailVerified == false)
+        /*if (user.IsEmailVerified == false)
         {
             var result = await SendVerificationEmailAsync(user);
 
             return Ok(result);
-        }
+        }*/
+
         string jwtToken = TokenHelper.CreateJwtToken(user, _configuration);
         RefreshToken refreshToken = TokenHelper.CreateRefreshToken(user);
         await _db.InsertRefreshToken(refreshToken);
@@ -174,13 +176,63 @@ public class UsersController : ControllerBase
         //var expirationDate = DateTime.Now.AddMinutes(2);
 
     }
+    [Route("/api/[Controller]/[Action]")]
+    [HttpPost]
+    public async Task<ActionResult> UpdatePassword([FromForm] int userId,
+        [FromForm] string forgotPasswordToken, [FromForm] string newPassword)
+    {
+        var user = await _db.GetById(userId);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        if (user.EmailVerificationCode != forgotPasswordToken)
+        {
+            return BadRequest();
+        }
+        //return Ok(user.Password.Length + user.Password);
+        user.Password = SecretHasher.Hash(newPassword);
+        var result = await _db.UpdatePassword(user.Id, user.Password);
 
+        return Ok(result);
+
+        //return Ok(newPassword + "\n" + user.Password);
+    }
 
     [Route("/api/[Controller]/[Action]")]
     [HttpGet]
-    public async Task<ActionResult> RestPassword(int userId, string forgotPasswordToken)
+    public async Task<ContentResult> RestPassword(int userId, string forgotPasswordToken)
     {
-        return Ok("<a>this is a link</a> ");
+        var user = await _db.GetById(userId);
+        string response = string.Empty;
+        if (user == null)
+        {
+            response = "not Found";
+        }
+        else if (user.EmailVerificationCode != forgotPasswordToken)
+        {
+            response = forgotPasswordToken + "\n" + user.EmailVerificationCode;
+        }
+        else
+        {
+            var postUrl = Request.Scheme + "://" + Request.Host + Url.Action("UpdatePassword",
+            "Users", new { userId = user.Id, forgotPasswordToken = forgotPasswordToken });
+
+            response = "<form method=\"Post\" Action=\" " + postUrl + "\" >" +
+                                "<input name=\"newPassword\"  type=\"password\" />" +
+                "<input name=\"userId\" value=" + userId + " type=\"hidden\" />" +
+                                "<input name=\"forgotPasswordToken\" value=" + forgotPasswordToken + " type=\"hidden\" />" +
+                                "<input type=\"submit\" />" +
+
+                "</form>";
+
+        }
+        return new ContentResult
+        {
+            ContentType = "text/html",
+            Content = response
+        };
+
     }
 
     // POST api/<UsersController1>/login

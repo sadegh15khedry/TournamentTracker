@@ -124,7 +124,7 @@
     <Build Include="dbo\Stored Procedures\User\spUser_Insert.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_Delete.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_Update.sql" />
-    <Build Include="dbo\Stored Procedures\User\spUser_PsswordReset.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_PasswordReset.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_EmailSearch.sql" />
     <Build Include="dbo\Stored Procedures\User\spUser_GetByEmail.sql" />
     <Build Include="dbo\Tables\RefreshToken.sql" />

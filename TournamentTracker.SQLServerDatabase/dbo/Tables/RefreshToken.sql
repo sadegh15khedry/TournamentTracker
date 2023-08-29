@@ -6,7 +6,6 @@
     [ExpireDate] DATETIME2 NOT NULL, 
     [CreateDate] DATETIME2 NOT NULL, 
     [IsValid] BIT NOT NULL DEFAULT 1, 
-    CONSTRAINT [FK_RefreshToken_ToUser] FOREIGN KEY ([Id]) REFERENCES [User]([Id]), 
-    CONSTRAINT [AK_RefreshToken_Token] UNIQUE ([Token])
+    CONSTRAINT [FK_RefreshToken_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
     
 )

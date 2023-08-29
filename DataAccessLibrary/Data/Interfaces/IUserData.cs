@@ -18,5 +18,6 @@ namespace DataBase.DataAccessLibrary.Dapper.Data.Interfaces
         Task<RefreshToken> GetRefreshTokenByToken(string token);
         Task<RefreshToken> SetRefreshTokenToNotValidByToken(string token);
         Task<RefreshToken> InsertRefreshToken(RefreshToken refreshToken);
+        Task<User> UpdatePassword(int userId, string password);
     }
 }

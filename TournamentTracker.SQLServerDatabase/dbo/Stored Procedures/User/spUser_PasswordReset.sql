@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spUser_PsswordReset]
+﻿CREATE PROCEDURE [dbo].[spUser_PasswordReset]
 	@Id int, 
 	@Password nvarchar(800)
 AS

@@ -76,7 +76,7 @@ public class UserData : IUserData
         var results = await _db.LoadData<RefreshToken, dynamic>
             ("dbo.spRefreshToken_GetByToken", new { Token = token });
 
-        return results.FirstOrDefault();
+        return results.OrderByDescending(s => s.Id).FirstOrDefault();
     }
     public async Task<RefreshToken> SetRefreshTokenToNotValidByToken(string token)
     {
@@ -91,8 +91,8 @@ public class UserData : IUserData
         var results = await _db.LoadData<RefreshToken, dynamic>
             ("dbo.spRefreshToken_Insert", new
             {
-                Token = refreshToken.Token,
                 UserId = refreshToken.UserId,
+                Token = refreshToken.Token,
                 ExpireDate = refreshToken.ExpireDate,
                 CreateDate = refreshToken.CreateDate
             });
@@ -120,6 +120,16 @@ public class UserData : IUserData
 
         return results.FirstOrDefault();
     }
+    public async Task<User> UpdatePassword(int userId, string password)
+    {
+        var result = await _db.LoadData<User, dynamic>("spUser_PasswordReset", new
+        {
+            Id = userId,
+            Password = password
+        });
+        return result.FirstOrDefault();
 
+
+    }
 
 }
