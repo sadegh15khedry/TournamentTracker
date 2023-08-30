@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.DataAccess.Refit", "UI.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailHelperLibrary", "EmailHelperLibrary\EmailHelperLibrary.csproj", "{AA20577F-A328-455D-8CC1-A1E8950A407D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentTracker.BlazorWebUI", "TournamentTracker.BlazorWebUI\TournamentTracker.BlazorWebUI.csproj", "{13603578-D3C1-483A-84BC-01664CA4F17A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentTracker.BlazorWebUI", "TournamentTracker.BlazorWebUI\TournamentTracker.BlazorWebUI.csproj", "{13603578-D3C1-483A-84BC-01664CA4F17A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

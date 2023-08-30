@@ -1,0 +1,13 @@
+﻿@page "/"
+
+<h3>Login</h3>
+
+<EditForm method="post" action="" Model="@model">
+    <InputText type="text" name="userEmail" @bind-Value="model.Email" />
+    <InputText type="password" name="userPassword" @bind-Value="model.Password" />
+    <input type="submit" />
+</EditForm>
+
+@code {
+    private User model = new();
+} 
