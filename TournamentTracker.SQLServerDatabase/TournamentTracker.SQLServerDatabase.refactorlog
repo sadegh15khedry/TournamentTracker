@@ -56,4 +56,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="PhoneVerificationCodeExpirationDate" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="922b4e06-2edb-464e-a65f-569b916dc565" ChangeDateTime="08/31/2023 11:12:18">
+    <Property Name="ElementName" Value="[dbo].[FK_Player_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Player]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Player_ToUser]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="40aa52f5-ea37-4d6a-beee-b9789e4b5646" ChangeDateTime="08/31/2023 11:12:44">
+    <Property Name="ElementName" Value="[dbo].[FK_Series_User]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Series]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Series_ToUser]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aa5f7870-b342-4663-8d93-affee3285800" ChangeDateTime="08/31/2023 11:13:05">
+    <Property Name="ElementName" Value="[dbo].[FK_Match_User]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Match]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Match_ToUser]" />
+  </Operation>
 </Operations>

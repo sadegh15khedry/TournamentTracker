@@ -3,11 +3,12 @@
 	@PlaceInRound int,
 	@FirstTeamId int,
 	@SecondTeamId int,
-	@TournamentId int
+	@TournamentId int,
+	@UserId int
 AS
 Begin
 	Insert Into dbo.[Series]
-		(Round, PlaceInRound, isSeriesEnded, FirstTeamId, SecondTeamId, TournamentId)
+		(Round, PlaceInRound, isSeriesEnded, FirstTeamId, SecondTeamId, TournamentId, UserId)
 	output
 	Inserted.Id,
 	Inserted.Round,
@@ -17,5 +18,5 @@ Begin
 	Inserted.SecondTeamId,
 	Inserted.TournamentId
 	Values
-		(@Round, @PlaceInRound, 0, @FirstTeamId, @SecondTeamId, @TournamentId)
+		(@Round, @PlaceInRound, 0, @FirstTeamId, @SecondTeamId, @TournamentId, @UserId)
 End

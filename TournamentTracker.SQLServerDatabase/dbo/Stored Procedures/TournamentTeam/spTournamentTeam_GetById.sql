@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spTournamentTeam_GetById]
-	@Id int
+	@Id int,
+	@UserId int
 AS
 Begin
 	Select Id, TournamentId, TeamId from dbo.[TournamentTeam] 
-	Where Id = @Id
+	Where Id = @Id and UserId = @UserId
 End

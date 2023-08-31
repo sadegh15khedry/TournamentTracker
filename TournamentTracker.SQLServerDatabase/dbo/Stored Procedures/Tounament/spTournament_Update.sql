@@ -4,7 +4,8 @@
 	@Location nvarchar(100),
 	@Description nvarchar(100),
 	@IsFinished bit,
-	@IsStarted bit
+	@IsStarted bit,
+	@UserId int
 AS
 Begin
 	Update dbo.[Tournament]
@@ -16,5 +17,5 @@ Begin
 	output Inserted.Id, Inserted.Name, Inserted.Location,
 	Inserted.Description, Inserted.IsFinished, Inserted.IsStarted
 
-	Where Id = @Id
+	Where Id = @Id and UserId = @UserId
 End

@@ -5,7 +5,8 @@
 	@PlaceInRound int,
 	@FirstTeamId int,
 	@SecondTeamId int,
-	@TournamentId int
+	@TournamentId int,
+	@UserId int
 AS
 Begin
 	Update dbo.[Series] 
@@ -19,5 +20,5 @@ Begin
 	Inserted.FirstTeamId,
 	Inserted.SecondTeamId,
 	Inserted.TournamentId
-	Where Id = @Id
+	Where Id = @Id and UserId = @UserId
 End

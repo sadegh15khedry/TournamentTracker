@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spSeries_SetToFinished]
-	@SeriesId  int
+	@SeriesId  int,
+	@UserId int
 AS
 Begin
 	Update dbo.[Series] Set isSeriesEnded = 1
@@ -11,5 +12,5 @@ Begin
 	Inserted.SecondTeamId,
 	Inserted.TournamentId
 
-	where Id = @SeriesId 
+	where Id = @SeriesId and UserId = @UserId
 End

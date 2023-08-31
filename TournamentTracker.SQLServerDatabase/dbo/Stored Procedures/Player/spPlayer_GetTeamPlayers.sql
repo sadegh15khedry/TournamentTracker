@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[spPlayer_GetTeamPlayers]
-	@TeamId int 
+	@TeamId int,
+	@UserId int
 AS
 Begin
 	SELECT Id, SSN, FirstName, LastName, Phone, TeamId ,Email From dbo.[Player]
-	Where TeamId = @TeamId
+	Where TeamId = @TeamId and UserId = @UserId
 End

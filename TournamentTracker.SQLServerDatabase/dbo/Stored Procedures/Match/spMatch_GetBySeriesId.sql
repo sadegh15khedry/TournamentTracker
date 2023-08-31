@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[spMatch_GetBySeriesId]
-	@SeriesId int
+	@SeriesId int, 
+	@UserId int
 AS
 Begin
 	SELECT Id, Outcome, FirstTeamScore,  SecondTeamScore, SeriesId
 	From dbo.[Match] 
-	Where SeriesId = @SeriesId
+	Where SeriesId = @SeriesId and UserId = @UserId
 End

@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[spTournament_GetTeamsNotInTournament]
-	@TournamentId int
+	@TournamentId int,
+	@UserId int
 AS
 Begin
 	Select Id, Name, City, Owner From dbo.[Team]
-	Where Id Not In (Select TeamId From dbo.[TournamentTeam]
-						Where TournamentId = @TournamentId )
+	  Where  UserId = @UserId and Id Not In (Select TeamId From dbo.[TournamentTeam]
+						Where TournamentId = @TournamentId and UserId = @UserId)
 End

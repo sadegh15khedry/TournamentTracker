@@ -7,4 +7,6 @@
     [TeamId] INT NULL, 
     [Phone] NVARCHAR(50) NULL, 
     [Email] NVARCHAR(2000) NULL, 
-    CONSTRAINT [FK_Player_ToTeam] FOREIGN KEY ([TeamId]) REFERENCES [Team]([Id]))
+    [UserId] INT NOT NULL, 
+    CONSTRAINT [FK_Player_ToTeam] FOREIGN KEY ([TeamId]) REFERENCES [Team]([Id]), 
+    CONSTRAINT [FK_Player_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]))
