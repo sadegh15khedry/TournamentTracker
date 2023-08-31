@@ -17,25 +17,27 @@ public class PlayerData : IPlayerData
     }
 
 
-    public async Task<IEnumerable<Player>> GetAll()
+    public async Task<IEnumerable<Player>> GetAll(int userId)
     {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetAll", new { });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetAll",
+            new { UserId = userId });
         var players = result.ToList();
 
         foreach (var player in players)
         {
-            player.Team = GetPlayerTeam(player.Id).Result;
+            player.Team = GetPlayerTeam(player.Id, userId).Result;
         }
 
         return players;
     }
 
-    public async Task<Player> GetById(int id)
+    public async Task<Player> GetById(int id, int userId)
     {
-        var results = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetByID", new { Id = id });
+        var results = await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetById",
+            new { Id = id, UserId = userId });
         var player = results.FirstOrDefault();
 
-        player.Team = GetPlayerTeam(player.Id).Result;
+        player.Team = GetPlayerTeam(player.Id, userId).Result;
 
         return results.FirstOrDefault();
     }
@@ -48,7 +50,8 @@ public class PlayerData : IPlayerData
             player.FirstName,
             player.LastName,
             player.Phone,
-            player.Email
+            player.Email,
+            player.UserId
         });
         return result.FirstOrDefault();
 
@@ -63,43 +66,49 @@ public class PlayerData : IPlayerData
             player.FirstName,
             player.LastName,
             player.Phone,
-            player.Email
+            player.Email,
+            player.UserId
         });
         return result.FirstOrDefault();
 
 
     }
 
-    public async Task<Player> Delete(int id)
+    public async Task<Player> Delete(int id, int userId)
     {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_Delete", new { id });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_Delete",
+            new { Id = id, UserId = userId });
         return result.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<Player>> GetFreeAgentPlayers()
+    public async Task<IEnumerable<Player>> GetFreeAgentPlayers(int userId)
     {
-        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetFreeAgentPlayers", new { });
+        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetFreeAgentPlayers",
+            new { UserId = userId });
     }
-    public async Task<IEnumerable<Player>> GetTeamPlayers(int teamId)
+    public async Task<IEnumerable<Player>> GetTeamPlayers(int teamId, int userId)
     {
-        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetTeamPlayers", new { TeamId = teamId });
+        return await _db.LoadData<Player, dynamic>("dbo.spPlayer_GetTeamPlayers",
+            new { TeamId = teamId, UserId = userId });
     }
-    public async Task<Player> CanceledContract(int playerId)
+    public async Task<Player> CanceledContract(int playerId, int userId)
     {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_CanceledContract", new { Id = playerId });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_CanceledContract",
+            new { Id = playerId, UserId = userId });
         return result.FirstOrDefault();
     }
 
-    public async Task<Player> SignedWithTeam(int playerId, int teamId)
+    public async Task<Player> SignedWithTeam(int playerId, int teamId, int userId)
     {
-        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_SignedWithTeam", new { playerId, teamId });
+        var result = await _db.LoadData<Player, dynamic>("dbo.spPlayer_SignedWithTeam",
+            new { playerId, teamId, UserId = userId });
         return result.FirstOrDefault();
 
     }
-    public async Task<Team> GetPlayerTeam(int teamId)
+    public async Task<Team> GetPlayerTeam(int teamId, int userId)
     {
         var results = await _db.LoadData<Team, dynamic>
-            ("spPlayer_GetPlayerTeam", new { TeamId = teamId });
+            ("spPlayer_GetPlayerTeam", new { TeamId = teamId, UserId = userId });
         return results.FirstOrDefault();
     }
 

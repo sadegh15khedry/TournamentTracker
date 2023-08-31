@@ -33,4 +33,6 @@ public class Match
     //public Series? Series { get; set; }
     //public Tournament? Tournament { get; set; }
 
+    public int UserId { get; set; }
+
 }

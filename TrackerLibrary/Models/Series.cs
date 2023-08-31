@@ -44,6 +44,7 @@ public class Series
     public int TournamentId { get; set; }
 
 
+    public int UserId { get; set; }
 
     /// <summary>
     /// First Team that participated in the series

@@ -6,14 +6,14 @@ public interface IPlayerData
 {
     ISqlDataAccess _db { get; }
 
-    Task<Player> CanceledContract(int playerId);
-    Task<Player> SignedWithTeam(int playerId, int teamId);
-    Task<Team> GetPlayerTeam(int teamId);
-    Task<Player> Delete(int id);
-    Task<IEnumerable<Player>> GetAll();
-    Task<Player> GetById(int id);
+    Task<Player> CanceledContract(int playerId, int userId);
+    Task<Player> SignedWithTeam(int playerId, int teamId, int userId);
+    Task<Team> GetPlayerTeam(int teamId, int userId);
+    Task<Player> Delete(int id, int userId);
+    Task<IEnumerable<Player>> GetAll(int userId);
+    Task<Player> GetById(int id, int userId);
     Task<Player> Insert(Player player);
-    Task<Player> Update(Player match);
-    Task<IEnumerable<Player>> GetFreeAgentPlayers();
-    Task<IEnumerable<Player>> GetTeamPlayers(int teamId);
+    Task<Player> Update(Player player);
+    Task<IEnumerable<Player>> GetFreeAgentPlayers(int userId);
+    Task<IEnumerable<Player>> GetTeamPlayers(int teamId, int userId);
 }

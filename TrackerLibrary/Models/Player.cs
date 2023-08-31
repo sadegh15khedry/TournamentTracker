@@ -38,4 +38,6 @@ public class Player
     /// the Current Team of player
     /// </summary>
     public Team? Team { get; set; }
+    public int UserId { get; set; }
+
 }

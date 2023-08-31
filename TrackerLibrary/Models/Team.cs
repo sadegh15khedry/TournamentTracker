@@ -21,4 +21,6 @@ public class Team
     /// first name and last name of the owner
     /// </summary>
     public string Owner { get; set; } = string.Empty;
+    public int UserId { get; set; }
+
 }

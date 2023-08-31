@@ -14,14 +14,15 @@ public class TeamData : ITeamData
 
 
 
-    public async Task<IEnumerable<Team>> GetAll()
+    public async Task<IEnumerable<Team>> GetAll(int userId)
     {
-        return await _db.LoadData<Team, dynamic>("dbo.spTeam_GetAll", new { });
+        return await _db.LoadData<Team, dynamic>("dbo.spTeam_GetAll", new { UserId = userId });
     }
 
-    public async Task<Team> GetById(int id)
+    public async Task<Team> GetById(int id, int userId)
     {
-        var results = await _db.LoadData<Team, dynamic>("dbo.spTeam_GetByID", new { Id = id });
+        var results = await _db.LoadData<Team, dynamic>("dbo.spTeam_GetByID",
+            new { Id = id, UserId = userId });
         return results.FirstOrDefault();
     }
 
@@ -32,7 +33,8 @@ public class TeamData : ITeamData
 
             team.Name,
             team.City,
-            team.Owner
+            team.Owner,
+            team.UserId
         });
         return result.FirstOrDefault();
     }
@@ -44,15 +46,18 @@ public class TeamData : ITeamData
             team.Id,
             team.Name,
             team.City,
-            team.Owner
+            team.Owner,
+            team.UserId
+
         });
         return result.FirstOrDefault();
 
     }
 
-    public async Task<Team> Delete(int id)
+    public async Task<Team> Delete(int id, int userId)
     {
-        var result = await _db.LoadData<Team, dynamic>("dbo.spTeam_Delete", new { id });
+        var result = await _db.LoadData<Team, dynamic>("dbo.spTeam_Delete",
+            new { Id = id, UserId = userId });
         return result.FirstOrDefault();
     }
 

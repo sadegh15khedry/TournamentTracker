@@ -6,10 +6,10 @@ public interface ISeriesData
 {
     ISqlDataAccess _db { get; }
 
-    Task<Series> Delete(int id);
-    Task<IEnumerable<Series>> GetAll();
-    Task<Series> GetById(int id);
+    Task<Series> Delete(int id, int userId);
+    Task<IEnumerable<Series>> GetAll(int userId);
+    Task<Series> GetById(int id, int userId);
     Task<Series> Insert(Series series);
     Task<Series> Update(Series series);
-    Task<Series> SetToFinished(int seriesId);
+    Task<Series> SetToFinished(int seriesId, int userId);
 }

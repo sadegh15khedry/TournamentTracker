@@ -15,14 +15,15 @@ public class MatchData : IMatchData
         _db = db;
     }
 
-    public async Task<IEnumerable<Match>> GetAll()
+    public async Task<IEnumerable<Match>> GetAll(int userId)
     {
-        return await _db.LoadData<Match, dynamic>("dbo.spMatch_GetAll", new { });
+        return await _db.LoadData<Match, dynamic>("dbo.spMatch_GetAll", new { UserId = userId });
     }
 
-    public async Task<Match> GetById(int id)
+    public async Task<Match> GetById(int id, int userId)
     {
-        var results = await _db.LoadData<Match, dynamic>("dbo.spMatch_GetByID", new { Id = id });
+        var results = await _db.LoadData<Match, dynamic>("dbo.spMatch_GetById",
+            new { Id = id, UserId = userId });
         return results.FirstOrDefault();
     }
 
@@ -33,7 +34,8 @@ public class MatchData : IMatchData
             match.Outcome,
             match.FirstTeamScore,
             match.SecondTeamScore,
-            match.SeriesId
+            match.SeriesId,
+            match.UserId
         });
 
         return result.FirstOrDefault();
@@ -46,14 +48,16 @@ public class MatchData : IMatchData
             match.Outcome,
             match.FirstTeamScore,
             match.SecondTeamScore,
-            match.SeriesId
+            match.SeriesId,
+            match.UserId
         });
         return result.FirstOrDefault();
 
     }
-    public async Task<Match> Delete(int id)
+    public async Task<Match> Delete(int id, int userId)
     {
-        var result = await _db.LoadData<Match, dynamic>("dbo.spMatch_Delete", new { id });
+        var result = await _db.LoadData<Match, dynamic>("dbo.spMatch_Delete",
+            new { Id = id, UserId = userId });
         return result.FirstOrDefault();
 
     }

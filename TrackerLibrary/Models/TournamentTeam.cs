@@ -4,4 +4,6 @@ public class TournamentTeam
 {
     public int TeamId { get; set; }
     public int TournamentId { get; set; }
+    public int UserId { get; set; }
+
 }

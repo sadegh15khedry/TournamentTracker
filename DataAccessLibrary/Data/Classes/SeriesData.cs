@@ -13,40 +13,41 @@ public class SeriesData : ISeriesData
         _db = db;
     }
 
-    public async Task<IEnumerable<Series>> GetAll()
+    public async Task<IEnumerable<Series>> GetAll(int userId)
     {
-        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetAll", new { });
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetAll", new { UserId = userId });
         result = result.ToList();
 
         foreach (Series series in result)
         {
-            await SetSeriesAdditionalInfo(series);
+            await SetSeriesAdditionalInfo(series, userId);
         }
 
         return result;
 
     }
 
-    public async Task<Series> GetById(int id)
+    public async Task<Series> GetById(int id, int userId)
     {
-        var results = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetByID", new { Id = id });
+        var results = await _db.LoadData<Series, dynamic>("dbo.spSeries_GetByID",
+            new { Id = id, UserId = userId });
         var series = results.FirstOrDefault();
 
-        await SetSeriesAdditionalInfo(series);
+        await SetSeriesAdditionalInfo(series, userId);
 
         return series;
     }
 
-    private async Task SetSeriesAdditionalInfo(Series? series)
+    private async Task SetSeriesAdditionalInfo(Series? series, int userId)
     {
 
 
         var firstTeam = await _db.LoadData<Team, dynamic>
-            ("dbo.spTeam_GetById", new { Id = series.FirstTeamId });
+            ("dbo.spTeam_GetById", new { Id = series.FirstTeamId, UserId = userId });
         var secondTeam = await _db.LoadData<Team, dynamic>
-            ("dbo.spTeam_GetById", new { Id = series.SecondTeamId });
+            ("dbo.spTeam_GetById", new { Id = series.SecondTeamId, UserId = userId });
         var matches = await _db.LoadData<Match, dynamic>
-            ("spMatch_GetBySeriesId", new { SeriesId = series.Id });
+            ("spMatch_GetBySeriesId", new { SeriesId = series.Id, UserId = userId });
 
         /*        int firstTeamWins = 0;
                 int secondTeamWins = 0;
@@ -80,7 +81,8 @@ public class SeriesData : ISeriesData
             series.PlaceInRound,
             series.FirstTeamId,
             series.SecondTeamId,
-            series.TournamentId
+            series.TournamentId,
+            series.UserId
         });
         return result.FirstOrDefault();
     }
@@ -94,22 +96,25 @@ public class SeriesData : ISeriesData
             PlaceInRound = series.PlaceInRound,
             FirstTeamId = series.FirstTeamId,
             SecondTeamId = series.SecondTeamId,
-            TournamentId = series.TournamentId
+            TournamentId = series.TournamentId,
+            UserId = series.UserId
         });
         return result.FirstOrDefault();
     }
-    public async Task<Series> SetToFinished(int seriesId)
+    public async Task<Series> SetToFinished(int seriesId, int userId)
     {
         var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_SetToFinished", new
         {
-            SeriesId = seriesId
+            SeriesId = seriesId,
+            UserId = userId
         });
         return result.FirstOrDefault();
     }
 
-    public async Task<Series> Delete(int id)
+    public async Task<Series> Delete(int id, int userId)
     {
-        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Delete", new { id });
+        var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Delete",
+            new { Id = id, UserId = userId });
         return result.FirstOrDefault();
     }
 

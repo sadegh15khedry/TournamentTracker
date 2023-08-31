@@ -27,6 +27,8 @@ public class Tournament
     public bool? IsFinished { get; set; } = false;
 
     public bool? IsStarted { get; set; } = false;
+    public int UserId { get; set; }
+
 
 
     /// <summary>
