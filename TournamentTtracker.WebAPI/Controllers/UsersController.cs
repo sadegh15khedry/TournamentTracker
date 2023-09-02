@@ -56,6 +56,7 @@ public class UsersController : ControllerBase
     [Authorize]
     public async Task<ActionResult<User>> Update([FromForm] User user)
     {
+
         if (user == null)
         {
             return BadRequest("user object is null");
@@ -263,6 +264,8 @@ public class UsersController : ControllerBase
         return Ok(emailBody);
 
     }
+
+
 
     [Authorize]
     [Route("/api/[Controller]/[Action]")]

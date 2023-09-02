@@ -1,4 +1,4 @@
-﻿using DataAccessLibrary.Data.Interfaces;
+﻿/*using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -95,7 +95,7 @@ public class SeriesController : ControllerBase
         //return series;
     }
 
-    /*    [HttpGet]
+    *//*    [HttpGet]
         [Route("/api/[Controller]/[Action]")]
         public async Task<ActionResult> MultiInsert(List<Series> seriesList)
         {
@@ -105,5 +105,6 @@ public class SeriesController : ControllerBase
                     }
                     return StatusCode((int)HttpStatusCode.OK, "Added");*//*
             return Ok("worked");
-        }*/
+        }*//*
 }
+*/

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
@@ -24,8 +25,10 @@ public class TournamentsController : Controller
     // GET: Tournaments
     public async Task<ActionResult<IEnumerable<Tournament>>> GetAll()
     {
-        var result = await _db.GetAll();
-        return StatusCode((int)HttpStatusCode.OK, result);
+        int userId = GetUserIdByRequest();
+
+        var result = await _db.GetAll(userId);
+        return StatusCode((int)HttpStatusCode.OK, userId);
 
     }
 
@@ -35,7 +38,9 @@ public class TournamentsController : Controller
     // GET: Tournaments/5
     public async Task<ActionResult<Tournament>> GetById(int id)
     {
-        var tournament = await _db.GetById(id);
+        int userId = GetUserIdByRequest();
+
+        var tournament = await _db.GetById(id, userId);
         //var teams = await _db.GetTournamentTeams(id);
         //tournament.Teams = teams.ToList();
 
@@ -49,6 +54,8 @@ public class TournamentsController : Controller
     [HttpPost]
     public async Task<ActionResult<Tournament>> Create(Tournament tournament)
     {
+        int userId = GetUserIdByRequest();
+        tournament.UserId = userId;
         var result = await _db.Insert(tournament);
         return StatusCode((int)HttpStatusCode.Created, result);
     }
@@ -58,7 +65,13 @@ public class TournamentsController : Controller
     // POST: Tournaments/Edit/5
     public async Task<ActionResult<Tournament>> Update(Tournament tournament)
     {
+        int userId = GetUserIdByRequest();
+
         var result = await _db.Update(tournament);
+        if (tournament.UserId != userId)
+        {
+            return BadRequest("Not Allowed");
+        }
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -66,9 +79,11 @@ public class TournamentsController : Controller
     // POST: Tournaments/Delete/5
     public async Task<ActionResult<Tournament>> Delete(int id)
     {
+        int userId = GetUserIdByRequest();
+
         try
         {
-            var result = await _db.Delete(id);
+            var result = await _db.Delete(id, userId);
             return StatusCode((int)HttpStatusCode.OK, result);
         }
         catch
@@ -109,7 +124,8 @@ public class TournamentsController : Controller
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Team>>> GetTournamentTeams(int tournamentId)
     {
-        var result = await _db.GetTournamentTeams(tournamentId);
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetTournamentTeams(tournamentId, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -118,7 +134,9 @@ public class TournamentsController : Controller
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Team>>> GetTeamsNotInTournament(int tournamentId)
     {
-        var teams = await _db.GetTeamsNotInTournament(tournamentId);
+        int userId = GetUserIdByRequest();
+
+        var teams = await _db.GetTeamsNotInTournament(tournamentId, userId);
         return StatusCode((int)HttpStatusCode.OK, teams);
     }
 
@@ -126,7 +144,9 @@ public class TournamentsController : Controller
     [Route("/api/[Controller]/[Action]")]
     public async Task<ActionResult<TournamentTeam>> AddTeamToTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        var tournament = await _db.GetById(tournamentTeam.TournamentId);
+        int userId = GetUserIdByRequest();
+
+        var tournament = await _db.GetById(tournamentTeam.TournamentId, userId);
 
         if (tournament.IsStarted == true || tournament.IsFinished == true)
         {
@@ -135,7 +155,8 @@ public class TournamentsController : Controller
                 " adding or removing team from this tournament is not allowed");
         }
 
-        var result = await _db.AddTeamToTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        var result = await _db.AddTeamToTournament(tournamentTeam.TeamId,
+            tournamentTeam.TournamentId, userId);
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
@@ -143,7 +164,9 @@ public class TournamentsController : Controller
     [Route("/api/[Controller]/[Action]")]
     public async Task<ActionResult<TournamentTeam>> RemoveTeamFromTournament([FromBody] TournamentTeam tournamentTeam)
     {
-        var tournament = await _db.GetById(tournamentTeam.TournamentId);
+        int userId = GetUserIdByRequest();
+
+        var tournament = await _db.GetById(tournamentTeam.TournamentId, userId);
 
         if (tournament.IsStarted == true || tournament.IsFinished == true)
         {
@@ -152,7 +175,8 @@ public class TournamentsController : Controller
                 " adding or removing team from this tournament is not allowed");
         }
 
-        var result = await _db.RemoveTeamFromTournament(tournamentTeam.TeamId, tournamentTeam.TournamentId);
+        var result = await _db.RemoveTeamFromTournament(tournamentTeam.TeamId,
+            tournamentTeam.TournamentId, userId);
         return StatusCode((int)HttpStatusCode.Created, result);
     }
 
@@ -161,15 +185,17 @@ public class TournamentsController : Controller
     // Get : api/Tournaments/GenerateSeries/1
     public async Task<ActionResult> SetToStarted(int tournamentId)
     {
+        int userId = GetUserIdByRequest();
+
         //var result = await _db.SetToStarted(tournamentId);
-        var tournament = await _db.GetById(tournamentId);
+        var tournament = await _db.GetById(tournamentId, userId);
         if (TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == false ||
             tournament.IsStarted == true)
         {
             return StatusCode((int)HttpStatusCode.BadRequest, false);
         }
 
-        var result = await _db.SetToStarted(tournamentId);
+        var result = await _db.SetToStarted(tournamentId, userId);
         return StatusCode((int)HttpStatusCode.OK, true);
 
         //return RedirectToAction("MultiInsert", "Series", new { seriesList });
@@ -179,11 +205,26 @@ public class TournamentsController : Controller
     [Route("/api/Tournaments/CheckIfTournamentEnded/{TournamentId}")]
     public async Task<ActionResult> CheckIfTournamentEnded(int tournamentId)
     {
-        var tournament = await _db.GetById(tournamentId);
+        int userId = GetUserIdByRequest();
+        var tournament = await _db.GetById(tournamentId, userId);
         if (TournamentLogic.IsTournamentEnded(tournament) == true)
         {
-            await _db.SetToFinished(tournamentId);
+            await _db.SetToFinished(tournamentId, userId);
         }
         return Ok(tournament);
+    }
+
+    private int GetUserIdByRequest()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity == null)
+        {
+            return 0;
+        }
+        IEnumerable<Claim> claims = identity.Claims;
+        id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+        return id;
     }
 }

@@ -189,4 +189,18 @@ public static class TournamentLogic
         }
         return false;
     }
+
+    /*    public static int GetUserIdByRequest(string refreshToken)
+        {
+            //var refreshToken = Request.Cookies["refreshToken"];
+            int id = 0;
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity == null)
+            {
+                return 0;
+            }
+            IEnumerable<Claim> claims = identity.Claims;
+            id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+            return id;
+        }*/
 }
