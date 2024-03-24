@@ -27,5 +27,7 @@ public interface ISeriesData
     [Delete("/Series/{id}")]
     Task<Series> Delete(int id);
 
+    [Get("/Series/CheckIfSeriesEnded/{seriesId}")]
+    Task<Series> CheckIfSeriesEnded(int seriesId);
 
 }

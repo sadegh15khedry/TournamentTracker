@@ -53,11 +53,12 @@ public class MatchesController : ControllerBase
     {
         try
         {
+            int userId = GetUserIdByRequest();
+            match.UserId = userId;
             match.Outcome = TournamentLogic.GetMatchOutcome(match);
             var result = await _db.Insert(match);
-
-            return Redirect("/api/Series/CheckIfSeriesEnded/" + match.SeriesId);
-            //return StatusCode((int)HttpStatusCode.Created, result);
+            //return RedirectToAction(actionName: "CheckIfSeriesEnded", controllerName: "Series", new { seriesId = match.SeriesId });
+            return Redirect("/Series/CheckIfSeriesEnded/" + match.SeriesId);
         }
         catch
         {

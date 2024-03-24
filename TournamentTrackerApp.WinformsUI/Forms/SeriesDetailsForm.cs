@@ -89,6 +89,7 @@ public partial class SeriesDetailsForm : Form
         });
         this.Hide();
         Thread.Sleep(100);
+        _seriesData.CheckIfSeriesEnded(SelectedSeries.Id);
         FormFactory.CreateSeriesDetailsForm(SelectedSeries.Id).Show();
     }
 }

@@ -85,7 +85,7 @@ public class SeriesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/api/[Controller]/[Action]/{seriesId}")]
+    [Route("/api/Series/CheckIfSeriesEnded/{seriesId}")]
     public async Task<ActionResult> CheckIfSeriesEnded(int seriesId)
     {
         int userId = GetUserIdByRequest();
