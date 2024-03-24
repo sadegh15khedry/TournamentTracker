@@ -1,7 +1,8 @@
-﻿/*using DataAccessLibrary.Data.Interfaces;
+﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Logic;
 using TournamentTrackerLibrary.Models;
 
@@ -27,7 +28,8 @@ public class SeriesController : ControllerBase
     // GET: api/Series
     public async Task<ActionResult<IEnumerable<Series>>> GetAll()
     {
-        var result = await _db.GetAll();
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetAll(userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -36,7 +38,8 @@ public class SeriesController : ControllerBase
     // GET: api/Series/5
     public async Task<ActionResult<Series>> GetById(int id)
     {
-        var result = await _db.GetById(id);
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetById(id, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
 
     }
@@ -71,7 +74,8 @@ public class SeriesController : ControllerBase
     {
         try
         {
-            var result = await _db.Delete(id);
+            int userId = GetUserIdByRequest();
+            var result = await _db.Delete(id, userId);
             return StatusCode((int)HttpStatusCode.OK, result);
         }
         catch
@@ -84,27 +88,40 @@ public class SeriesController : ControllerBase
     [Route("/api/[Controller]/[Action]/{seriesId}")]
     public async Task<ActionResult> CheckIfSeriesEnded(int seriesId)
     {
-        var series = await _db.GetById(seriesId);
+        int userId = GetUserIdByRequest();
+        var series = await _db.GetById(seriesId, userId);
 
         if (TournamentLogic.IsSeriesEnded(series) == true)
         {
             series.IsSeriesEnded = true;
-            await _db.SetToFinished(series.Id);
+            await _db.SetToFinished(series.Id, userId);
         }
         return Redirect("/api/Tournaments/CheckIfTournamentEnded/" + series.TournamentId);
         //return series;
     }
 
-    *//*    [HttpGet]
-        [Route("/api/[Controller]/[Action]")]
-        public async Task<ActionResult> MultiInsert(List<Series> seriesList)
+    [HttpGet]
+    [Route("/api/[Controller]/[Action]")]
+    public async Task<ActionResult> MultiInsert(List<Series> seriesList)
+    {
+        foreach (var series in seriesList)
         {
-            *//*        foreach (var series in seriesList)
-                    {
-                        await _db.Insert(series);
-                    }
-                    return StatusCode((int)HttpStatusCode.OK, "Added");*//*
-            return Ok("worked");
-        }*//*
+            await _db.Insert(series);
+        }
+        return StatusCode((int)HttpStatusCode.OK, "Added");
+        return Ok("worked");
+    }
+    private int GetUserIdByRequest()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity == null)
+        {
+            return 0;
+        }
+        IEnumerable<Claim> claims = identity.Claims;
+        id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+        return id;
+    }
 }
-*/

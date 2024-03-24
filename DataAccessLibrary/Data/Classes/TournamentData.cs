@@ -58,14 +58,16 @@ public class TournamentData : ITournamentData
 
         await SetTournamentSeriesInfo(tournament, userId);
 
-        if (TournamentLogic.IsNextRoundSeriesGenerationsNeeded(tournament) == false)
+        if (TournamentLogic.IsNextRoundSeriesGenerationsNeeded(tournament) == false ||
+            tournament.IsStarted == false || tournament.Series.Count == 0)
         {
             return;
         }
         List<Series> nextRoundSeries = TournamentLogic.GenerateNextRoundSeries(tournament);
         foreach (var series in nextRoundSeries)
         {
-            await InsertSeries(series, userId);
+            series.UserId = userId;
+            await InsertSeries(series);
         }
     }
 
@@ -75,7 +77,8 @@ public class TournamentData : ITournamentData
         {
             tournament.Name,
             tournament.Location,
-            tournament.Description
+            tournament.Description,
+            tournament.UserId
         });
         return result.FirstOrDefault();
     }
@@ -96,7 +99,8 @@ public class TournamentData : ITournamentData
         foreach (Series series in initialSeries)
         {
             //tournament.Series.Add(series);
-            InsertSeries(series, userId);
+            series.UserId = userId;
+            await InsertSeries(series);
         }
         tournament = await GetById(tournament.Id, userId);
         return tournament;
@@ -164,7 +168,7 @@ public class TournamentData : ITournamentData
         return result.FirstOrDefault();
     }
 
-    private async Task InsertSeries(Series series, int userId)
+    private async Task InsertSeries(Series series)
     {
         var result = await _db.LoadData<Series, dynamic>("dbo.spSeries_Insert", new
         {

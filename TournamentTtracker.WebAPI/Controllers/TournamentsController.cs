@@ -28,7 +28,7 @@ public class TournamentsController : Controller
         int userId = GetUserIdByRequest();
 
         var result = await _db.GetAll(userId);
-        return StatusCode((int)HttpStatusCode.OK, userId);
+        return StatusCode((int)HttpStatusCode.OK, result);
 
     }
 
@@ -66,6 +66,7 @@ public class TournamentsController : Controller
     public async Task<ActionResult<Tournament>> Update(Tournament tournament)
     {
         int userId = GetUserIdByRequest();
+        tournament.UserId = userId;
 
         var result = await _db.Update(tournament);
         if (tournament.UserId != userId)
@@ -189,6 +190,7 @@ public class TournamentsController : Controller
 
         //var result = await _db.SetToStarted(tournamentId);
         var tournament = await _db.GetById(tournamentId, userId);
+
         if (TournamentLogic.IsTournamentNumberOfTeamsValid(tournament) == false ||
             tournament.IsStarted == true)
         {
@@ -196,7 +198,7 @@ public class TournamentsController : Controller
         }
 
         var result = await _db.SetToStarted(tournamentId, userId);
-        return StatusCode((int)HttpStatusCode.OK, true);
+        return StatusCode((int)HttpStatusCode.OK, result);
 
         //return RedirectToAction("MultiInsert", "Series", new { seriesList });
     }

@@ -23,7 +23,7 @@ public static class TournamentLogic
                 SecondTeamId = tournament.Teams.ElementAt(i + 1).Id,
                 IsSeriesEnded = false,
                 Round = round,
-                PlaceInRound = placeInRound
+                PlaceInRound = placeInRound,
             };
             result.Add(series);
 

@@ -50,12 +50,12 @@ public partial class TournamentDetailsForm : Form
             FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();
             return;
         }
-        var result = _tournamentData.SetToStarted(SelectedTournament.Id).Result;
-        if (result == false)
-        {
-            MessageBox.Show("start conditions did not met. check tournament teams.");
-            return;
-        }
+        var result = _tournamentData.SetToStarted(SelectedTournament.Id);
+        /*if (result == false)
+        {*/
+        /*MessageBox.Show("start conditions did not met. check tournament teams.");
+        return;*/
+        /*}*/
 
         this.Hide();
         FormFactory.CreateTournamentChart(SelectedTournament.Id).Show();

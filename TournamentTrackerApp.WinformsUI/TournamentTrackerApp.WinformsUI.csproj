@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,9 +27,7 @@
     <Compile Update="Forms\TournamentDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\EditTeamForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\EditTeamForm.cs" />
     <Compile Update="Forms\EditPlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>

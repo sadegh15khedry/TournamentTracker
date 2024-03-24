@@ -1,7 +1,8 @@
-﻿/*using DataAccessLibrary.Data.Interfaces;
+﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Models;
 
 namespace TournamentTracker.WebAPI;
@@ -25,14 +26,16 @@ public class PlayersController : Controller
     // GET: api/Players
     public async Task<ActionResult<Player>> GetAll()
     {
-        var players = await _db.GetAll();
-        *//*        foreach (var player in players)
-                {
-                    if (player.TeamId.HasValue)
-                    {
-                        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);
-                    }
-                }*//*
+        int userId = GetUserIdByRequest();
+        var players = await _db.GetAll(userId);
+        foreach (var player in players)
+        {
+            if (player.TeamId.HasValue)
+            {
+                player.Team = await _db.GetPlayerTeam(player.TeamId.Value, userId);
+            }
+        }
+
 
         return StatusCode((int)HttpStatusCode.OK, players);
     }
@@ -43,18 +46,19 @@ public class PlayersController : Controller
     // GET: api/Players/5
     public async Task<ActionResult<Player>> GetById(int id)
     {
-        var player = await _db.GetById(id);
+        int userId = GetUserIdByRequest();
+        var player = await _db.GetById(id, userId);
 
         if (player is null)
         {
             return StatusCode((int)HttpStatusCode.NotFound, "player Not Found");
         }
-        *//*if (player.TeamId is null)
+        if (player.TeamId is null)
         {
             return Ok(player);
         }
 
-        player.Team = await _db.GetPlayerTeam(player.TeamId.Value);*//*
+        player.Team = await _db.GetPlayerTeam(player.TeamId.Value, userId);
         return StatusCode((int)HttpStatusCode.OK, player);
 
     }
@@ -65,6 +69,8 @@ public class PlayersController : Controller
     {
         try
         {
+            int userId = GetUserIdByRequest();
+            player.UserId = userId;
             var result = await _db.Insert(player);
             return StatusCode((int)HttpStatusCode.Created, "added");
         }
@@ -78,6 +84,8 @@ public class PlayersController : Controller
     // POST: api/TournamentController/Edit/5
     public async Task<ActionResult<Player>> Update(Player player)
     {
+        int userId = GetUserIdByRequest();
+        player.UserId = userId;
         var result = await _db.Update(player);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
@@ -88,7 +96,8 @@ public class PlayersController : Controller
     {
         try
         {
-            var result = await _db.Delete(id);
+            int userId = GetUserIdByRequest();
+            var result = await _db.Delete(id, userId);
             return StatusCode((int)HttpStatusCode.OK, "Deleted");
         }
         catch
@@ -102,7 +111,8 @@ public class PlayersController : Controller
     // POST: api/TournamentController/SignedWithTeam
     public async Task<ActionResult<Player>> SignedWithTeam(int playerId, int teamId)
     {
-        var result = await _db.SignedWithTeam(playerId, teamId);
+        int userId = GetUserIdByRequest();
+        var result = await _db.SignedWithTeam(playerId, teamId, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -111,7 +121,8 @@ public class PlayersController : Controller
     // POST: api/TournamentController/CanceledContract
     public async Task<ActionResult<Player>> CanceledContract(int playerId)
     {
-        var result = await _db.CanceledContract(playerId);
+        int userId = GetUserIdByRequest();
+        var result = await _db.CanceledContract(playerId, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -119,7 +130,8 @@ public class PlayersController : Controller
     [Route("/api/[Controller]/[Action]")]
     public async Task<ActionResult<IEnumerable<Player>>> GetFreeAgentPlayers()
     {
-        var result = await _db.GetFreeAgentPlayers();
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetFreeAgentPlayers(userId);
         return StatusCode((int)HttpStatusCode.OK, result);
 
     }
@@ -128,9 +140,21 @@ public class PlayersController : Controller
     [Route("/api/[Controller]/[Action]")]
     public async Task<ActionResult> GetTeamPlayers(int teamId)
     {
-        var result = await _db.GetTeamPlayers(teamId);
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetTeamPlayers(teamId, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
-
+    private int GetUserIdByRequest()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity == null)
+        {
+            return 0;
+        }
+        IEnumerable<Claim> claims = identity.Claims;
+        id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+        return id;
+    }
 }
-*/

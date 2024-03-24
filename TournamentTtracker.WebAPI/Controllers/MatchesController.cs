@@ -1,6 +1,7 @@
-﻿/*using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Logic;
 using Match = TournamentTrackerLibrary.Models.Match;
 
@@ -27,7 +28,8 @@ public class MatchesController : ControllerBase
     // GET: api/Matches
     public async Task<ActionResult<IEnumerable<Match>>> GetAll()
     {
-        var result = await _db.GetAll();
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetAll(userId);
         return StatusCode((int)HttpStatusCode.OK, result);
 
     }
@@ -37,7 +39,8 @@ public class MatchesController : ControllerBase
     // GET: api/Matches/5
     public async Task<ActionResult<Match>> GetById(int id)
     {
-        var result = await _db.GetById(id);
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetById(id, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
 
         //return Redirect("/api/Tournaments");
@@ -76,7 +79,8 @@ public class MatchesController : ControllerBase
     {
         try
         {
-            var result = await _db.Delete(id);
+            int userId = GetUserIdByRequest();
+            var result = await _db.Delete(id, userId);
             return StatusCode((int)HttpStatusCode.OK, result);
         }
         catch
@@ -84,5 +88,18 @@ public class MatchesController : ControllerBase
             return StatusCode((int)HttpStatusCode.BadRequest, "did not worked");
         }
     }
+    private int GetUserIdByRequest()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity == null)
+        {
+            return 0;
+        }
+        IEnumerable<Claim> claims = identity.Claims;
+        id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+        return id;
+    }
+
 }
-*/

@@ -21,7 +21,7 @@ public partial class AddTeamForm : Form
         {
             Name = nameTextBox.Text,
             City = cityTextBox.Text,
-            Owner = ownerTextBox.Text
+            Owner = ownerTextBox.Text,
         };
         var insertedTeam = _teamData.Insert(team).Result;
         Thread.Sleep(100);

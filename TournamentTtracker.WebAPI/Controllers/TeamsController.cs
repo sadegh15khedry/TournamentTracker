@@ -1,7 +1,8 @@
-﻿/*using DataAccessLibrary.Data.Interfaces;
+﻿using DataAccessLibrary.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Security.Claims;
 using TournamentTrackerLibrary.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,7 +26,8 @@ public class TeamsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Team>>> GetAll()
     {
-        var result = await _db.GetAll();
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetAll(userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -34,7 +36,8 @@ public class TeamsController : ControllerBase
     [Route("/api/[controller]/{id}")]
     public async Task<ActionResult<Team>> GetById(int id)
     {
-        var result = await _db.GetById(id);
+        int userId = GetUserIdByRequest();
+        var result = await _db.GetById(id, userId);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -42,7 +45,12 @@ public class TeamsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Team>> Insert(Team team)
     {
+
+        int userId = GetUserIdByRequest();
+        team.UserId = userId;
         var result = await _db.Insert(team);
+        //return StatusCode((int)HttpStatusCode.OK, userId);
+
         return StatusCode((int)HttpStatusCode.OK, result);
     }
 
@@ -50,6 +58,8 @@ public class TeamsController : ControllerBase
     // PUT api/Team
     public async Task<ActionResult<Team>> Update(Team team)
     {
+        int userId = GetUserIdByRequest();
+        team.UserId = userId;
         var result = await _db.Update(team);
         return StatusCode((int)HttpStatusCode.OK, result);
     }
@@ -60,7 +70,8 @@ public class TeamsController : ControllerBase
     {
         try
         {
-            var result = await _db.Delete(id);
+            int userId = GetUserIdByRequest();
+            var result = await _db.Delete(id, userId);
             return StatusCode((int)HttpStatusCode.OK, result);
 
         }
@@ -71,8 +82,19 @@ public class TeamsController : ControllerBase
         }
     }
 
-
+    private int GetUserIdByRequest()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        int id = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity == null)
+        {
+            return 0;
+        }
+        IEnumerable<Claim> claims = identity.Claims;
+        id = Int32.Parse(claims.ElementAtOrDefault(2).Value);
+        return id;
+    }
 
 
 }
-**/
