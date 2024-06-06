@@ -76,10 +76,9 @@ TournamentTracker is a robust application designed to manage and track tournamen
 #### Set up the database
 
 2. **Set up the database:**
-```bash
-   - Update the `appsettings.json` file with your database connection string.
-   - Run the SQL scripts in the `SQLScripts` directory to create the necessary database schema. The database project was created using Visual Studio Database Project, and all database interactions are handled through stored procedures.
-```
+   1. Use the sql server project included to generate the database.
+   2. Update the `appsettings.json` file with your database connection string.
+
 #### Build the API
 
 3. **Build the API:**
