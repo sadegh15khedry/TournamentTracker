@@ -102,7 +102,7 @@ TournamentTracker is a robust application designed to manage and track tournamen
 #### Run the WinForms application
 
 6. **Run the WinForms application:**
-   - Open the `TournamentTracker.WinForms/bin/Debug/netcoreapp3.1` directory and run the `TournamentTracker.WinForms.exe` file.
+   - Open the `TournamentTracker.WinForms/bin/Debug` directory and run the `TournamentTracker.WinForms.exe` file.
 
 ## Usage
 
