@@ -40,16 +40,20 @@ TournamentTracker is a robust application designed to manage and track tournamen
 ## Screenshots
 
 ### Dashboard
-![Dashboard](path/to/dashboard_screenshot.png)
+![Screenshot 2024-06-06 055449](https://github.com/sadegh15khedry/TournamentTracker/assets/90490848/87aac98d-0131-4ac5-b366-9f0a024248d1)
+
 
 ### Create Tournament
-![Create Tournament](path/to/create_tournament_screenshot.png)
+![Screenshot 2024-06-06 060541](https://github.com/sadegh15khedry/TournamentTracker/assets/90490848/2caf3f22-9729-4177-9ebc-7229a9d6ddc2)
+
 
 ### Manage Participants
-![Manage Participants](path/to/manage_participants_screenshot.png)
+![Screenshot 2024-06-06 060440](https://github.com/sadegh15khedry/TournamentTracker/assets/90490848/5a20c92c-07ee-4d4b-90e4-12a897dc61ab)
+
 
 ### Track Match Results
-![Track Match Results](path/to/track_match_results_screenshot.png)
+![Screenshot 2024-06-06 055630](https://github.com/sadegh15khedry/TournamentTracker/assets/90490848/0355382b-c3b1-4b16-b492-81e501ba333b)
+
 
 
 ## Getting Started
