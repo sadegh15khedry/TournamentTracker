@@ -118,9 +118,6 @@ TournamentTracker is a robust application designed to manage and track tournamen
    - Record match results in the "Match Tracking" section.
    - View match history and standings.
 
-## API Documentation
-
-API documention will be added in the futuer.
 
 ## Technologies Used
 
