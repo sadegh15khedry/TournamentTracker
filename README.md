@@ -1,4 +1,4 @@
-# TournamentTracker
+# Tournament Tracker
 
 ## Overview
 
